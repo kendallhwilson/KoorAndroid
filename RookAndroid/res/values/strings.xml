@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+   <!-- Menu Page Strings -->
+    <string name="app_name">Koor</string>
+    <string name="action_settings">Settings</string>
+    <string name="play_button_text">Play</string>
+    <string name="upgrade_button_text">Upgrade (No Ads)</string>
+    <string name="menu_image_descrip">Main large menu image</string>
+
+</resources>
