@@ -13,9 +13,11 @@ public class BidFragment extends Fragment implements OnClickListener {
 	public TextView currentHighBid;
 	public TextView playerBid;
 	private int bid = 0;
+	
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 		View v = inflater.inflate(R.layout.bid_layout, container, false);
+		
 		currentHighBid = (TextView) v.findViewById(R.id.current_bid_number_textview);
 		playerBid = (TextView) v.findViewById(R.id.my_bid_number_textview);
 		
@@ -51,6 +53,9 @@ public class BidFragment extends Fragment implements OnClickListener {
             break;
         case R.id.bid_go_button:
         	//call method to send new bid
+        	break;
+        case R.id.pass_button:
+        	//call method to pass on bidding
         	break;
         }
     }

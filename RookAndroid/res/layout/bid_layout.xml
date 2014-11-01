@@ -14,38 +14,12 @@
         android:text="@string/zero" />
 
     <Button
-        android:id="@+id/bid_add_five_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentLeft="true"
-        android:text="@string/bid_plus_five" />
-
-    <Button
         android:id="@+id/bid_go_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true"
         android:text="@string/bid_go" />
-
-    <TextView
-        android:id="@+id/my_bid_textview"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:textSize="@dimen/bid_text_size"
-        android:text="@string/my_bid" />
-
-    <TextView
-        android:id="@+id/my_bid_number_textview"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_toRightOf="@+id/my_bid_textview"
-        android:textSize="@dimen/bid_text_size"
-        android:text="@string/zero" />
 
     <LinearLayout
         android:id="@+id/card_line_1"
@@ -155,6 +129,42 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="21dp"
         android:text="@string/current_bid_text"
+        android:textSize="@dimen/bid_text_size" />
+
+    <Button
+        android:id="@+id/pass_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:text="@string/pass" />
+
+    <TextView
+        android:id="@+id/my_bid_textview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/bid_add_five_button"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/card_line_2"
+        android:text="@string/my_bid"
+        android:textSize="@dimen/bid_text_size" />
+
+    <Button
+        android:id="@+id/bid_add_five_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignRight="@+id/my_bid_textview"
+        android:text="@string/bid_plus_five" />
+
+    <TextView
+        android:id="@+id/my_bid_number_textview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/my_bid_textview"
+        android:layout_alignBottom="@+id/my_bid_textview"
+        android:layout_toRightOf="@+id/my_bid_textview"
+        android:text="@string/zero"
         android:textSize="@dimen/bid_text_size" />
 
 </RelativeLayout>

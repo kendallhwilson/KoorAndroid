@@ -14,6 +14,7 @@
     <string name="bid_plus_five">+5</string>
     <string name="my_bid">My Bid: </string>
     <string name="bid_go">Bid It!</string>
+    <string name="pass">Pass</string>
     
     <!-- Choose Trump Dialog Fragment Strings -->
       <string name="choose_trump_dialog_text">You won! You may choose a trump color:</string>
