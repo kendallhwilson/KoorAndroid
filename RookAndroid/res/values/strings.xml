@@ -8,9 +8,14 @@
     <string name="upgrade_button_text">Upgrade (No Ads)</string>
     <string name="menu_image_descrip">Main large menu image</string>
     
+    <!-- Bidding Fragment Strings -->
+    <string name="current_bid_text">Current Bid:</string>
+    <string name="zero">0</string>
+    <string name="bid_plus_five">+5</string>
+    <string name="my_bid">My Bid: </string>
+    <string name="bid_go">Bid It!</string>
+    
     <!-- Choose Trump Dialog Fragment Strings -->
       <string name="choose_trump_dialog_text">You won! You may choose a trump color:</string>
-      <string name="blue">Blue</string>
-      <string name="red">Red</string>
 
 </resources>

@@ -10,5 +10,8 @@
     <dimen name="menu_button_width">270dp</dimen>
     <dimen name="menu_button_height">60dp</dimen>
     <dimen name="menu_button_margin">20dp</dimen>
+    
+    <!--  Bid Fragment Dimensions -->
+    <dimen name="bid_text_size">25sp</dimen>
 
 </resources>
