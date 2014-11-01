@@ -7,5 +7,10 @@
     <string name="play_button_text">Play</string>
     <string name="upgrade_button_text">Upgrade (No Ads)</string>
     <string name="menu_image_descrip">Main large menu image</string>
+    
+    <!-- Choose Trump Dialog Fragment Strings -->
+      <string name="choose_trump_dialog_text">You won! You may choose a trump color:</string>
+      <string name="blue">Blue</string>
+      <string name="red">Red</string>
 
 </resources>
