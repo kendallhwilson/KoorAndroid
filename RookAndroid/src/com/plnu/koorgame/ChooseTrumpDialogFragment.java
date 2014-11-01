@@ -18,10 +18,8 @@ public class ChooseTrumpDialogFragment extends DialogFragment {
 		builder.setTitle(R.string.choose_trump_dialog_text);
 		builder.setItems(new CharSequence[] {"Black", "Red", "Green", "Yellow"},
 	            new DialogInterface.OnClickListener() {
-	                public void onClick(DialogInterface dialog, int which) {
-	                    // The 'which' argument contains the index position
-	                    // of the selected item
-	                    switch (which) {
+	                public void onClick(DialogInterface dialog, int color) {
+	                    switch (color) {
 	                        case 0:
 	                        	//black trump
 	                            break;

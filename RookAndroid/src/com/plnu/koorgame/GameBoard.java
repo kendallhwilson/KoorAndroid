@@ -20,27 +20,16 @@ public class GameBoard extends Activity {
 		bidFragment = new BidFragment();
 	}
 	
-	public void startBidding(View v)
-	{
+	public void startBidding(View v) {
 		FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
 		fragmentTransaction.add(R.id.fragment_container, bidFragment);
 		fragmentTransaction.commit();
 	}
 	
-	public void chooseTrumpColor(View v)
-	{
+	public void chooseTrumpColor(View v){
 		// Create new fragment and transaction
 		ChooseTrumpDialogFragment chooseTrumpFragment = new ChooseTrumpDialogFragment();
 		chooseTrumpFragment.show(getFragmentManager(), "trumpdialogtag");
-		//FragmentTransaction transaction = getFragmentManager().beginTransaction();
-
-		// Replace whatever is in the fragment_container view with this fragment,
-		// and add the transaction to the back stack
-		///transaction.replace(R.id.fragment_container, chooseTrumpFragment);
-		//transaction.addToBackStack(null);
-
-		// Commit the transaction
-		//transaction.commit();
 	}
     
     @Override
