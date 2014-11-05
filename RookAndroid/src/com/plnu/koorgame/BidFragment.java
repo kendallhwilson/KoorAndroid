@@ -9,6 +9,9 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 
+/*
+ * Fragment to do all bidding
+ */
 public class BidFragment extends Fragment implements OnClickListener {
 	public TextView currentHighBid;
 	public TextView playerBid;

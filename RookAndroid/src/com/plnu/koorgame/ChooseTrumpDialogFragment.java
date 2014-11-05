@@ -10,6 +10,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+/*
+ * Fragment to let player choose trump
+ */
 public class ChooseTrumpDialogFragment extends DialogFragment {
 
 	@Override
@@ -19,6 +22,9 @@ public class ChooseTrumpDialogFragment extends DialogFragment {
 		builder.setItems(new CharSequence[] {"Black", "Red", "Green", "Yellow"},
 	            new DialogInterface.OnClickListener() {
 	                public void onClick(DialogInterface dialog, int color) {
+	                	//send something??? OR
+	                	
+	                	
 	                    switch (color) {
 	                        case 0:
 	                        	//black trump

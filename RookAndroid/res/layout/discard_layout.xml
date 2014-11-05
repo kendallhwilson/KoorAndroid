@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+
+    <TextView
+        android:id="@+id/discard_instruction_textview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="@dimen/discard_instructions_margin_top"
+        android:text="@string/discard_instructions"
+        android:textSize="@dimen/discard_text_size" />
+    
+    <LinearLayout
+        android:id="@+id/card_line_1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/discard_instruction_textview"
+        android:orientation="horizontal"
+        android:weightSum="1" > 
+        
+        <ImageView
+            android:id="@+id/card1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.2"
+            android:adjustViewBounds="true"
+            android:src="@drawable/rook"
+            android:clickable="true" 
+            android:onClick="cardClick" />
+            
+        <ImageView
+            android:id="@+id/card2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.2"
+            android:adjustViewBounds="true"
+            android:src="@drawable/rook"
+            android:clickable="true" 
+            android:onClick="cardClick"  />
+  
+        <ImageView
+            android:id="@+id/card3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.2"
+            android:adjustViewBounds="true"
+            android:src="@drawable/rook" 
+            android:clickable="true"
+            android:onClick="cardClick" />
+            
+        <ImageView
+            android:id="@+id/card4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.2"
+            android:adjustViewBounds="true"
+            android:src="@drawable/rook"
+            android:clickable="true"
+            android:onClick="cardClick" />
+        
+         <ImageView
+            android:id="@+id/card5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.2"
+            android:adjustViewBounds="true"
+            android:src="@drawable/rook" 
+            android:clickable="true"
+            android:onClick="cardClick" /> 
+       </LinearLayout>
+       
+        <LinearLayout
+        	android:id="@+id/card_line_2"
+        	android:layout_width="match_parent"
+        	android:layout_height="wrap_content"
+        	android:layout_below="@+id/card_line_1"
+        	android:orientation="horizontal"
+        	android:weightSum="1" >
+         
+         <ImageView
+            android:id="@+id/card6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.2"
+            android:adjustViewBounds="true"
+            android:src="@drawable/rook"  
+            android:clickable="true"
+            android:onClick="cardClick" />
+            
+        <ImageView
+            android:id="@+id/card7"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.2"
+            android:adjustViewBounds="true"
+            android:src="@drawable/rook"
+            android:clickable="true"
+            android:onClick="cardClick" />
+  
+        <ImageView
+            android:id="@+id/card8"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.2"
+            android:adjustViewBounds="true"
+            android:src="@drawable/rook"  
+            android:clickable="true"
+            android:onClick="cardClick" />
+            
+        <ImageView
+            android:id="@+id/card9"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.2"
+            android:adjustViewBounds="true"
+            android:src="@drawable/rook"  
+            android:clickable="true"
+            android:onClick="cardClick" />
+        
+         <ImageView
+            android:id="@+id/card10"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.2"
+            android:adjustViewBounds="true"
+            android:src="@drawable/rook"  
+            android:clickable="true"
+            android:onClick="cardClick" />               
+                
+    </LinearLayout>
+ 
+	<LinearLayout
+		android:id="@+id/card_line_3"
+    	android:layout_width="match_parent"
+    	android:layout_height="wrap_content"
+    	android:layout_below="@+id/card_line_2"
+    	android:orientation="horizontal"
+    	android:weightSum="1" >
+         
+	    <ImageView
+            android:id="@+id/card11"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.2"
+            android:adjustViewBounds="true"
+            android:src="@drawable/rook"  
+            android:clickable="true"
+            android:onClick="cardClick" />
+            
+        <ImageView
+            android:id="@+id/card12"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.2"
+            android:adjustViewBounds="true"
+            android:src="@drawable/rook"  
+            android:clickable="true"
+            android:onClick="cardClick"/>
+  
+        <ImageView
+            android:id="@+id/card13"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.2"
+            android:adjustViewBounds="true"
+            android:src="@drawable/rook"  
+            android:clickable="true"
+            android:onClick="cardClick"/>
+            
+        <ImageView
+            android:id="@+id/card14"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.2"
+            android:adjustViewBounds="true"
+            android:src="@drawable/rook" 
+            android:clickable="true"
+            android:onClick="cardClick" />
+            
+         <ImageView
+            android:id="@+id/card15"   
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.2"
+            android:adjustViewBounds="true"
+            android:src="@drawable/rook" 
+            android:clickable="true"
+            android:onClick="cardClick"/>
+    </LinearLayout>
+
+</RelativeLayout>
