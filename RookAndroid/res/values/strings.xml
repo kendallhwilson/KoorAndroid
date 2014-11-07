@@ -12,12 +12,17 @@
     <string name="player1">Player 1:</string>
     <string name="player2">Player 2:</string>
     <string name="player3">Player 3:</string>
+    <string name="player4">My card:</string>
     <string name="zero">0</string>
     <string name="bid_plus_five">+5</string>
     <string name="my_bid">My Bid: </string>
     <string name="bid_go">Bid It!</string>
     <string name="pass">Pass</string>
     <string name="ok">OK</string>
+    
+    <!--  Trick Fragment -->
+    <string name="high_bid">High Bid:</string>
+    <string name="trick_winner">Trick Winner is:</string>
     
     <!-- Discard Fragment Strings -->
     <string name="discard_instructions">Click a card to discard it! You can only choose five.</string>
