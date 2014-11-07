@@ -9,7 +9,9 @@
     <string name="menu_image_descrip">Main large menu image</string>
     
     <!-- Bidding Fragment Strings -->
-    <string name="current_bid_text">Current Bid:</string>
+    <string name="player1">Player 1:</string>
+    <string name="player2">Player 2:</string>
+    <string name="player3">Player 3:</string>
     <string name="zero">0</string>
     <string name="bid_plus_five">+5</string>
     <string name="my_bid">My Bid: </string>
@@ -19,6 +21,7 @@
     
     <!-- Discard Fragment Strings -->
     <string name="discard_instructions">Click a card to discard it! You can only choose five.</string>
+    <string name="discard_button_text">Discard</string>
     
     <!-- Choose/Alert Trump Dialog Fragment Strings -->
       <string name="choose_trump_dialog_text">You won! You may choose a trump color:</string>

@@ -3,79 +3,114 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical" >
-    
-    <TextView
-        android:id="@+id/current_bid_number_textview"
+
+   <TextView
+        android:id="@+id/player2status_textview"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_below="@+id/current_bid_textview"
-        android:textSize="@dimen/bid_text_size"
-        android:text="@string/zero" />
+        android:layout_marginTop="@dimen/top_bid_margin"
+        android:text="@string/player2"
+        android:textSize="@dimen/bid_text_size" />
 
+    <TextView
+        android:id="@+id/player2status_number"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_toRightOf="@+id/player2status_textview"
+        android:layout_marginTop="@dimen/top_bid_margin"
+        android:text="@string/zero"
+        android:textSize="@dimen/bid_text_size" />
+
+    <TextView
+        android:id="@+id/player1status_textview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@+id/player2status_textview"
+        android:layout_marginTop="@dimen/side_bid_margin"
+        android:text="@string/player1"
+        android:textSize="@dimen/bid_text_size" />
+
+    <TextView
+        android:id="@+id/player1status_num"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/side_bid_margin"
+        android:layout_toRightOf="@+id/player1status_textview"
+        android:text="@string/zero"
+        android:textSize="@dimen/bid_text_size" />
+
+   <TextView
+        android:id="@+id/player3status_textview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toLeftOf="@+id/player2status_textview"
+        android:layout_marginTop="@dimen/side_bid_margin"
+        android:text="@string/player3"
+        android:textSize="@dimen/bid_text_size" />
+
+    <TextView
+        android:id="@+id/player3status_num"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/side_bid_margin"
+        android:layout_toRightOf="@+id/player3status_textview"
+        android:text="@string/zero"
+        android:textSize="@dimen/bid_text_size" />
+    
+    <TextView
+        android:id="@+id/my_bid_textview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/card_line_1"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="52dp"
+        android:text="@string/my_bid"
+        android:textSize="@dimen/bid_text_size" />
+
+    <TextView
+        android:id="@+id/my_bid_number_textview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/card_line_1"
+        android:layout_alignBaseline="@+id/my_bid_textview"
+        android:layout_alignBottom="@+id/my_bid_textview"
+        android:layout_toRightOf="@+id/my_bid_textview"
+        android:text="@string/zero"
+        android:textSize="@dimen/bid_text_size" />
+    
+
+    <Button
+        android:id="@+id/pass_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/card_line_1"
+        android:text="@string/pass" />
+    
     <Button
         android:id="@+id/bid_go_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentRight="true"
+        android:layout_alignBaseline="@+id/pass_button"
+        android:layout_centerHorizontal="true"
         android:text="@string/bid_go" />
 
-    <LinearLayout
-        android:id="@+id/card_line_1"
-        android:layout_width="match_parent"
+    <Button
+        android:id="@+id/bid_add_five_button"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/current_bid_number_textview"
-        android:orientation="horizontal"
-        android:weightSum="1" >
-
-        <ImageView
-            android:id="@+id/card1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="0.2"
-            android:adjustViewBounds="true"
-            android:src="@drawable/rook" />
-            
-        <ImageView
-            android:id="@+id/card2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="0.2"
-            android:adjustViewBounds="true"
-            android:src="@drawable/rook" />
-  
-        <ImageView
-            android:id="@+id/card3"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="0.2"
-            android:adjustViewBounds="true"
-            android:src="@drawable/rook" />
-            
-        <ImageView
-            android:id="@+id/card4"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="0.2"
-            android:adjustViewBounds="true"
-            android:src="@drawable/rook" />
-        
-         <ImageView
-            android:id="@+id/card5"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="0.2"
-            android:adjustViewBounds="true"
-            android:src="@drawable/rook" />               
-                
-    </LinearLayout>
+        android:layout_alignBaseline="@+id/pass_button"
+        android:layout_alignBottom="@+id/pass_button"
+        android:layout_alignParentRight="true"
+        android:text="@string/bid_plus_five" />
     
     <LinearLayout
         android:id="@+id/card_line_2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/card_line_1"
+        android:layout_alignParentBottom="true"
         android:orientation="horizontal"
         android:weightSum="1" >
 
@@ -121,50 +156,54 @@
                 
     </LinearLayout>
 
-    <TextView
-        android:id="@+id/current_bid_textview"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:id="@+id/card_line_1"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="21dp"
-        android:text="@string/current_bid_text"
-        android:textSize="@dimen/bid_text_size" />
-
-    <Button
-        android:id="@+id/pass_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
+        android:layout_above="@+id/card_line_2"
         android:layout_alignParentLeft="true"
-        android:text="@string/pass" />
+        android:orientation="horizontal"
+        android:weightSum="1" >
 
-    <TextView
-        android:id="@+id/my_bid_textview"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/bid_add_five_button"
-        android:layout_centerHorizontal="true"
-        android:layout_below="@+id/card_line_2"
-        android:text="@string/my_bid"
-        android:textSize="@dimen/bid_text_size" />
+        <ImageView
+            android:id="@+id/card1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.2"
+            android:adjustViewBounds="true"
+            android:src="@drawable/rook" />
 
-    <Button
-        android:id="@+id/bid_add_five_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_alignRight="@+id/my_bid_textview"
-        android:text="@string/bid_plus_five" />
+        <ImageView
+            android:id="@+id/card2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.2"
+            android:adjustViewBounds="true"
+            android:src="@drawable/rook" />
 
-    <TextView
-        android:id="@+id/my_bid_number_textview"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/my_bid_textview"
-        android:layout_alignBottom="@+id/my_bid_textview"
-        android:layout_toRightOf="@+id/my_bid_textview"
-        android:text="@string/zero"
-        android:textSize="@dimen/bid_text_size" />
+        <ImageView
+            android:id="@+id/card3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.2"
+            android:adjustViewBounds="true"
+            android:src="@drawable/rook" />
+
+        <ImageView
+            android:id="@+id/card4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.2"
+            android:adjustViewBounds="true"
+            android:src="@drawable/rook" />
+
+        <ImageView
+            android:id="@+id/card5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.2"
+            android:adjustViewBounds="true"
+            android:src="@drawable/rook" />
+    </LinearLayout>
 
 </RelativeLayout>

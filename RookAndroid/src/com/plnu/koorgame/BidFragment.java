@@ -13,16 +13,21 @@ import android.widget.TextView;
  * Fragment to do all bidding
  */
 public class BidFragment extends Fragment implements OnClickListener {
-	public TextView currentHighBid;
-	public TextView playerBid;
+	
+	public TextView player1Bid;
+	public TextView player2Bid;
+	public TextView player3Bid;
+	public TextView myBid;
 	private int bid = 0;
 	
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 		View v = inflater.inflate(R.layout.bid_layout, container, false);
 		
-		currentHighBid = (TextView) v.findViewById(R.id.current_bid_number_textview);
-		playerBid = (TextView) v.findViewById(R.id.my_bid_number_textview);
+		player1Bid = (TextView) v.findViewById(R.id.player1status_textview);
+		player2Bid = (TextView) v.findViewById(R.id.player2status_textview);
+		player3Bid = (TextView) v.findViewById(R.id.player3status_textview);
+		myBid = (TextView) v.findViewById(R.id.my_bid_number_textview);
 		
 		Button increaseFiveButton = (Button) v.findViewById(R.id.bid_add_five_button);
 		increaseFiveButton.setOnClickListener(this);
@@ -51,7 +56,7 @@ public class BidFragment extends Fragment implements OnClickListener {
         case R.id.bid_add_five_button:
     		if (bid < 200) { //check bidding rules 
     			bid += 5;
-    			playerBid.setText(String.valueOf(bid));
+    			myBid.setText(String.valueOf(bid));
     		}
             break;
         case R.id.bid_go_button:
@@ -64,13 +69,23 @@ public class BidFragment extends Fragment implements OnClickListener {
     }
 	
 	/*
-	 * Method called to update high bid in GUI
-	 * @param the high bid we are showing
+	 * Method called to update player bids in GUI
+	 * @param the bid we are showing
 	 */
-	public void displayHighBid(int highBid){
-		currentHighBid.setText(String.valueOf(highBid));
-		playerBid.setText(String.valueOf(highBid));
-		bid = highBid;
+	public void displayPlayerBid(int player, int newBid){
+		switch (player) {
+		case 1:
+			player1Bid.setText(String.valueOf(newBid));
+			break;
+		case 2:
+			player2Bid.setText(String.valueOf(newBid));
+			break;
+		case 3:
+			player3Bid.setText(String.valueOf(newBid));
+			break;
+		}
+			bid = newBid;
+			myBid.setText(String.valueOf(newBid + 5));
 	}
 }
 

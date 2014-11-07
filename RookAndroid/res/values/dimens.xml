@@ -12,7 +12,9 @@
     <dimen name="menu_button_margin">20dp</dimen>
     
     <!--  Bid Fragment Dimensions -->
-    <dimen name="bid_text_size">25sp</dimen>
+    <dimen name="bid_text_size">20sp</dimen>
+    <dimen name="top_bid_margin">20dp</dimen>
+    <dimen name="side_bid_margin">100dp</dimen>
     
     <!--  Discard Fragment Dimensions -->
     <dimen name="discard_text_size">25sp</dimen>

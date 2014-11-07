@@ -13,6 +13,14 @@
         android:text="@string/discard_instructions"
         android:textSize="@dimen/discard_text_size" />
     
+   <Button
+	    android:id="@+id/discard_button"
+	    android:layout_width="wrap_content"
+	    android:layout_height="wrap_content"
+	    android:layout_alignParentBottom="true"
+	    android:layout_centerHorizontal="true"
+	    android:text="@string/discard_button_text" />
+    
     <LinearLayout
         android:id="@+id/card_line_1"
         android:layout_width="match_parent"
@@ -190,5 +198,6 @@
             android:clickable="true"
             android:onClick="cardClick"/>
     </LinearLayout>
+
 
 </RelativeLayout>
