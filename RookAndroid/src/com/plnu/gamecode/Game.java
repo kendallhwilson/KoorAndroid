@@ -37,6 +37,12 @@ public class Game {
 	      players[3].myPartner = players[1];
 	}
 	
+	public int[] advanceBidding() {
+		//do whatever you need to do to advance this - ONLY have AI players BID
+		int[] bids = {1};
+		return bids;
+	}
+	
 	/*
 	* This is the bidding process. 
 	* bidWon is set to true if only one bidder is left

@@ -1,5 +1,7 @@
 package com.plnu.koorgame;
 
+import com.plnu.gamecode.Game;
+
 import android.app.Activity;
 import android.app.Fragment;
 import android.app.FragmentManager;
@@ -22,15 +24,24 @@ public class GameBoard extends Activity {
 		
 		bidFragment = new BidFragment();
 		discardFragment = new DiscardFragment();
+		
+		Game game = new Game();
+		game.makeDeck();
+		game.dealCards();
+		int [] bids = game.advanceBidding(); //ONLY HAVE AI PLAYERS MAKE THEIR BIDS
+		startBiddingFragment(bids);
 	}
 	
 	/*
 	 * Replace current fragment with bidding fragment
 	 */
-	public void startBidding(View v) {
+	public void startBiddingFragment(int[] bids) {
 		FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
 		fragmentTransaction.add(R.id.fragment_container, discardFragment);
 		fragmentTransaction.commit();
+		bidFragment.displayPlayerBid(1, bids[0]);
+		bidFragment.displayPlayerBid(2,  bids[1]);
+		bidFragment.displayPlayerBid(3,  bids[1]);
 	}
 	
 	public void startGame() {
