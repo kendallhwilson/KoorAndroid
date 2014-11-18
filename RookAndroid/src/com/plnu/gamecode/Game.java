@@ -99,76 +99,12 @@ public class Game {
 		return playersRemainingInBidding;
 	}
 	
-	/*
-	* This is the bidding process. 
-	* bidWon is set to true if only one bidder is left
-	* 
-	*/
-
-	/*public void Bidding(){
-			//Resetting value of highest bid.
-		   highBid = 0;
-		   bidWinner = 4;
-			
-			//Resetting all values in playerActive to false.
-			for(int i=0; i<4;i++){
-				playerActive[i] = true;
-				players[i].bidding = true;
-			}
-			
-		   boolean bidWon = false;
-		
-		   
-		   bidLoop:
-		   while(bidWon == false){
-		 	  int bidders = 4;
-		 	  	for(int i = 0; i < players.length; i++){
-		 	  		
-		 	  		
-		 	  		
-		 		  if(highBid <= 195 && bidders > 1){
-		 			 players[i].bidOrPass(players[i].bidding);
-		 			
-		 			
-		 			  
-		     		  if(players[i].bidding == true){
-		     				  highBid = players[i].bid(highBid);
-		     				  bidWinner = i;
-		     				  System.out.println("Current High is " + highBid);
-		     		  }
-		     		  else{
-					  	  //Removing player from bidding.
-						  playerActive[i] = false;
-		     			  bidders--;
-		     			  
-		     		  }
-		 		  }
-     			  
-		 		 
-		 		  if(highBid > 195 || bidders == 1){
-		       		  bidWon = true;
-			     			  if(highBid == 0){ //All NPCs Passed
-			     				  highBid = players[3].bid(highBid);
-			     				  bidWinner = 3;
-			     			  }
-			     			  
-			     			  System.out.println("winning bidder is player " + bidWinner);
-				       		  System.out.println("Highest bid: " + highBid);
-				       		  players[bidWinner].setHighBidder(highBid);
-				       		  players[bidWinner].winningBiddingTeam = true;
-				       		  players[bidWinner].myPartner.winningBiddingTeam = true;
-				       		  //Need to set their teammate as winning as well		  
-				       		  break bidLoop;
-		       	  }   
-		     }
-		  }
-        trickWinner=bidWinner; 
-	}
-		*/
-   /*
-	* playGame is the game play for 10 tricks 
-	* play starts with the bidWinner leading, and cycles through
-	*/
+	
+	
+	
+	//----- Code above this line is utilized for gameplay through the GUI. Everything below is only utilized for CMD gameplay and must be converted.----
+	
+	
 	public void playGame(){
 		//resets the scores for the round to zero
 		roundScore[0]=0;
