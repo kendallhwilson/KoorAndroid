@@ -24,7 +24,10 @@ public class Game {
 	protected int[] currentTeamScores = new int[2];
 	protected int[] roundScore = new int[2];
 	int tricksWon=0;
+	
 	int count = 1;
+	int allAIAndPlayerBids[] = new int[4];
+	int playersRemainingInBidding = 4;
 	
 	public Game(){
 	      players[0] = new NPC();
@@ -37,10 +40,63 @@ public class Game {
 	      players[3].myPartner = players[1];
 	}
 	
+	public void CleanAllBiddingObjects(){
+		//Resetting all values in playerActive to true. This allows us to reuse the class variables we created to store the values between calls.
+		for(int i=0; i<4;i++){
+			playerActive[i] = true;
+			players[i].bidding = true;
+		}
+		
+		highBid = 100; //Setting highBid back to minimum.
+		bidWinner = 0; //Setting the bid winner to the first bidder.
+		playersRemainingInBidding = 4; //4 Players bidding
+		allAIAndPlayerBids = new int[] {0,0,0,0};
+		
+	}
 	public int[] advanceBidding() {
-		//do whatever you need to do to advance this - ONLY have AI players BID
-		int[] bids = {1};
-		return bids;
+		
+		for(int i=0; i < 3; i++){ //For each AI PLAYER, we iterate through and see if they want to bid. If they do, they replace the bid. 
+			
+			if(highBid < 195 && playersRemainingInBidding > 1){
+			
+			players[i].bidOrPass(players[i].bidding);
+			
+			if(players[i].bidding == true){
+				highBid = players[i].bid(highBid);
+				bidWinner = i;
+				allAIAndPlayerBids[i] = highBid;
+				
+			}
+			else if(allAIAndPlayerBids[i] != -2){ //If they no longer want to bid, remove them. We check to see if they have already been removed by comparing their score to -2, our removed player value.
+				players[i].bidding = false;
+				playersRemainingInBidding--;
+				allAIAndPlayerBids[i] = -2;
+			}
+			
+			} else { //highBid was above 195 or only 1 player remains, so we set the last highest bidder as the winner. 
+						players[bidWinner].setHighBidder(highBid);
+			       		players[bidWinner].winningBiddingTeam = true;
+			       		players[bidWinner].myPartner.winningBiddingTeam = true;
+			       		trickWinner = bidWinner;
+			       		playersRemainingInBidding = 0;
+			}
+		}
+		
+		return allAIAndPlayerBids;
+	}
+	
+	public void playerDroppedFromBidding() { //This allows the GUI to remove the player from bidding and still use advanceBid to let the AI compete.
+		allAIAndPlayerBids[3] = -2;
+		playersRemainingInBidding--;
+	}
+	
+	public void playerEnteredNewBid(int playerNewBid){ //If the player entered a new bid, add it to the array before the GUI calls advanceBid again.
+		highBid = playerNewBid;
+		allAIAndPlayerBids[3] = playerNewBid;
+	}
+	
+	public int getNumberOfBiddersRemaining(){ //Allows the GUI to find how many players are remaining.
+		return playersRemainingInBidding;
 	}
 	
 	/*
@@ -49,7 +105,7 @@ public class Game {
 	* 
 	*/
 
-	public void Bidding(){
+	/*public void Bidding(){
 			//Resetting value of highest bid.
 		   highBid = 0;
 		   bidWinner = 4;
@@ -61,14 +117,6 @@ public class Game {
 			}
 			
 		   boolean bidWon = false;
-		   //Print the player's hand
-		   System.out.println("This is your hand");
-		   for(int k=0;k<15;k++){
-				if(players[3].hand[k].getCardVal()!=0){
-				
-			   System.out.println(k+".      "+ players[3].hand[k].getCardVal() + "  "+players[3].hand[k].getSuit());
-				}
-			}
 		
 		   
 		   bidLoop:
@@ -116,7 +164,7 @@ public class Game {
 		  }
         trickWinner=bidWinner; 
 	}
-		
+		*/
    /*
 	* playGame is the game play for 10 tricks 
 	* play starts with the bidWinner leading, and cycles through

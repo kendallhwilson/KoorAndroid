@@ -39,12 +39,16 @@ public class GameBoard extends Activity implements onBidListener {
 	 * Replace current fragment with bidding fragment
 	 */
 	public void startBiddingFragment(int[] bids) {
+		Bundle args = new Bundle();
+        args.putInt("PLAYER1Bid", bids[0]);
+        args.putInt("PLAYER2Bid", bids[1]);
+	    args.putInt("PLAYER3Bid", bids[2]);
+		bidFragment.setArguments(args);
 		FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
-		fragmentTransaction.add(R.id.fragment_container, discardFragment);
+		fragmentTransaction.add(R.id.fragment_container, bidFragment);
 		fragmentTransaction.commit();
-		bidFragment.displayPlayerBid(1, bids[0]);
-		bidFragment.displayPlayerBid(2,  bids[1]);
-		bidFragment.displayPlayerBid(3,  bids[1]);
+		getFragmentManager().executePendingTransactions();
+	
 	}
 	
 	/*
@@ -54,7 +58,16 @@ public class GameBoard extends Activity implements onBidListener {
 	@Override
 	public void onBidPass() {
 		//They passed the bid
+		game.playerDroppedFromBidding();
 		
+		while(game.getNumberOfBiddersRemaining() > 0){
+			int [] bids = game.advanceBidding(); //OR call other method?????????
+			bidFragment.displayPlayerBid(1, bids[0]);
+			bidFragment.displayPlayerBid(2,  bids[1]);
+			bidFragment.displayPlayerBid(3,  bids[2]);
+		}
+		
+		startGame(); //Bidding will continue down to a single player, so we will temporarily open the discard window even though the player wouldn't do that at this point.
 	}
 
 	/*
@@ -64,17 +77,23 @@ public class GameBoard extends Activity implements onBidListener {
 	 */
 	@Override
 	public void onBidPlayed(int bid) {
+		game.playerEnteredNewBid(bid);
 		int [] bids = game.advanceBidding(); //OR call other method?????????
 		bidFragment.displayPlayerBid(1, bids[0]);
 		bidFragment.displayPlayerBid(2,  bids[1]);
-		bidFragment.displayPlayerBid(3,  bids[1]);
+		bidFragment.displayPlayerBid(3,  bids[2]);
 		
+		if(game.getNumberOfBiddersRemaining() == 0)
+		{
+			startGame(); //Opening the discard window since we can assume the player won the bid.
+		}
 	}
 	
 	public void startGame() {
 		FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
 		fragmentTransaction.add(R.id.fragment_container, discardFragment);
 		fragmentTransaction.commit();
+		getFragmentManager().executePendingTransactions();
 	}
 	/*
 	 * Displays dialog to allow user to choose trump color
