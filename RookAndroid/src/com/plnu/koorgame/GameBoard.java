@@ -1,6 +1,7 @@
 package com.plnu.koorgame;
 
 import com.plnu.gamecode.Game;
+import com.plnu.koorgame.BidFragment.onBidListener;
 
 import android.app.Activity;
 import android.app.Fragment;
@@ -12,10 +13,12 @@ import android.view.View;
 /*
  * GameBoard class stores methods to change fragments or display alerts
  */
-public class GameBoard extends Activity {
+public class GameBoard extends Activity implements onBidListener {
 	
 	private BidFragment bidFragment;
 	private DiscardFragment discardFragment;
+	
+	private Game game;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -25,7 +28,7 @@ public class GameBoard extends Activity {
 		bidFragment = new BidFragment();
 		discardFragment = new DiscardFragment();
 		
-		Game game = new Game();
+		game = new Game();
 		game.makeDeck();
 		game.dealCards();
 		int [] bids = game.advanceBidding(); //ONLY HAVE AI PLAYERS MAKE THEIR BIDS
@@ -42,6 +45,30 @@ public class GameBoard extends Activity {
 		bidFragment.displayPlayerBid(1, bids[0]);
 		bidFragment.displayPlayerBid(2,  bids[1]);
 		bidFragment.displayPlayerBid(3,  bids[1]);
+	}
+	
+	/*
+	 * Interface with BidFragment
+	 * Called when player selects "pass" on bid
+	 */
+	@Override
+	public void onBidPass() {
+		//They passed the bid
+		
+	}
+
+	/*
+	 * Interface with BidFragment
+	 * Called when player bids
+	 * @param the bid the real player selected
+	 */
+	@Override
+	public void onBidPlayed(int bid) {
+		int [] bids = game.advanceBidding(); //OR call other method?????????
+		bidFragment.displayPlayerBid(1, bids[0]);
+		bidFragment.displayPlayerBid(2,  bids[1]);
+		bidFragment.displayPlayerBid(3,  bids[1]);
+		
 	}
 	
 	public void startGame() {
@@ -114,6 +141,5 @@ public class GameBoard extends Activity {
 	protected void onPause() {
 		super.onPause();
 		
-	}
-		
+	}		
 }

@@ -1,5 +1,6 @@
 package com.plnu.koorgame;
 
+import android.app.Activity;
 import android.app.Fragment;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -20,6 +21,8 @@ public class BidFragment extends Fragment implements OnClickListener {
 	public TextView myBid;
 	private int bid = 0;
 	
+	private onBidListener bidCallback;
+	
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 		View v = inflater.inflate(R.layout.bid_layout, container, false);
@@ -36,6 +39,23 @@ public class BidFragment extends Fragment implements OnClickListener {
 		
         return v;
 	}
+	
+	public interface onBidListener {
+		public void onBidPass();
+		public void onBidPlayed(int bid);
+	}
+	
+	@Override
+	public void onAttach(Activity activity) {
+		super.onAttach(activity);
+        try {
+            bidCallback = (onBidListener) activity;
+        } 
+        catch (ClassCastException e) {
+            throw new ClassCastException(activity.toString()
+                    + " must implement onBidPassedListener");
+        }
+    }
 	
     @Override
 	public void onResume() {
@@ -60,10 +80,10 @@ public class BidFragment extends Fragment implements OnClickListener {
     		}
             break;
         case R.id.bid_go_button:
-        	//call method to send new bid
+        	bidCallback.onBidPlayed(bid);
         	break;
         case R.id.pass_button:
-        	//call method to pass on bidding
+        	bidCallback.onBidPass();
         	break;
         }
     }
