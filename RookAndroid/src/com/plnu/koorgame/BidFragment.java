@@ -42,6 +42,8 @@ public class BidFragment extends Fragment implements OnClickListener {
 		displayPlayerBid(2, getArguments().getInt("PLAYER2Bid"));
 		displayPlayerBid(3, getArguments().getInt("PLAYER3Bid"));
 		
+		//Display player's hand here. Pass hand in the bundle and loop through the image views to calculate which card to display.
+		
         return v;
 	}
 	

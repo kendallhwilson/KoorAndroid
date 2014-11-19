@@ -61,11 +61,10 @@ public class Game {
 			
 			players[i].bidOrPass(players[i].bidding);
 			
-			if(players[i].bidding == true){
+			if(players[i].bidding == true){ //If the player is still bidding
 				highBid = players[i].bid(highBid);
 				bidWinner = i;
-				allAIAndPlayerBids[i] = highBid;
-				
+				allAIAndPlayerBids[i] = highBid;	
 			}
 			else if(allAIAndPlayerBids[i] != -2){ //If they no longer want to bid, remove them. We check to see if they have already been removed by comparing their score to -2, our removed player value.
 				players[i].bidding = false;
