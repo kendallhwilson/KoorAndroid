@@ -66,8 +66,7 @@ public class GameBoard extends Activity implements onBidListener {
 			bidFragment.displayPlayerBid(2,  bids[1]);
 			bidFragment.displayPlayerBid(3,  bids[2]);
 		}
-		
-		startGame(); //Bidding will continue down to a single player, so we will temporarily open the discard window even though the player wouldn't do that at this point.
+		//call discard fragment
 	}
 
 	/*
@@ -85,24 +84,26 @@ public class GameBoard extends Activity implements onBidListener {
 		
 		if(game.getNumberOfBiddersRemaining() == 0)
 		{
-			startGame(); //Opening the discard window since we can assume the player won the bid.
+			chooseTrumpColor();
 		}
 	}
 	
-	public void startGame() {
+	/*
+	 * Displays fragment allowing player to choose which cards to discard
+	 */
+	public void startDiscardFragment() {
 		FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
 		fragmentTransaction.add(R.id.fragment_container, discardFragment);
 		fragmentTransaction.commit();
 		getFragmentManager().executePendingTransactions();
 	}
+	
 	/*
 	 * Displays dialog to allow user to choose trump color
 	 */
-	public void chooseTrumpColor(View v){
-		//ChooseTrumpDialogFragment chooseTrumpFragment = new ChooseTrumpDialogFragment();
-		//chooseTrumpFragment.show(getFragmentManager(), "trumpdialogtag");
-		int[] myScores = {500, 200};
-		showFinalScores(myScores);
+	public void chooseTrumpColor(){
+		ChooseTrumpDialogFragment chooseTrumpFragment = new ChooseTrumpDialogFragment();
+		chooseTrumpFragment.show(getFragmentManager(), "trumpdialogtag");
 		
 	}
 	
