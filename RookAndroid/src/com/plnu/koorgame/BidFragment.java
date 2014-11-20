@@ -3,6 +3,7 @@ package com.plnu.koorgame;
 import android.app.Activity;
 import android.app.Fragment;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -23,10 +24,29 @@ public class BidFragment extends Fragment implements OnClickListener {
 	
 	private onBidListener bidCallback;
 	
+	//Variables to go with timer
+	private final int TEXT_TIME = 30000;
+	private final int COUNTDOWN_SECOND = 1000;
+	CountDownTimer textTimer;
+	private TextView trickTaker;
+	private TextView trickTakerFill;
+	
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 		LayoutInflater lf = getActivity().getLayoutInflater();  
 		View v = lf.inflate(R.layout.bid_layout, container, false);
+		
+		//Timer from the GameFragment
+		textTimer = new CountDownTimer(TEXT_TIME, COUNTDOWN_SECOND) {
+			public void onTick(long millisTillFinished) {
+				//on tick
+			}
+			
+			public void onFinish() {
+				trickTakerFill.setVisibility(View.INVISIBLE);
+				trickTaker.setVisibility(View.INVISIBLE);
+			}
+		};
 		
 		player1Bid = (TextView) v.findViewById(R.id.player1status_num);
 		player2Bid = (TextView) v.findViewById(R.id.player2status_number);
@@ -38,8 +58,11 @@ public class BidFragment extends Fragment implements OnClickListener {
 		Button bidChosenButton = (Button) v.findViewById(R.id.bid_go_button);
 		bidChosenButton.setOnClickListener(this);
 
+		textTimer.start();
 		displayPlayerBid(1, getArguments().getInt("PLAYER1Bid"));
+		textTimer.start();
 		displayPlayerBid(2, getArguments().getInt("PLAYER2Bid"));
+		textTimer.start();
 		displayPlayerBid(3, getArguments().getInt("PLAYER3Bid"));
 		
 		//Display player's hand here. Pass hand in the bundle and loop through the image views to calculate which card to display.
