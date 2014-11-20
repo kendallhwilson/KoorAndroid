@@ -1,4 +1,7 @@
 package com.plnu.koorgame;
+import com.plnu.koorgame.DiscardFragment.onDiscardListener;
+
+import android.app.Activity;
 import android.app.Fragment;
 import android.os.Bundle;
 import android.os.CountDownTimer;
@@ -23,6 +26,8 @@ public class GameFragment extends Fragment {
 	private ImageView player2Card;
 	private ImageView player3Card;
 	private ImageView player4Card;
+	
+	private onGamePlayListener gamePlayCallback;
 	
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -78,6 +83,22 @@ public class GameFragment extends Fragment {
 			break;
 		}
 		
+	}
+	
+	public interface onGamePlayListener {
+		public void cardPlayed(int card);
+	}
+	
+	@Override
+	public void onAttach(Activity activity) {
+		super.onAttach(activity);
+        try {
+            gamePlayCallback = (onGamePlayListener) activity;
+        } 
+        catch (ClassCastException e) {
+            throw new ClassCastException(activity.toString()
+                    + " must implement onGamePlayListener");
+        }
 	}
 
 }

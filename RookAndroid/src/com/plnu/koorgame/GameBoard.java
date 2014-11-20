@@ -4,6 +4,7 @@ import com.plnu.gamecode.Game;
 import com.plnu.koorgame.BidFragment.onBidListener;
 import com.plnu.koorgame.ChooseTrumpDialogFragment.onTrumpListener;
 import com.plnu.koorgame.DiscardFragment.onDiscardListener;
+import com.plnu.koorgame.GameFragment.onGamePlayListener;
 
 import android.app.Activity;
 import android.app.Fragment;
@@ -16,7 +17,7 @@ import android.view.View;
  * GameBoard class stores methods to change fragments or display alerts
  */
 public class GameBoard extends Activity implements onBidListener, onTrumpListener,
-	onDiscardListener {
+	onDiscardListener, onGamePlayListener {
 	
 	private BidFragment bidFragment;
 	private DiscardFragment discardFragment;
@@ -141,6 +142,15 @@ public class GameBoard extends Activity implements onBidListener, onTrumpListene
 		fragmentTransaction.replace(R.id.fragment_container, gameFragment);
 		fragmentTransaction.commit();
 		getFragmentManager().executePendingTransactions();
+	}
+	
+	/*
+	 * Called when a card is played on game play fragment
+	 */
+	@Override
+	public void cardPlayed(int card) {
+		// TODO Auto-generated method stub
+		
 	}
 	
 	/*
