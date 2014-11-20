@@ -13,17 +13,17 @@ import android.widget.ImageView;
  * Fragment to show hand with kitty added and allow five discards
  */
 public class DiscardFragment extends Fragment implements OnClickListener {
-	private View v;
+	private View view;
 	private int numDiscarded = 0;
-	private int [] discardIds = {-1, -1, -1, -1, -1};
+	private int [] discardIds = {-1, -1, -1, -1, -1}; //testing purposes only
 	private int numIds = 0;
 	
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-		v = inflater.inflate(R.layout.discard_layout, container, false);
-		Button discardButton = (Button) v.findViewById(R.id.discard_button);
+		view = inflater.inflate(R.layout.discard_layout, container, false);
+		Button discardButton = (Button) view.findViewById(R.id.discard_button);
 		discardButton.setOnClickListener(this);
-		return v;
+		return view;
 	}
 	
     @Override
@@ -36,13 +36,6 @@ public class DiscardFragment extends Fragment implements OnClickListener {
 	public void onPause() {
 		super.onPause();
 		
-	}
-	
-	private void cardDisappear() {
-		for (int i = 0; i < discardIds.length; i++) {
-			v.findViewById(discardIds[i]).setVisibility(View.INVISIBLE);
-		}
-			
 	}
 	
     public void cardClick(View v) {
@@ -59,7 +52,7 @@ public class DiscardFragment extends Fragment implements OnClickListener {
 	public void onClick(View v) {
 		if (numDiscarded == 5) {
 			for (int i = 0; i < discardIds.length; i++) {
-				v.findViewById(discardIds[i]).setVisibility(View.INVISIBLE);
+				view.findViewById(discardIds[i]).setVisibility(View.INVISIBLE);
 			}
 		}
 		
