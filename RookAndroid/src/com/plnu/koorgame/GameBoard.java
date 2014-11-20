@@ -29,9 +29,16 @@ public class GameBoard extends Activity implements onBidListener {
 		discardFragment = new DiscardFragment();
 		
 		game = new Game();
+		setupNewRound();
+	}
+	
+	/*
+	 * Allows us to create a new deck and restart a round if we have not reached 500 or it is the first round of the game.
+	 */
+	public void setupNewRound(){
 		game.makeDeck();
 		game.dealCards();
-		int [] bids = game.advanceBidding(); //ONLY HAVE AI PLAYERS MAKE THEIR BIDS
+		int [] bids = game.advanceBidding();
 		startBiddingFragment(bids);
 	}
 	
@@ -66,6 +73,7 @@ public class GameBoard extends Activity implements onBidListener {
 			bidFragment.displayPlayerBid(2,  bids[1]);
 			bidFragment.displayPlayerBid(3,  bids[2]);
 		}
+		//call discard fragment
 	}
 
 	/*
