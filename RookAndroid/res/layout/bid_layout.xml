@@ -78,7 +78,7 @@
         android:layout_alignBaseline="@+id/my_bid_textview"
         android:layout_alignBottom="@+id/my_bid_textview"
         android:layout_toRightOf="@+id/my_bid_textview"
-        android:text="@string/zero"
+        android:text="@string/hundred"
         android:textSize="@dimen/bid_text_size" />
     
 

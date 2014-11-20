@@ -19,7 +19,7 @@ public class BidFragment extends Fragment implements OnClickListener {
 	public TextView player2Bid;
 	public TextView player3Bid;
 	public TextView myBid;
-	private int bid = 0;
+	private int bid = 100;
 	
 	private onBidListener bidCallback;
 	

@@ -2,6 +2,7 @@ package com.plnu.koorgame;
 
 import com.plnu.gamecode.Game;
 import com.plnu.koorgame.BidFragment.onBidListener;
+import com.plnu.koorgame.ChooseTrumpDialogFragment.onTrumpListener;
 
 import android.app.Activity;
 import android.app.Fragment;
@@ -13,7 +14,7 @@ import android.view.View;
 /*
  * GameBoard class stores methods to change fragments or display alerts
  */
-public class GameBoard extends Activity implements onBidListener {
+public class GameBoard extends Activity implements onBidListener, onTrumpListener {
 	
 	private BidFragment bidFragment;
 	private DiscardFragment discardFragment;
@@ -68,12 +69,12 @@ public class GameBoard extends Activity implements onBidListener {
 		game.playerDroppedFromBidding();
 		
 		while(game.getNumberOfBiddersRemaining() > 0){
-			int [] bids = game.advanceBidding(); //OR call other method?????????
+			int [] bids = game.advanceBidding(); 
 			bidFragment.displayPlayerBid(1, bids[0]);
 			bidFragment.displayPlayerBid(2,  bids[1]);
 			bidFragment.displayPlayerBid(3,  bids[2]);
 		}
-		//call discard fragment
+		startDiscardFragment();
 	}
 
 	/*
@@ -84,7 +85,7 @@ public class GameBoard extends Activity implements onBidListener {
 	@Override
 	public void onBidPlayed(int bid) {
 		game.playerEnteredNewBid(bid);
-		int [] bids = game.advanceBidding(); //OR call other method?????????
+		int [] bids = game.advanceBidding();
 		bidFragment.displayPlayerBid(1, bids[0]);
 		bidFragment.displayPlayerBid(2,  bids[1]);
 		bidFragment.displayPlayerBid(3,  bids[2]);
@@ -100,7 +101,7 @@ public class GameBoard extends Activity implements onBidListener {
 	 */
 	public void startDiscardFragment() {
 		FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
-		fragmentTransaction.add(R.id.fragment_container, discardFragment);
+		fragmentTransaction.replace(R.id.fragment_container, discardFragment);
 		fragmentTransaction.commit();
 		getFragmentManager().executePendingTransactions();
 	}
@@ -111,8 +112,16 @@ public class GameBoard extends Activity implements onBidListener {
 	public void chooseTrumpColor(){
 		ChooseTrumpDialogFragment chooseTrumpFragment = new ChooseTrumpDialogFragment();
 		chooseTrumpFragment.show(getFragmentManager(), "trumpdialogtag");
-		
 	}
+	
+	/*
+	 * Listener for trump value
+	 */
+	@Override
+	public void trumpPass(int color) {
+		//Code to tell AI players what trump is
+		startDiscardFragment();
+	}	
 	
 	/*
 	 * Displays dialog with bid winner and trump color
@@ -168,5 +177,5 @@ public class GameBoard extends Activity implements onBidListener {
 	protected void onPause() {
 		super.onPause();
 		
-	}		
+	}	
 }
