@@ -1,5 +1,8 @@
 package com.plnu.koorgame;
 
+import com.plnu.koorgame.ChooseTrumpDialogFragment.onTrumpListener;
+
+import android.app.Activity;
 import android.app.Fragment;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -17,6 +20,8 @@ public class DiscardFragment extends Fragment implements OnClickListener {
 	private int numDiscarded = 0;
 	private int [] discardIds = {-1, -1, -1, -1, -1}; //testing purposes only
 	private int numIds = 0;
+	
+	private onDiscardListener discardCallback;
 	
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -48,6 +53,9 @@ public class DiscardFragment extends Fragment implements OnClickListener {
 		}
     }
 
+    /*
+     * Called when user pushes Discard button
+     */
 	@Override
 	public void onClick(View v) {
 		if (numDiscarded == 5) {
@@ -55,7 +63,24 @@ public class DiscardFragment extends Fragment implements OnClickListener {
 				view.findViewById(discardIds[i]).setVisibility(View.INVISIBLE);
 			}
 		}
+		discardCallback.doneDiscarding();
 		
+	}
+	
+	public interface onDiscardListener {
+		public void doneDiscarding();
+	}
+	
+	@Override
+	public void onAttach(Activity activity) {
+		super.onAttach(activity);
+        try {
+            discardCallback = (onDiscardListener) activity;
+        } 
+        catch (ClassCastException e) {
+            throw new ClassCastException(activity.toString()
+                    + " must implement onDiscardListener");
+        }
 	}
 
 }

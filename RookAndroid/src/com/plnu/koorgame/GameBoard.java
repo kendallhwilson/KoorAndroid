@@ -3,6 +3,7 @@ package com.plnu.koorgame;
 import com.plnu.gamecode.Game;
 import com.plnu.koorgame.BidFragment.onBidListener;
 import com.plnu.koorgame.ChooseTrumpDialogFragment.onTrumpListener;
+import com.plnu.koorgame.DiscardFragment.onDiscardListener;
 
 import android.app.Activity;
 import android.app.Fragment;
@@ -14,10 +15,12 @@ import android.view.View;
 /*
  * GameBoard class stores methods to change fragments or display alerts
  */
-public class GameBoard extends Activity implements onBidListener, onTrumpListener {
+public class GameBoard extends Activity implements onBidListener, onTrumpListener,
+	onDiscardListener {
 	
 	private BidFragment bidFragment;
 	private DiscardFragment discardFragment;
+	private GameFragment gameFragment;
 	
 	private Game game;
 
@@ -28,6 +31,7 @@ public class GameBoard extends Activity implements onBidListener, onTrumpListene
 		
 		bidFragment = new BidFragment();
 		discardFragment = new DiscardFragment();
+		gameFragment = new GameFragment();
 		
 		game = new Game();
 		setupNewRound();
@@ -97,16 +101,6 @@ public class GameBoard extends Activity implements onBidListener, onTrumpListene
 	}
 	
 	/*
-	 * Displays fragment allowing player to choose which cards to discard
-	 */
-	public void startDiscardFragment() {
-		FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
-		fragmentTransaction.replace(R.id.fragment_container, discardFragment);
-		fragmentTransaction.commit();
-		getFragmentManager().executePendingTransactions();
-	}
-	
-	/*
 	 * Displays dialog to allow user to choose trump color
 	 */
 	public void chooseTrumpColor(){
@@ -122,6 +116,32 @@ public class GameBoard extends Activity implements onBidListener, onTrumpListene
 		//Code to tell AI players what trump is
 		startDiscardFragment();
 	}	
+	
+	/*
+	 * Displays fragment allowing player to choose which cards to discard
+	 */
+	public void startDiscardFragment() {
+		FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
+		fragmentTransaction.replace(R.id.fragment_container, discardFragment);
+		fragmentTransaction.commit();
+		getFragmentManager().executePendingTransactions();
+	}
+	
+	/*
+	 * Listener when discarding is done
+	 */
+	@Override
+	public void doneDiscarding() {
+		startGameFragment();
+		
+	}	
+	
+	public void startGameFragment() {
+		FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
+		fragmentTransaction.replace(R.id.fragment_container, gameFragment);
+		fragmentTransaction.commit();
+		getFragmentManager().executePendingTransactions();
+	}
 	
 	/*
 	 * Displays dialog with bid winner and trump color
@@ -177,5 +197,5 @@ public class GameBoard extends Activity implements onBidListener, onTrumpListene
 	protected void onPause() {
 		super.onPause();
 		
-	}	
+	}
 }
