@@ -53,21 +53,13 @@ public class GameBoard extends Activity implements onBidListener, onTrumpListene
 	 */
 	public void startBiddingFragment(int[] bids) {
 		int[] cardNames = game.getPlayerCardsUI();
+		
 		Bundle args = new Bundle();
         args.putInt("PLAYER1Bid", bids[0]);
         args.putInt("PLAYER2Bid", bids[1]);
 	    args.putInt("PLAYER3Bid", bids[2]);
+	    args.putIntArray("playerHandArray", cardNames);
 	    
-	    args.putInt("card1", cardNames[0]);
-	    args.putInt("card2", cardNames[1]);
-	    args.putInt("card3", cardNames[2]);
-	    args.putInt("card4", cardNames[3]);
-	    args.putInt("card5", cardNames[4]);
-	    args.putInt("card6", cardNames[5]);
-	    args.putInt("card7", cardNames[6]);
-	    args.putInt("card8", cardNames[7]);
-	    args.putInt("card9", cardNames[8]);
-	    args.putInt("card10", cardNames[9]);
 		bidFragment.setArguments(args);
 		FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
 		fragmentTransaction.add(R.id.fragment_container, bidFragment);
