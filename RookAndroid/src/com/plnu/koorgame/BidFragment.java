@@ -65,7 +65,6 @@ public class BidFragment extends Fragment implements OnClickListener {
 	}
 	
 	public interface onBidListener {
-		public void onBidPass();
 		public void onBidPlayed(int bid);
 	}
 	
@@ -105,9 +104,6 @@ public class BidFragment extends Fragment implements OnClickListener {
             break;
         case R.id.bid_go_button:
         	bidCallback.onBidPlayed(bid);
-        	break;
-        case R.id.pass_button:
-        	bidCallback.onBidPass();
         	break;
         }
     }
@@ -165,7 +161,8 @@ public class BidFragment extends Fragment implements OnClickListener {
 	{
 		String returningCardText = "";
 		String cardColors[] = {"red", "blue", "green", "black"};
-		String cardNames[] = {"five", "six", "seven", "eight", "nine", "ten", "eleven", "twelve", "thirteen", "fourteen", "one"};
+		String cardNames[] = {"five", "six", "seven", "eight", "nine", "ten", "eleven", "twelve", 
+				"thirteen", "fourteen", "one"};
 		
 		if(cardNumber == 44)
 			return "zerorook";

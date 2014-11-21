@@ -67,13 +67,8 @@ public class GameBoard extends Activity implements onBidListener, onTrumpListene
 		getFragmentManager().executePendingTransactions();
 	
 	}
-	
-	/*
-	 * Interface with BidFragment
-	 * Called when player selects "pass" on bid
-	 */
-	@Override
-	public void onBidPass() {
+
+	public void onPlayerPassedBid(View v) {
 		//They passed the bid
 		game.playerDroppedFromBidding();
 		
@@ -85,7 +80,6 @@ public class GameBoard extends Activity implements onBidListener, onTrumpListene
 		}
 		startDiscardFragment();
 	}
-
 	/*
 	 * Interface with BidFragment
 	 * Called when player bids
