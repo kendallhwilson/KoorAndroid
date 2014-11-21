@@ -1,5 +1,7 @@
 package com.plnu.koorgame;
 
+import com.plnu.koorgame.R.drawable;
+
 import android.app.Activity;
 import android.app.Fragment;
 import android.os.Bundle;
@@ -8,6 +10,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 /*
@@ -19,6 +22,16 @@ public class BidFragment extends Fragment implements OnClickListener {
 	public TextView player2Bid;
 	public TextView player3Bid;
 	public TextView myBid;
+	public ImageView card1;
+	public ImageView card2;
+	public ImageView card3;
+	public ImageView card4;
+	public ImageView card5;
+	public ImageView card6;
+	public ImageView card7;
+	public ImageView card8;
+	public ImageView card9;
+	public ImageView card10;
 	private int bid = 100;
 	
 	private onBidListener bidCallback;
@@ -32,6 +45,16 @@ public class BidFragment extends Fragment implements OnClickListener {
 		player2Bid = (TextView) v.findViewById(R.id.player2status_number);
 		player3Bid = (TextView) v.findViewById(R.id.player3status_num);
 		myBid = (TextView) v.findViewById(R.id.my_bid_number_textview);
+		card1 = (ImageView) v.findViewById(R.id.card1);
+		card2 = (ImageView) v.findViewById(R.id.card2);
+		card3 = (ImageView) v.findViewById(R.id.card3);
+		card4 = (ImageView) v.findViewById(R.id.card4);
+		card5 = (ImageView) v.findViewById(R.id.card5);
+		card6 = (ImageView) v.findViewById(R.id.card6);
+		card7 = (ImageView) v.findViewById(R.id.card7);
+		card8 = (ImageView) v.findViewById(R.id.card8);
+		card9 = (ImageView) v.findViewById(R.id.card9);
+		card10 = (ImageView) v.findViewById(R.id.card10);
 		
 		Button increaseFiveButton = (Button) v.findViewById(R.id.bid_add_five_button);
 		increaseFiveButton.setOnClickListener(this);
@@ -42,7 +65,18 @@ public class BidFragment extends Fragment implements OnClickListener {
 		displayPlayerBid(2, getArguments().getInt("PLAYER2Bid"));
 		displayPlayerBid(3, getArguments().getInt("PLAYER3Bid"));
 		
-		//Display player's hand here. Pass hand in the bundle and loop through the image views to calculate which card to display.
+		displayPlayerCards(1,getArguments().getInt("card1"));
+		displayPlayerCards(2,getArguments().getInt("card2"));
+		displayPlayerCards(3,getArguments().getInt("card3"));
+		displayPlayerCards(4,getArguments().getInt("card4"));
+		displayPlayerCards(5,getArguments().getInt("card5"));
+		displayPlayerCards(6,getArguments().getInt("card6"));
+		displayPlayerCards(7,getArguments().getInt("card7"));
+		displayPlayerCards(8,getArguments().getInt("card8"));
+		displayPlayerCards(9,getArguments().getInt("card9"));
+		displayPlayerCards(10,getArguments().getInt("card10"));
+		
+		
 		
         return v;
 	}
@@ -130,6 +164,41 @@ public class BidFragment extends Fragment implements OnClickListener {
 				bid = newBid;
 				myBid.setText(String.valueOf(newBid + 5));
 			}
+	}
+	
+	public void displayPlayerCards(int cardIndex, int cardValue){
+		int cardValueMod = 0;
+		if(cardValue==44){
+			switch(cardIndex){
+			case 1:
+				card1.setImageResource(drawable.rook);
+			case 2:	
+				card2.setImageResource(drawable.rook);
+			case 3:
+				card3.setImageResource(drawable.rook);
+			case 4:
+				card4.setImageResource(drawable.rook);
+			case 5:
+				card5.setImageResource(drawable.rook);
+			case 6:
+				card6.setImageResource(drawable.rook);
+			case 7:
+				card7.setImageResource(drawable.rook);
+			case 8:
+				card8.setImageResource(drawable.rook);
+			case 9:
+				card9.setImageResource(drawable.rook);
+			case 10:
+				card10.setImageResource(drawable.rook);
+			
+			}
+		}
+		
+		
+		
+		
+		
+		
 	}
 }
 

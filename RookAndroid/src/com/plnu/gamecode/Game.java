@@ -606,6 +606,14 @@ public Card[] getPlayerHand()
 	return players[3].hand;
 }
 
+public int[] getPlayerCardsUI(){
+	int[] cardValues = new int[15];
+	for(int i  =0;i<15;i++){
+		cardValues[i] = players[3].hand[i].getValue();
+	}
+	return cardValues;
+}
+
 //Precondition: currentTeamScores has been instantiated.
 //Postcondition: currentTeamScores is returned as an array of two values.
 public int[] getCurrentTeamScores()
@@ -633,6 +641,8 @@ public void setKitty(Card[] newKitty)
 {
 	kitty = newKitty;
 }
+
+
 
 }//end of class
 

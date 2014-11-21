@@ -95,6 +95,8 @@ public class Player {
     public Card[] getHand () {
         return hand;
     }
+    
+   
 
     /**
      * Sets the boolean variable bidding belonging to a player, to either false for if they pass or true if they're still bidding.
