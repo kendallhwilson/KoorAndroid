@@ -120,7 +120,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="0.2"
             android:adjustViewBounds="true"
-          />
+            />
             
         <ImageView
             android:id="@+id/card7"
@@ -128,7 +128,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="0.2"
             android:adjustViewBounds="true"
-             />
+            />
   
         <ImageView
             android:id="@+id/card8"
@@ -136,7 +136,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="0.2"
             android:adjustViewBounds="true"
-             />
+            />
             
         <ImageView
             android:id="@+id/card9"
@@ -152,7 +152,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="0.2"
             android:adjustViewBounds="true"
-             />               
+            />               
                 
     </LinearLayout>
 
@@ -171,7 +171,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="0.2"
             android:adjustViewBounds="true"
-             />
+            />
 
         <ImageView
             android:id="@+id/card2"
@@ -179,7 +179,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="0.2"
             android:adjustViewBounds="true"
-             />
+            />
 
         <ImageView
             android:id="@+id/card3"
@@ -187,7 +187,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="0.2"
             android:adjustViewBounds="true"
-             />
+            />
 
         <ImageView
             android:id="@+id/card4"
@@ -195,7 +195,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="0.2"
             android:adjustViewBounds="true"
-             />
+            />
 
         <ImageView
             android:id="@+id/card5"
@@ -203,7 +203,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="0.2"
             android:adjustViewBounds="true"
-             />
+            />
     </LinearLayout>
 
 </RelativeLayout>
