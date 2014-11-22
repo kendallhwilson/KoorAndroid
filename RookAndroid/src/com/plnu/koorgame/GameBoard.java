@@ -45,7 +45,12 @@ public class GameBoard extends Activity implements onBidListener, onTrumpListene
 		game.makeDeck();
 		game.dealCards();
 		int [] bids = game.advanceBidding();
+		
+		if(bids[0] == -2 && bids [1] == -2 && bids [2] == -2){
+			startDiscardFragment();
+		}else{
 		startBiddingFragment(bids);
+		}
 	}
 	
 	/*
