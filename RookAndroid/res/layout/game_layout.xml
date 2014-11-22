@@ -2,94 +2,6 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent" >
-    
-    <LinearLayout
-        android:id="@+id/card_top_line"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:orientation="horizontal"
-        android:weightSum="1" >
-    
-    	<ImageView
-        	android:id="@+id/player2_card"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="0.25"
-            android:adjustViewBounds="true"
-            android:src="@drawable/rook" />
-    
-    	<ImageView
-        	android:id="@+id/player1_card"
-      		android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="0.25"
-            android:adjustViewBounds="true"
-            android:src="@drawable/rook" />
-
-    	<ImageView
-        	android:id="@+id/player3_card"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="0.25"
-            android:adjustViewBounds="true"
-            android:src="@drawable/rook" />
-
-    <ImageView
-        android:id="@+id/player4_card"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_weight="0.25"
-        android:adjustViewBounds="true"
-        android:src="@drawable/rook" />
-    
-    </LinearLayout>
-    
-    <TextView
-        android:id="@+id/player1_textview"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/card_top_line"
-        android:layout_alignParentLeft="true"
-        android:text="@string/player1" />
-    
-    <TextView
-        android:id="@+id/player2_textview"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/player1_textview"
-        android:layout_alignBottom="@+id/player1_textview"
-        android:layout_marginLeft="33dp"
-        android:layout_toRightOf="@+id/player1_textview"
-        android:text="@string/player2" />
-
-    <TextView
-        android:id="@+id/player3_textview"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/player2_textview"
-        android:layout_alignBottom="@+id/player2_textview"
-        android:layout_marginLeft="28dp"
-        android:layout_toRightOf="@+id/player2_textview"
-        android:text="@string/player3" />
-
-    <TextView
-        android:id="@+id/player4_textview"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/player2_textview"
-        android:layout_alignBottom="@+id/player2_textview"
-        android:layout_alignParentRight="true"
-        android:text="@string/player4" />
-    
-    <TextView
-        android:id="@+id/bid_textview"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_below="@+id/player1_textview"
-        android:layout_marginTop="38dp"
-        android:text="@string/high_bid" />
 
     <TextView
         android:id="@+id/bid_number_textview"
@@ -98,15 +10,6 @@
         android:layout_alignBottom="@+id/bid_textview"
         android:layout_toRightOf="@+id/bid_textview"
         android:text="@string/zero" />
-    
-    <TextView
-        android:id="@+id/trick_taker_textview"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerVertical="true"
-        android:layout_toRightOf="@+id/bid_number_textview"
-        android:text="@string/trick_winner" 
-        android:visibility="invisible"/>
     
     <TextView
         android:id="@+id/trick_taker_fill"
@@ -217,5 +120,106 @@
             android:src="@drawable/rook" />
     </LinearLayout>
 
+    <TextView
+        android:id="@+id/player3_textview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/player3_card"
+        android:layout_alignParentRight="true"
+        android:text="@string/player3" />
+
+    <TextView
+        android:id="@+id/player2_textview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:text="@string/player2" />
+
+    <TextView
+        android:id="@+id/trick_taker_textview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/card_line_1"
+        android:layout_alignParentRight="true"
+        android:text="@string/trick_winner"
+        android:visibility="invisible" />
+
+    <TextView
+        android:id="@+id/bid_textview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/card_line_1"
+        android:layout_alignParentLeft="true"
+        android:text="@string/high_bid" />
+
+    <TextView
+        android:id="@+id/player4_textview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/player4_card"
+        android:layout_alignLeft="@+id/player2_textview"
+        android:text="@string/player4" />
+
+    <ImageView
+        android:id="@+id/player2_card"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/player2_textview"
+        android:layout_centerHorizontal="true"
+        android:layout_weight="0.25"
+        android:adjustViewBounds="true"
+		android:maxHeight="120dp"
+        android:maxWidth="90dp"
+        android:scaleType="fitCenter"
+        android:src="@drawable/rook" />
+
+    <ImageView
+        android:id="@+id/player4_card"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/card_line_1"
+        android:layout_alignLeft="@+id/player2_card"
+        android:layout_weight="0.25"
+        android:adjustViewBounds="true"
+        android:maxHeight="120dp"
+        android:maxWidth="90dp"
+        android:scaleType="fitCenter"
+        android:src="@drawable/rook" />
+
+    <ImageView
+        android:id="@+id/player3_card"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_alignTop="@+id/player1_card"
+        android:layout_weight="0.25"
+        android:adjustViewBounds="true"
+        android:maxHeight="120dp"
+        android:maxWidth="90dp"
+        android:scaleType="fitCenter"
+        android:src="@drawable/rook" />
+
+    <ImageView
+        android:id="@+id/player1_card"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/player4_card"
+        android:layout_alignParentLeft="true"
+        android:layout_weight="0.25"
+        android:adjustViewBounds="true"
+        android:maxHeight="120dp"
+        android:maxWidth="90dp"
+        android:scaleType="fitCenter"
+        android:src="@drawable/rook" />
+
+    <TextView
+        android:id="@+id/player1_textview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/player3_textview"
+        android:layout_alignBottom="@+id/player3_textview"
+        android:layout_toLeftOf="@+id/bid_number_textview"
+        android:text="@string/player1" />
 
 </RelativeLayout>
