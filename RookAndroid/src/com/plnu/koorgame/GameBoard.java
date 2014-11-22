@@ -87,6 +87,7 @@ public class GameBoard extends Activity implements onBidListener, onTrumpListene
 		
 		trumpColor = game.setTrumpAndInformAI(null); //This stores the trumpColor that the AI chose.
 		
+		showBidWinner(game.getBidWinnerLocation(), trumpColor);
 		startGameFragment();
 	}
 	/*

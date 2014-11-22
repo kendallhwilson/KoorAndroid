@@ -687,6 +687,10 @@ public String getTrump(){
 	return "";
 }
 
+public int getBidWinnerLocation(){
+	return bidWinner;
+}
+
 
 }//end of class
 
