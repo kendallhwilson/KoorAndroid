@@ -22,6 +22,7 @@ public class GameBoard extends Activity implements onBidListener, onTrumpListene
 	private BidFragment bidFragment;
 	private DiscardFragment discardFragment;
 	private GameFragment gameFragment;
+	private String trumpColor;
 	
 	private Game game;
 
@@ -83,7 +84,10 @@ public class GameBoard extends Activity implements onBidListener, onTrumpListene
 			bidFragment.displayPlayerBid(2,  bids[1]);
 			bidFragment.displayPlayerBid(3,  bids[2]);
 		}
-		startDiscardFragment();
+		
+		trumpColor = game.setTrumpAndInformAI(null); //This stores the trumpColor that the AI chose.
+		
+		startGameFragment();
 	}
 	/*
 	 * Interface with BidFragment
@@ -98,7 +102,7 @@ public class GameBoard extends Activity implements onBidListener, onTrumpListene
 		bidFragment.displayPlayerBid(2,  bids[1]);
 		bidFragment.displayPlayerBid(3,  bids[2]);
 		
-		if(game.getNumberOfBiddersRemaining() == 0)
+		if(game.getNumberOfBiddersRemaining() == 1)
 		{
 			chooseTrumpColor();
 		}
@@ -117,7 +121,8 @@ public class GameBoard extends Activity implements onBidListener, onTrumpListene
 	 */
 	@Override
 	public void trumpPass(int color) {
-		//Code to tell AI players what trump is
+		String cardColors[] = {"BLACK", "RED", "GREEN", "BLUE"};
+		game.setTrumpAndInformAI(cardColors[color]);
 		startDiscardFragment();
 	}	
 	
@@ -125,6 +130,12 @@ public class GameBoard extends Activity implements onBidListener, onTrumpListene
 	 * Displays fragment allowing player to choose which cards to discard
 	 */
 	public void startDiscardFragment() {
+		int[] cardNames = game.getPlayerHandWithKitty();
+		
+		Bundle args = new Bundle();
+		args.putIntArray("PlayerHandWithKitty",cardNames);
+		
+		discardFragment.setArguments(args);
 		FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
 		fragmentTransaction.replace(R.id.fragment_container, discardFragment);
 		fragmentTransaction.commit();
@@ -135,12 +146,21 @@ public class GameBoard extends Activity implements onBidListener, onTrumpListene
 	 * Listener when discarding is done
 	 */
 	@Override
-	public void doneDiscarding() {
+	public void doneDiscarding(int[] playerHand, int[] kitty) {
+		game.setKitty(kitty);
+		game.setPlayerHand(playerHand);
 		startGameFragment();
-		
 	}	
 	
 	public void startGameFragment() {
+		
+		Bundle args = new Bundle();
+		args.putIntArray("playerHandArray", game.getPlayerCardsUI());
+		args.putString("currentTrump", game.getTrump());
+		args.putIntArray("CurrentTeamScores", game.getCurrentTeamScores());
+		
+		gameFragment.setArguments(args);
+		
 		FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
 		fragmentTransaction.replace(R.id.fragment_container, gameFragment);
 		fragmentTransaction.commit();
