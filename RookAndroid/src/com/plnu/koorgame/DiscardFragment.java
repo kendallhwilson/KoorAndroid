@@ -22,6 +22,7 @@ public class DiscardFragment extends Fragment implements OnClickListener {
 	private int numIds = 0;
 	public ImageView handArray[] = new ImageView[15];
 	private int playerHandValues[] = new int[15];
+	private int playerHandNewValues[] = new int[15];
 	private int discardedCards[] = new int[5];
 	
 	private onDiscardListener discardCallback;
@@ -49,6 +50,7 @@ public class DiscardFragment extends Fragment implements OnClickListener {
 		handArray[14] = (ImageView) view.findViewById(R.id.card15);
 		
 		displayPlayerCards();
+		playerHandNewValues = getArguments().getIntArray("PlayerHandWithKitty");
 		return view;
 	}
 	
@@ -72,6 +74,13 @@ public class DiscardFragment extends Fragment implements OnClickListener {
     		image.setAlpha((float)0.5);
     		discardIds[numIds] = image.getId();
     		
+    		for(int i=0; i <15; i++){
+    			if(handArray[i].getId() == image.getId()){
+    				discardedCards[numIds] = playerHandNewValues[i];
+    				playerHandNewValues[i] = -1;
+    			}
+    		}
+    		
     		if(numIds < 4){
     			numIds++;
     			}
@@ -81,6 +90,13 @@ public class DiscardFragment extends Fragment implements OnClickListener {
 			image.setAlpha((float)1.0);
 			discardIds[numIds] = -1;
 			numIds--;
+			
+			for(int i=0; i <15; i++){
+    			if(handArray[i].getId() == image.getId()){
+    				discardedCards[numIds] = -1;
+    				playerHandNewValues[i] = playerHandValues[i];
+    			}
+    		}
 		}
     
     }
@@ -91,10 +107,19 @@ public class DiscardFragment extends Fragment implements OnClickListener {
 	@Override
 	public void onClick(View v) {
 		if (numDiscarded == 5) {
+			int[] finalPlayerHand = new int[10];
+			int counter = 0;
+			for(int i=0; i < 15; i++){
+				if(playerHandNewValues[i] != -1){
+					finalPlayerHand[counter] = playerHandNewValues[i];
+					counter++;
+				}
+			}
+			
 			for (int i = 0; i < discardIds.length; i++) {
 				view.findViewById(discardIds[i]).setVisibility(View.INVISIBLE);
 			}
-			discardCallback.doneDiscarding(playerHandValues, discardedCards);
+			discardCallback.doneDiscarding(finalPlayerHand, discardedCards);
 		}
 		
 		
