@@ -20,6 +20,9 @@ public class DiscardFragment extends Fragment implements OnClickListener {
 	private int numDiscarded = 0;
 	private int [] discardIds = {-1, -1, -1, -1, -1}; //testing purposes only
 	private int numIds = 0;
+	public ImageView handArray[] = new ImageView[15];
+	private int playerHandValues[] = new int[15];
+	private int discardedCards[] = new int[5];
 	
 	private onDiscardListener discardCallback;
 	
@@ -28,6 +31,24 @@ public class DiscardFragment extends Fragment implements OnClickListener {
 		view = inflater.inflate(R.layout.discard_layout, container, false);
 		Button discardButton = (Button) view.findViewById(R.id.discard_button);
 		discardButton.setOnClickListener(this);
+		
+		handArray[0] = (ImageView) view.findViewById(R.id.card1);
+		handArray[1] = (ImageView) view.findViewById(R.id.card2);
+		handArray[2] = (ImageView) view.findViewById(R.id.card3);
+		handArray[3] = (ImageView) view.findViewById(R.id.card4);
+		handArray[4] = (ImageView) view.findViewById(R.id.card5);
+		handArray[5] = (ImageView) view.findViewById(R.id.card6);
+		handArray[6] = (ImageView) view.findViewById(R.id.card7);
+		handArray[7] = (ImageView) view.findViewById(R.id.card8);
+		handArray[8] = (ImageView) view.findViewById(R.id.card9);
+		handArray[9] = (ImageView) view.findViewById(R.id.card10);
+		handArray[10] = (ImageView) view.findViewById(R.id.card11);
+		handArray[11] = (ImageView) view.findViewById(R.id.card12);
+		handArray[12] = (ImageView) view.findViewById(R.id.card13);
+		handArray[13] = (ImageView) view.findViewById(R.id.card14);
+		handArray[14] = (ImageView) view.findViewById(R.id.card15);
+		
+		displayPlayerCards();
 		return view;
 	}
 	
@@ -44,13 +65,24 @@ public class DiscardFragment extends Fragment implements OnClickListener {
 	}
 	
     public void cardClick(View v) {
-    	if (numDiscarded < 5) {
+		ImageView image = (ImageView) v;
+		
+    	if (numDiscarded < 5 && (image.getAlpha() == 1)) { //If it has not been selected, then make it appear as selected and add to array.
     		numDiscarded++;
-    		ImageView image = (ImageView) v;
     		image.setAlpha((float)0.5);
     		discardIds[numIds] = image.getId();
-    		numIds++;
+    		
+    		if(numIds < 4){
+    			numIds++;
+    			}
+    		
+		} else if(numDiscarded <= 5 && image.getAlpha() == 0.5){//Otherwise undo the select by changing the alpha back to one, remove the id from discardIds and decrement numDiscarded and numIds.
+			numDiscarded--;
+			image.setAlpha((float)1.0);
+			discardIds[numIds] = -1;
+			numIds--;
 		}
+    
     }
 
     /*
@@ -62,13 +94,14 @@ public class DiscardFragment extends Fragment implements OnClickListener {
 			for (int i = 0; i < discardIds.length; i++) {
 				view.findViewById(discardIds[i]).setVisibility(View.INVISIBLE);
 			}
+			discardCallback.doneDiscarding(playerHandValues, discardedCards);
 		}
-		discardCallback.doneDiscarding();
+		
 		
 	}
 	
 	public interface onDiscardListener {
-		public void doneDiscarding();
+		public void doneDiscarding(int[] playerHand, int[] kitty);
 	}
 	
 	@Override
@@ -81,6 +114,36 @@ public class DiscardFragment extends Fragment implements OnClickListener {
             throw new ClassCastException(activity.toString()
                     + " must implement onDiscardListener");
         }
+	}
+	
+	
+	public void displayPlayerCards(){	
+		//Card color notes: value \ 11 = color.
+		//Card value notes: value % 11 = number.
+		playerHandValues = getArguments().getIntArray("PlayerHandWithKitty");
+		
+		for(int i=0; i < 15; i++){
+			String cardText = "@drawable/" + getCardText(playerHandValues[i]);
+			int imageResource = getResources().getIdentifier(cardText, null, "com.plnu.koorgame");
+			handArray[i].setImageResource(imageResource);
+		}
+	}
+	
+	public String getCardText(int cardNumber)
+	{
+		String returningCardText = "";
+		String cardColors[] = {"red", "blue", "green", "black"};
+		String cardNames[] = {"five", "six", "seven", "eight", "nine", "ten", "eleven", "twelve", 
+				"thirteen", "fourteen", "one"};
+		
+		if(cardNumber == 44)
+			return "zerorook";
+		
+		returningCardText = cardNames[cardNumber % 11];
+		returningCardText = returningCardText + cardColors[cardNumber / 11];
+		
+		return returningCardText;
+		
 	}
 
 }

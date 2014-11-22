@@ -24,7 +24,7 @@ public class ChooseTrumpDialogFragment extends DialogFragment {
     public Dialog onCreateDialog(Bundle savedInstanceState) {
 		AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
 		builder.setTitle(R.string.choose_trump_dialog_text);
-		builder.setItems(new CharSequence[] {"Black", "Red", "Green", "Yellow"},
+		builder.setItems(new CharSequence[] {"Black", "Red", "Green", "Blue"},
 	            new DialogInterface.OnClickListener() {
 	                public void onClick(DialogInterface dialog, int color) {
 	                	trumpCallback.trumpPass(color);
@@ -40,7 +40,7 @@ public class ChooseTrumpDialogFragment extends DialogFragment {
 	                        	//green trump
 	                            break;
 	                        case 3:
-	                        	//yellow trump
+	                        	//blue trump
 	                            break;
 	                    }
 	                }

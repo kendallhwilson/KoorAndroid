@@ -98,6 +98,28 @@ public class Game {
 		return playersRemainingInBidding;
 	}
 	
+	public String setTrumpAndInformAI(String chosenColor){
+		if(bidWinner < 3){ //Player did not win the bid.
+			players[bidWinner].determineSuitLengths();
+			players[bidWinner].determineStrongestSuit();
+			trumpColor = players[bidWinner].chooseTrump();
+			
+			chosenColor = trumpColor.toString();
+			
+			players[0].setTrump(trumpColor);
+			players[1].setTrump(trumpColor);
+			players[2].setTrump(trumpColor);
+		}else{ //Player won the bid.
+			
+			players[0].setTrump(Card.Suit.valueOf(chosenColor));
+			players[1].setTrump(Card.Suit.valueOf(chosenColor));
+			players[2].setTrump(Card.Suit.valueOf(chosenColor));
+		}
+		
+		trumpColor = Card.Suit.valueOf(chosenColor);
+		
+		return chosenColor;
+	}
 	
 	
 	
@@ -585,27 +607,8 @@ public void displayFinalScore(){
 //ACCESSORS AND MUTATORS NECESSARY FOR GUI FUNCTIONALITY.
 //***
 
-//Precondition: Bidding has begun and highBid has been given a value.
-//Postcondition: Returns the value of highBid when called.
-public int getHighestBidValue()
-{
-	return highBid;
-}
-	
-//Precondition: Gets the current state of bidding. Bidding must have occurred.
-//Postcondition: Returns an array of players still active in bidding.
-public boolean[] getCurrentBidState()
-{ 
-	return playerActive;
-}
-
 //Precondition: Player's hand has been instantiated.
 //Postcondition: Returns the cards that are within the playerHand array.
-public Card[] getPlayerHand()
-{
-	return players[3].hand;
-}
-
 public int[] getPlayerCardsUI(){
 	int[] cardValues = new int[15];
 	for(int i  =0;i<15;i++){
@@ -630,18 +633,59 @@ public Card[] getCurrentTrick()
 
 //Precondition: kitty has been instantiated.
 //Postcondition: kitty is returned as an array of cards.
-public Card[] getKitty()
+public int[] getPlayerHandWithKitty()
 {
-	return kitty;
+	players[3].addKittyToHand(kitty); //Allows us to sort the hand before shipping to the GUI.
+	
+	int[] playerHandValues = new int[15];
+	for(int i=0; i < 15; i++){
+		playerHandValues[i] = players[3].hand[i].getValue(); //Getting the location (hidden?) values of the cards.
+	}
+	
+	return playerHandValues;
 }
 
 //Precondition: newKitty is a card array of five cards.
 //Postcondition: kitty will be set to point to the values located in newKitty.
-public void setKitty(Card[] newKitty)
+public void setKitty(int[] newKitty)
 {
-	kitty = newKitty;
+	for(int i=0; i<5;i++){
+		Card card = new Card();
+		if(newKitty[i] <= 10){card.setCard(Card.Suit.RED,newKitty[i]);}		
+		else if(newKitty[i] <= 21){card.setCard(Card.Suit.BLUE,newKitty[i]);}		
+		else if(newKitty[i] <= 32){card.setCard(Card.Suit.GREEN,newKitty[i]);}		
+		else if(newKitty[i] <= 43){card.setCard(Card.Suit.BLACK,newKitty[i]);}
+		
+		kitty[i] = card;
+	}
 }
 
+public void setPlayerHand(int[] newHand)
+{
+	for(int i=0; i < 10; i++){
+		Card card = new Card();
+		if(newHand[i] <= 10){card.setCard(Card.Suit.RED,newHand[i]);}		
+		else if(newHand[i] <= 21){card.setCard(Card.Suit.BLUE,newHand[i]);}		
+		else if(newHand[i] <= 32){card.setCard(Card.Suit.GREEN,newHand[i]);}		
+		else if(newHand[i] <= 43){card.setCard(Card.Suit.BLACK,newHand[i]);}
+		players[3].hand[i] = card;
+	}
+	
+	players[3].sortHand(10);
+}
+
+public String getTrump(){
+	if(trumpColor==Card.Suit.BLACK)
+		return "Black";
+	if(trumpColor==Card.Suit.BLUE)
+		return "Blue";
+	if(trumpColor==Card.Suit.RED)
+		return "Red";
+	if(trumpColor==Card.Suit.GREEN)
+		return "Green";
+	
+	return "";
+}
 
 
 }//end of class

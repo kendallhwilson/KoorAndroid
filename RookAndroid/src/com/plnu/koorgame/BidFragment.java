@@ -173,7 +173,5 @@ public class BidFragment extends Fragment implements OnClickListener {
 		return returningCardText;
 		
 	}
-
-	
 }
 
