@@ -1,5 +1,8 @@
 package com.plnu.koorgame;
 
+import com.plnu.koorgame.BidFragment.onBidListener;
+
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.DialogFragment;
@@ -14,6 +17,8 @@ import android.widget.TextView;
  * Fragment to let player choose trump
  */
 public class ChooseTrumpDialogFragment extends DialogFragment {
+	
+	private onTrumpListener trumpCallback;
 
 	@Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
@@ -22,8 +27,7 @@ public class ChooseTrumpDialogFragment extends DialogFragment {
 		builder.setItems(new CharSequence[] {"Black", "Red", "Green", "Blue"},
 	            new DialogInterface.OnClickListener() {
 	                public void onClick(DialogInterface dialog, int color) {
-	                	//send something??? OR
-	                	
+	                	trumpCallback.trumpPass(color);
 	                	
 	                    switch (color) {
 	                        case 0:
@@ -42,5 +46,21 @@ public class ChooseTrumpDialogFragment extends DialogFragment {
 	                }
 	            });
         return builder.create();
+    }
+	
+	public interface onTrumpListener {
+		public void trumpPass(int color);
+	}
+	
+	@Override
+	public void onAttach(Activity activity) {
+		super.onAttach(activity);
+        try {
+            trumpCallback = (onTrumpListener) activity;
+        } 
+        catch (ClassCastException e) {
+            throw new ClassCastException(activity.toString()
+                    + " must implement onTrumpPassedListener");
+        }
     }
 }

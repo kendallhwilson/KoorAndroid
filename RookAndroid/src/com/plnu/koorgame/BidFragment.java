@@ -1,5 +1,7 @@
 package com.plnu.koorgame;
 
+import com.plnu.koorgame.R.drawable;
+
 import android.app.Activity;
 import android.app.Fragment;
 import android.os.Bundle;
@@ -9,6 +11,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 /*
@@ -20,7 +23,10 @@ public class BidFragment extends Fragment implements OnClickListener {
 	public TextView player2Bid;
 	public TextView player3Bid;
 	public TextView myBid;
-	private int bid = 0;
+	public ImageView handArray[] = new ImageView[10];
+	private int playerHandValues[] = new int[10];
+	private int bid = 100;
+
 	
 	private onBidListener bidCallback;
 	
@@ -53,6 +59,17 @@ public class BidFragment extends Fragment implements OnClickListener {
 		player3Bid = (TextView) v.findViewById(R.id.player3status_num);
 		myBid = (TextView) v.findViewById(R.id.my_bid_number_textview);
 		
+		handArray[0] = (ImageView) v.findViewById(R.id.card1);
+		handArray[1] = (ImageView) v.findViewById(R.id.card2);
+		handArray[2] = (ImageView) v.findViewById(R.id.card3);
+		handArray[3] = (ImageView) v.findViewById(R.id.card4);
+		handArray[4] = (ImageView) v.findViewById(R.id.card5);
+		handArray[5] = (ImageView) v.findViewById(R.id.card6);
+		handArray[6] = (ImageView) v.findViewById(R.id.card7);
+		handArray[7] = (ImageView) v.findViewById(R.id.card8);
+		handArray[8] = (ImageView) v.findViewById(R.id.card9);
+		handArray[9] = (ImageView) v.findViewById(R.id.card10);
+		
 		Button increaseFiveButton = (Button) v.findViewById(R.id.bid_add_five_button);
 		increaseFiveButton.setOnClickListener(this);
 		Button bidChosenButton = (Button) v.findViewById(R.id.bid_go_button);
@@ -65,13 +82,12 @@ public class BidFragment extends Fragment implements OnClickListener {
 		textTimer.start();
 		displayPlayerBid(3, getArguments().getInt("PLAYER3Bid"));
 		
-		//Display player's hand here. Pass hand in the bundle and loop through the image views to calculate which card to display.
+		displayPlayerCards();
 		
         return v;
 	}
 	
 	public interface onBidListener {
-		public void onBidPass();
 		public void onBidPlayed(int bid);
 	}
 	
@@ -112,9 +128,6 @@ public class BidFragment extends Fragment implements OnClickListener {
         case R.id.bid_go_button:
         	bidCallback.onBidPlayed(bid);
         	break;
-        case R.id.pass_button:
-        	bidCallback.onBidPass();
-        	break;
         }
     }
 	
@@ -153,6 +166,35 @@ public class BidFragment extends Fragment implements OnClickListener {
 				bid = newBid;
 				myBid.setText(String.valueOf(newBid + 5));
 			}
+	}
+	
+	public void displayPlayerCards(){	
+		//Card color notes: value \ 11 = color.
+		//Card value notes: value % 11 = number.
+		playerHandValues = getArguments().getIntArray("playerHandArray");
+		
+		for(int i=0; i < 10; i++){
+			String cardText = "@drawable/" + getCardText(playerHandValues[i]);
+			int imageResource = getResources().getIdentifier(cardText, null, "com.plnu.koorgame");
+			handArray[i].setImageResource(imageResource);
+		}
+	}
+	
+	public String getCardText(int cardNumber)
+	{
+		String returningCardText = "";
+		String cardColors[] = {"red", "blue", "green", "black"};
+		String cardNames[] = {"five", "six", "seven", "eight", "nine", "ten", "eleven", "twelve", 
+				"thirteen", "fourteen", "one"};
+		
+		if(cardNumber == 44)
+			return "zerorook";
+		
+		returningCardText = cardNames[cardNumber % 11];
+		returningCardText = returningCardText + cardColors[cardNumber / 11];
+		
+		return returningCardText;
+		
 	}
 }
 

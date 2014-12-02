@@ -14,6 +14,7 @@
     <string name="player3">Player 3:</string>
     <string name="player4">My card:</string>
     <string name="zero">0</string>
+    <string name="hundred">100</string>
     <string name="bid_plus_five">+5</string>
     <string name="my_bid">My Bid: </string>
     <string name="bid_go">Bid It!</string>

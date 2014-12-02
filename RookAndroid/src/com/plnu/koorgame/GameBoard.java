@@ -2,6 +2,9 @@ package com.plnu.koorgame;
 
 import com.plnu.gamecode.Game;
 import com.plnu.koorgame.BidFragment.onBidListener;
+import com.plnu.koorgame.ChooseTrumpDialogFragment.onTrumpListener;
+import com.plnu.koorgame.DiscardFragment.onDiscardListener;
+import com.plnu.koorgame.GameFragment.onGamePlayListener;
 
 import android.app.Activity;
 import android.app.Fragment;
@@ -13,10 +16,13 @@ import android.view.View;
 /*
  * GameBoard class stores methods to change fragments or display alerts
  */
-public class GameBoard extends Activity implements onBidListener {
+public class GameBoard extends Activity implements onBidListener, onTrumpListener,
+	onDiscardListener, onGamePlayListener {
 	
 	private BidFragment bidFragment;
 	private DiscardFragment discardFragment;
+	private GameFragment gameFragment;
+	private String trumpColor;
 	
 	private Game game;
 
@@ -27,6 +33,7 @@ public class GameBoard extends Activity implements onBidListener {
 		
 		bidFragment = new BidFragment();
 		discardFragment = new DiscardFragment();
+		gameFragment = new GameFragment();
 		
 		game = new Game();
 		setupNewRound();
@@ -39,17 +46,26 @@ public class GameBoard extends Activity implements onBidListener {
 		game.makeDeck();
 		game.dealCards();
 		int [] bids = game.advanceBidding();
+		
+		if(bids[0] == -2 && bids [1] == -2 && bids [2] == -2){
+			startDiscardFragment();
+		}else{
 		startBiddingFragment(bids);
+		}
 	}
 	
 	/*
 	 * Replace current fragment with bidding fragment
 	 */
 	public void startBiddingFragment(int[] bids) {
+		int[] cardNames = game.getPlayerCardsUI();
+		
 		Bundle args = new Bundle();
         args.putInt("PLAYER1Bid", bids[0]);
         args.putInt("PLAYER2Bid", bids[1]);
 	    args.putInt("PLAYER3Bid", bids[2]);
+	    args.putIntArray("playerHandArray", cardNames);
+	    
 		bidFragment.setArguments(args);
 		FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
 		fragmentTransaction.add(R.id.fragment_container, bidFragment);
@@ -57,25 +73,23 @@ public class GameBoard extends Activity implements onBidListener {
 		getFragmentManager().executePendingTransactions();
 	
 	}
-	
-	/*
-	 * Interface with BidFragment
-	 * Called when player selects "pass" on bid
-	 */
-	@Override
-	public void onBidPass() {
+
+	public void onPlayerPassedBid(View v) {
 		//They passed the bid
 		game.playerDroppedFromBidding();
 		
-		while(game.getNumberOfBiddersRemaining() > 0){
-			int [] bids = game.advanceBidding(); //OR call other method?????????
+		while(game.getNumberOfBiddersRemaining() > 1){
+			int [] bids = game.advanceBidding(); 
 			bidFragment.displayPlayerBid(1, bids[0]);
 			bidFragment.displayPlayerBid(2,  bids[1]);
 			bidFragment.displayPlayerBid(3,  bids[2]);
 		}
-		//call discard fragment
+		
+		trumpColor = game.setTrumpAndInformAI(null); //This stores the trumpColor that the AI chose.
+		
+		showBidWinner(game.getBidWinnerLocation(), trumpColor);
+		startGameFragment();
 	}
-
 	/*
 	 * Interface with BidFragment
 	 * Called when player bids
@@ -84,25 +98,15 @@ public class GameBoard extends Activity implements onBidListener {
 	@Override
 	public void onBidPlayed(int bid) {
 		game.playerEnteredNewBid(bid);
-		int [] bids = game.advanceBidding(); //OR call other method?????????
+		int [] bids = game.advanceBidding();
 		bidFragment.displayPlayerBid(1, bids[0]);
 		bidFragment.displayPlayerBid(2,  bids[1]);
 		bidFragment.displayPlayerBid(3,  bids[2]);
 		
-		if(game.getNumberOfBiddersRemaining() == 0)
+		if(game.getNumberOfBiddersRemaining() == 1)
 		{
 			chooseTrumpColor();
 		}
-	}
-	
-	/*
-	 * Displays fragment allowing player to choose which cards to discard
-	 */
-	public void startDiscardFragment() {
-		FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
-		fragmentTransaction.add(R.id.fragment_container, discardFragment);
-		fragmentTransaction.commit();
-		getFragmentManager().executePendingTransactions();
 	}
 	
 	/*
@@ -111,6 +115,65 @@ public class GameBoard extends Activity implements onBidListener {
 	public void chooseTrumpColor(){
 		ChooseTrumpDialogFragment chooseTrumpFragment = new ChooseTrumpDialogFragment();
 		chooseTrumpFragment.show(getFragmentManager(), "trumpdialogtag");
+	}
+	
+	/*
+	 * Listener for trump value
+	 */
+	@Override
+	public void trumpPass(int color) {
+		String cardColors[] = {"BLACK", "RED", "GREEN", "BLUE"};
+		game.setTrumpAndInformAI(cardColors[color]);
+		startDiscardFragment();
+	}	
+	
+	/*
+	 * Displays fragment allowing player to choose which cards to discard
+	 */
+	public void startDiscardFragment() {
+		int[] cardNames = game.getPlayerHandWithKitty();
+		
+		Bundle args = new Bundle();
+		args.putIntArray("PlayerHandWithKitty",cardNames);
+		
+		discardFragment.setArguments(args);
+		FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
+		fragmentTransaction.replace(R.id.fragment_container, discardFragment);
+		fragmentTransaction.commit();
+		getFragmentManager().executePendingTransactions();
+	}
+	
+	/*
+	 * Listener when discarding is done
+	 */
+	@Override
+	public void doneDiscarding(int[] playerHand, int[] kitty) {
+		game.setKitty(kitty);
+		game.setPlayerHand(playerHand);
+		startGameFragment();
+	}	
+	
+	public void startGameFragment() {
+		
+		Bundle args = new Bundle();
+		args.putIntArray("playerHandArray", game.getPlayerCardsUI());
+		args.putString("currentTrump", game.getTrump());
+		args.putIntArray("CurrentTeamScores", game.getCurrentTeamScores());
+		
+		gameFragment.setArguments(args);
+		
+		FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
+		fragmentTransaction.replace(R.id.fragment_container, gameFragment);
+		fragmentTransaction.commit();
+		getFragmentManager().executePendingTransactions();
+	}
+	
+	/*
+	 * Called when a card is played on game play fragment
+	 */
+	@Override
+	public void cardPlayed(int card) {
+		// TODO Auto-generated method stub
 		
 	}
 	
@@ -168,5 +231,5 @@ public class GameBoard extends Activity implements onBidListener {
 	protected void onPause() {
 		super.onPause();
 		
-	}		
+	}
 }

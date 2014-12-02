@@ -25,12 +25,12 @@
         android:textSize="@dimen/bid_text_size" />
 
     <TextView
-        android:id="@+id/player1status_textview"
+        android:id="@+id/player3status_textview"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_toRightOf="@+id/player2status_textview"
         android:layout_marginTop="@dimen/side_bid_margin"
-        android:text="@string/player1"
+        android:layout_toRightOf="@+id/player2status_textview"
+        android:text="@string/player3"
         android:textSize="@dimen/bid_text_size" />
 
     <TextView
@@ -43,13 +43,13 @@
         android:textSize="@dimen/bid_text_size" />
 
    <TextView
-        android:id="@+id/player3status_textview"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_toLeftOf="@+id/player2status_textview"
-        android:layout_marginTop="@dimen/side_bid_margin"
-        android:text="@string/player3"
-        android:textSize="@dimen/bid_text_size" />
+       android:id="@+id/player1status_textview"
+       android:layout_width="wrap_content"
+       android:layout_height="wrap_content"
+       android:layout_marginTop="@dimen/side_bid_margin"
+       android:layout_toLeftOf="@+id/player2status_textview"
+       android:text="@string/player1"
+       android:textSize="@dimen/bid_text_size" />
 
     <TextView
         android:id="@+id/player3status_num"
@@ -78,7 +78,7 @@
         android:layout_alignBaseline="@+id/my_bid_textview"
         android:layout_alignBottom="@+id/my_bid_textview"
         android:layout_toRightOf="@+id/my_bid_textview"
-        android:text="@string/zero"
+        android:text="@string/hundred"
         android:textSize="@dimen/bid_text_size" />
     
 
@@ -87,7 +87,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_above="@+id/card_line_1"
-        android:text="@string/pass" />
+        android:text="@string/pass" 
+        android:onClick="onPlayerPassedBid"/>
     
     <Button
         android:id="@+id/bid_go_button"
@@ -120,7 +121,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="0.2"
             android:adjustViewBounds="true"
-            android:src="@drawable/rook" />
+            />
             
         <ImageView
             android:id="@+id/card7"
@@ -128,7 +129,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="0.2"
             android:adjustViewBounds="true"
-            android:src="@drawable/rook" />
+            />
   
         <ImageView
             android:id="@+id/card8"
@@ -136,7 +137,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="0.2"
             android:adjustViewBounds="true"
-            android:src="@drawable/rook" />
+            />
             
         <ImageView
             android:id="@+id/card9"
@@ -144,7 +145,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="0.2"
             android:adjustViewBounds="true"
-            android:src="@drawable/rook" />
+            />
         
          <ImageView
             android:id="@+id/card10"
@@ -152,7 +153,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="0.2"
             android:adjustViewBounds="true"
-            android:src="@drawable/rook" />               
+            />               
                 
     </LinearLayout>
 
@@ -171,7 +172,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="0.2"
             android:adjustViewBounds="true"
-            android:src="@drawable/rook" />
+            />
 
         <ImageView
             android:id="@+id/card2"
@@ -179,7 +180,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="0.2"
             android:adjustViewBounds="true"
-            android:src="@drawable/rook" />
+            />
 
         <ImageView
             android:id="@+id/card3"
@@ -187,7 +188,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="0.2"
             android:adjustViewBounds="true"
-            android:src="@drawable/rook" />
+            />
 
         <ImageView
             android:id="@+id/card4"
@@ -195,7 +196,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="0.2"
             android:adjustViewBounds="true"
-            android:src="@drawable/rook" />
+            />
 
         <ImageView
             android:id="@+id/card5"
@@ -203,7 +204,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="0.2"
             android:adjustViewBounds="true"
-            android:src="@drawable/rook" />
+            />
     </LinearLayout>
 
 </RelativeLayout>
