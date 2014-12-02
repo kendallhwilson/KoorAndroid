@@ -33,7 +33,7 @@ public class BidFragment extends Fragment implements OnClickListener {
 	//Variables to go with timer
 	private final int TEXT_TIME = 30000;
 	private final int COUNTDOWN_SECOND = 1000;
-	CountDownTimer textTimer;
+	CountDownTimer textTimer1, textTimer2, textTimer3;
 	private TextView trickTaker;
 	private TextView trickTakerFill;
 	
@@ -43,14 +43,15 @@ public class BidFragment extends Fragment implements OnClickListener {
 		View v = lf.inflate(R.layout.bid_layout, container, false);
 		
 		//Timer from the GameFragment
-		textTimer = new CountDownTimer(TEXT_TIME, COUNTDOWN_SECOND) {
+		textTimer1 = new CountDownTimer(TEXT_TIME, COUNTDOWN_SECOND) {
 			public void onTick(long millisTillFinished) {
 				//on tick
-			}
-			
+				System.out.print("in the timer!");
+			}		
 			public void onFinish() {
 				trickTakerFill.setVisibility(View.INVISIBLE);
 				trickTaker.setVisibility(View.INVISIBLE);
+				//player1Bid = (TextView) v.findViewById(R.id.player1status_num);
 			}
 		};
 		
@@ -75,11 +76,35 @@ public class BidFragment extends Fragment implements OnClickListener {
 		Button bidChosenButton = (Button) v.findViewById(R.id.bid_go_button);
 		bidChosenButton.setOnClickListener(this);
 
-		textTimer.start();
+		textTimer2 = new CountDownTimer(TEXT_TIME, COUNTDOWN_SECOND) {
+			public void onTick(long millisTillFinished) {
+				//on tick
+				System.out.print("in the timer!");
+			}		
+			public void onFinish() {
+				trickTakerFill.setVisibility(View.INVISIBLE);
+				trickTaker.setVisibility(View.INVISIBLE);
+				displayPlayerBid(2, getArguments().getInt("PLAYER2Bid"));
+			}
+		};
+		
+		textTimer3 = new CountDownTimer(TEXT_TIME, COUNTDOWN_SECOND) {
+			public void onTick(long millisTillFinished) {
+				//on tick
+				System.out.print("in the timer!");
+			}		
+			public void onFinish() {
+				trickTakerFill.setVisibility(View.INVISIBLE);
+				trickTaker.setVisibility(View.INVISIBLE);
+				displayPlayerBid(3, getArguments().getInt("PLAYER3Bid"));
+			}
+		};
+		
+		textTimer1.start();
 		displayPlayerBid(1, getArguments().getInt("PLAYER1Bid"));
-		textTimer.start();
+		textTimer2.start();
 		displayPlayerBid(2, getArguments().getInt("PLAYER2Bid"));
-		textTimer.start();
+		textTimer3.start();
 		displayPlayerBid(3, getArguments().getInt("PLAYER3Bid"));
 		
 		displayPlayerCards();
