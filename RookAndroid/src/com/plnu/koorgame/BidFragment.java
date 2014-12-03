@@ -26,34 +26,27 @@ public class BidFragment extends Fragment implements OnClickListener {
 	public ImageView handArray[] = new ImageView[10];
 	private int playerHandValues[] = new int[10];
 	private int bid = 100;
+	private int bid1;
+	private int bid2;
+	private int bid3;
 
 	
 	private onBidListener bidCallback;
 	
 	//Variables to go with timer
-	private final int TEXT_TIME = 30000;
+	private final int TEXT_TIME = 1000;
 	private final int COUNTDOWN_SECOND = 1000;
 	CountDownTimer textTimer1, textTimer2, textTimer3;
-	private TextView trickTaker;
-	private TextView trickTakerFill;
 	
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 		LayoutInflater lf = getActivity().getLayoutInflater();  
 		View v = lf.inflate(R.layout.bid_layout, container, false);
 		
-		//Timer from the GameFragment
-		textTimer1 = new CountDownTimer(TEXT_TIME, COUNTDOWN_SECOND) {
-			public void onTick(long millisTillFinished) {
-				//on tick
-				System.out.print("in the timer!");
-			}		
-			public void onFinish() {
-				trickTakerFill.setVisibility(View.INVISIBLE);
-				trickTaker.setVisibility(View.INVISIBLE);
-				//player1Bid = (TextView) v.findViewById(R.id.player1status_num);
-			}
-		};
+		bid1=getArguments().getInt("PLAYER1Bid");
+		bid2=getArguments().getInt("PLAYER2Bid");
+		bid3=getArguments().getInt("PLAYER3Bid");
+		
 		
 		player1Bid = (TextView) v.findViewById(R.id.player1status_num);
 		player2Bid = (TextView) v.findViewById(R.id.player2status_number);
@@ -76,36 +69,8 @@ public class BidFragment extends Fragment implements OnClickListener {
 		Button bidChosenButton = (Button) v.findViewById(R.id.bid_go_button);
 		bidChosenButton.setOnClickListener(this);
 
-		textTimer2 = new CountDownTimer(TEXT_TIME, COUNTDOWN_SECOND) {
-			public void onTick(long millisTillFinished) {
-				//on tick
-				System.out.print("in the timer!");
-			}		
-			public void onFinish() {
-				trickTakerFill.setVisibility(View.INVISIBLE);
-				trickTaker.setVisibility(View.INVISIBLE);
-				displayPlayerBid(2, getArguments().getInt("PLAYER2Bid"));
-			}
-		};
+		//Timer from the GameFragment
 		
-		textTimer3 = new CountDownTimer(TEXT_TIME, COUNTDOWN_SECOND) {
-			public void onTick(long millisTillFinished) {
-				//on tick
-				System.out.print("in the timer!");
-			}		
-			public void onFinish() {
-				trickTakerFill.setVisibility(View.INVISIBLE);
-				trickTaker.setVisibility(View.INVISIBLE);
-				displayPlayerBid(3, getArguments().getInt("PLAYER3Bid"));
-			}
-		};
-		
-		textTimer1.start();
-		displayPlayerBid(1, getArguments().getInt("PLAYER1Bid"));
-		textTimer2.start();
-		displayPlayerBid(2, getArguments().getInt("PLAYER2Bid"));
-		textTimer3.start();
-		displayPlayerBid(3, getArguments().getInt("PLAYER3Bid"));
 		
 		displayPlayerCards();
 		
@@ -131,7 +96,40 @@ public class BidFragment extends Fragment implements OnClickListener {
     @Override
 	public void onResume() {
         super.onResume();
-       
+        textTimer1 = new CountDownTimer(1000, COUNTDOWN_SECOND) {
+			public void onTick(long millisTillFinished) {
+				//on tick
+				System.out.print("in the timer!");
+			}		
+			public void onFinish() {
+				displayPlayerBid(1, getArguments().getInt("PLAYER1Bid"));
+			}
+		};
+
+		textTimer2 = new CountDownTimer(3000, COUNTDOWN_SECOND) {
+			public void onTick(long millisTillFinished) {
+				//on tick
+				System.out.print("in the timer!");
+			}		
+			public void onFinish() {
+				displayPlayerBid(2, getArguments().getInt("PLAYER2Bid"));
+
+			}
+		};
+		
+		textTimer3 = new CountDownTimer(5000, COUNTDOWN_SECOND) {
+			public void onTick(long millisTillFinished) {
+				//on tick
+				System.out.print("in the timer!");
+			}		
+			public void onFinish() {
+				displayPlayerBid(3, getArguments().getInt("PLAYER3Bid"));
+			}
+		};
+		
+		textTimer1.start();
+		textTimer2.start();
+		textTimer3.start();
     }
     
 	@Override
@@ -161,37 +159,39 @@ public class BidFragment extends Fragment implements OnClickListener {
 	 * @param the bid we are showing
 	 */
 	public void displayPlayerBid(int player, int newBid){
-		
-		if(newBid == -2){
-			switch (player) {
-			case 1:
-				player1Bid.setText("Pass");
-				break;
-			case 2:
-				player2Bid.setText("Pass");
-				break;
-			case 3:
-				player3Bid.setText("Pass");
-				break;
-			}
-		} else {
-			switch (player) {
-			case 1:
-				player1Bid.setText(String.valueOf(newBid));
-				break;
-			case 2:
-				player2Bid.setText(String.valueOf(newBid));
-				break;
-			case 3:
-				player3Bid.setText(String.valueOf(newBid));
-				break;
-			}
+	
+				if(newBid == -2){
+					switch (player) {
+					case 1:
+						player1Bid.setText("Pass");
+						break;
+					case 2:
+						player2Bid.setText("Pass");
+						break;
+					case 3:
+						player3Bid.setText("Pass");
+						break;
+					}
+				} else {
+					switch (player) {
+					case 1:
+						player1Bid.setText(String.valueOf(newBid));
+						break;
+					case 2:
+						player2Bid.setText(String.valueOf(newBid));
+						break;
+					case 3:
+						player3Bid.setText(String.valueOf(newBid));
+						break;
+					}
+				}
+					if(newBid > 0){ //This will set the player's bid to a negative number if the last updated bid was negative. We just wont update the player's bid at that point.
+						bid = newBid;
+						myBid.setText(String.valueOf(newBid + 5));
+					}
+			
 		}
-			if(newBid > 0){ //This will set the player's bid to a negative number if the last updated bid was negative. We just wont update the player's bid at that point.
-				bid = newBid;
-				myBid.setText(String.valueOf(newBid + 5));
-			}
-	}
+
 	
 	public void displayPlayerCards(){	
 		//Card color notes: value \ 11 = color.
@@ -221,5 +221,47 @@ public class BidFragment extends Fragment implements OnClickListener {
 		return returningCardText;
 		
 	}
+	
+	public void DisplayBidsUsingTimers(int [] bids)
+	{
+		bid1=bids[0];
+		bid2=bids[1];
+		bid3=bids[2];
+		textTimer1 = new CountDownTimer(1000, COUNTDOWN_SECOND) {
+			public void onTick(long millisTillFinished) {
+				//on tick
+				System.out.print("in the timer!");
+			}		
+			public void onFinish() {
+				displayPlayerBid(1, bid1);
+			}
+		};
+
+		textTimer2 = new CountDownTimer(3000, COUNTDOWN_SECOND) {
+			public void onTick(long millisTillFinished) {
+				//on tick
+				System.out.print("in the timer!");
+			}		
+			public void onFinish() {
+				displayPlayerBid(2, bid2);
+
+			}
+		};
+		
+		textTimer3 = new CountDownTimer(5000, COUNTDOWN_SECOND) {
+			public void onTick(long millisTillFinished) {
+				//on tick
+				System.out.print("in the timer!");
+			}		
+			public void onFinish() {
+				displayPlayerBid(3, bid3);
+			}
+		};
+		
+		textTimer1.start();
+		textTimer2.start();
+		textTimer3.start();
+	}
+	
 }
 
