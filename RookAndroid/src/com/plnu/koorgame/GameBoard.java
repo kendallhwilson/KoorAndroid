@@ -50,7 +50,7 @@ public class GameBoard extends Activity implements onBidListener, onTrumpListene
 		if(bids[0] == -2 && bids [1] == -2 && bids [2] == -2){
 			startDiscardFragment();
 		}else{
-		startBiddingFragment(bids);
+			startBiddingFragment(bids);
 		}
 	}
 	
@@ -160,20 +160,36 @@ public class GameBoard extends Activity implements onBidListener, onTrumpListene
 		args.putString("currentTrump", game.getTrump());
 		args.putIntArray("CurrentTeamScores", game.getCurrentTeamScores());
 		
+		game.resetCurrentPlayersTurn();
+		game.cleanRoundScores();
+		
 		gameFragment.setArguments(args);
 		
 		FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
 		fragmentTransaction.replace(R.id.fragment_container, gameFragment);
 		fragmentTransaction.commit();
 		getFragmentManager().executePendingTransactions();
+		
 	}
 	
+	public void onPlayerPlayed(int indexToPlay){
+		if(game.getTrickWinnerLocation() == 3){
+			game.playerPlayed(indexToPlay);
+			game.advanceGameState();
+		} else {
+			game.advanceGameState();
+			game.playerPlayed(indexToPlay);
+			game.advanceGameState();
+		}
+		
+		
+	}
+
 	/*
 	 * Called when a card is played on game play fragment
 	 */
 	@Override
 	public void cardPlayed(int card) {
-		// TODO Auto-generated method stub
 		
 	}
 	

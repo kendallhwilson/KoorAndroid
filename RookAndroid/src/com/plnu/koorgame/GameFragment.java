@@ -85,25 +85,35 @@ public class GameFragment extends Fragment {
 	 * 
 	 */
 	public void displayPlayerCard(int player, int card) {
+		String cardText;
+		int imageResource;
+		
 		switch (player) {
 		case 1:
-			//player1Card.setImageResource(R.id.CARD)
+			cardText = "@drawable/" + getCardText(card);
+			imageResource = getResources().getIdentifier(cardText, null, "com.plnu.koorgame");
+			player1Card.setImageResource(imageResource);
 			break;
 		case 2:
-			//player2Card.setImageResource(R.id.CARD)
+			cardText = "@drawable/" + getCardText(card);
+			imageResource = getResources().getIdentifier(cardText, null, "com.plnu.koorgame");
+			player2Card.setImageResource(imageResource);			
 			break;
 		case 3:
-			//player3Card.setImageResource(R.id.CARD)
+			cardText = "@drawable/" + getCardText(card);
+			imageResource = getResources().getIdentifier(cardText, null, "com.plnu.koorgame");
+			player3Card.setImageResource(imageResource);			
 			break;
 		case 4:
-			//player4Card.setImageResource(R.id.CARD)
+			cardText = "@drawable/" + getCardText(card);
+			imageResource = getResources().getIdentifier(cardText, null, "com.plnu.koorgame");
+			player4Card.setImageResource(imageResource);			
 			break;
 		}
-		
 	}
-	
 	public interface onGamePlayListener {
 		public void cardPlayed(int card);
+		public void onPlayerPlayed(int indexToPlay);
 	}
 	
 	@Override
