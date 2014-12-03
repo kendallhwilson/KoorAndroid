@@ -113,9 +113,11 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:orientation="horizontal"
-        android:weightSum="1" >
+        android:weightSum="1" 
+        android:background="#D0D0D0">
 
         <ImageView
+            android:padding="2dp"
             android:id="@+id/card6"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -124,6 +126,7 @@
             />
             
         <ImageView
+            android:padding="2dp"
             android:id="@+id/card7"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -132,6 +135,7 @@
             />
   
         <ImageView
+            android:padding="2dp"
             android:id="@+id/card8"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -140,6 +144,7 @@
             />
             
         <ImageView
+            android:padding="2dp"
             android:id="@+id/card9"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -148,6 +153,7 @@
             />
         
          <ImageView
+            android:padding="2dp"
             android:id="@+id/card10"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -164,9 +170,11 @@
         android:layout_above="@+id/card_line_2"
         android:layout_alignParentLeft="true"
         android:orientation="horizontal"
-        android:weightSum="1" >
+        android:weightSum="1"
+        android:background="#D0D0D0">
 
         <ImageView
+            android:padding="2dp"
             android:id="@+id/card1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -175,6 +183,7 @@
             />
 
         <ImageView
+            android:padding="2dp"
             android:id="@+id/card2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -183,6 +192,7 @@
             />
 
         <ImageView
+            android:padding="2dp"
             android:id="@+id/card3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -191,6 +201,7 @@
             />
 
         <ImageView
+            android:padding="2dp"
             android:id="@+id/card4"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -199,6 +210,7 @@
             />
 
         <ImageView
+            android:padding="2dp"
             android:id="@+id/card5"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
