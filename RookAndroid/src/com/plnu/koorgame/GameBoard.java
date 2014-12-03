@@ -99,9 +99,8 @@ public class GameBoard extends Activity implements onBidListener, onTrumpListene
 	public void onBidPlayed(int bid) {
 		game.playerEnteredNewBid(bid);
 		int [] bids = game.advanceBidding();
-		bidFragment.displayPlayerBid(1, bids[0]);
-		bidFragment.displayPlayerBid(2,  bids[1]);
-		bidFragment.displayPlayerBid(3,  bids[2]);
+		bidFragment.DisplayBidsUsingTimers(bids);
+
 		
 		if(game.getNumberOfBiddersRemaining() == 1)
 		{
