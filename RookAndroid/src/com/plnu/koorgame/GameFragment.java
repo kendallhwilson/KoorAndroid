@@ -1,4 +1,7 @@
 package com.plnu.koorgame;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdSize;
+import com.google.android.gms.ads.AdView;
 import com.plnu.koorgame.DiscardFragment.onDiscardListener;
 
 import android.app.Activity;
@@ -9,6 +12,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 /*
@@ -30,6 +34,8 @@ public class GameFragment extends Fragment {
 	public ImageView handArray[] = new ImageView[10];
 	private int playerHandValues[] = new int[10];
 	
+	public AdView adView;
+	public String adId = "ca-app-pub-8436145435379887/7134674053";
 	
 	private onGamePlayListener gamePlayCallback;
 	
@@ -55,6 +61,17 @@ public class GameFragment extends Fragment {
 		handArray[8] = (ImageView) v.findViewById(R.id.card9);
 		handArray[9] = (ImageView) v.findViewById(R.id.card10);
 		
+		adView = new AdView(getActivity());
+	    adView.setAdSize(AdSize.BANNER);
+	    adView.setAdUnitId(adId);
+	    LinearLayout adLineView = (LinearLayout)v.findViewById(R.id.adLine);
+	    adLineView.addView(adView);
+		adView = (AdView)v.findViewById(R.id.adView);
+        AdRequest.Builder adReq = new AdRequest.Builder();
+        //adReq.addTestDevice("74685C1D33AFBBEDF9DC3EF0EF6BA54E");
+        AdRequest adRequest = adReq.build();
+        adView.loadAd(adRequest);
+		
 		textTimer = new CountDownTimer(TEXT_TIME, COUNTDOWN_SECOND) {
 			public void onTick(long millisTillFinished) {
 				//on tick
@@ -69,6 +86,19 @@ public class GameFragment extends Fragment {
 		displayPlayerCards();
 		return v;
 	}
+	
+	/*
+	 * Make ad request when GameFragment is created
+	 */
+//	@Override
+//    public void onActivityCreated(Bundle bundle) {
+//        super.onActivityCreated(bundle);
+//		AdView adView = (AdView)this.findViewById(R.id.adView);
+//        AdRequest adRequest = new AdRequest.Builder().build();
+//        adView.loadAd(adRequest);
+//    }
+	
+
 	
 	/*
 	 * Displays the trick winner for timer amount
@@ -156,5 +186,23 @@ public class GameFragment extends Fragment {
 		return returningCardText;
 		
 	}
+	
+    @Override
+    public void onPause() {
+      adView.pause();
+      super.onPause();
+    }
+
+    @Override
+    public void onResume() {
+      super.onResume();
+      adView.resume();
+    }
+
+    @Override
+    public void onDestroy() {
+      adView.destroy();
+      super.onDestroy();
+    }
 
 }

@@ -364,6 +364,7 @@ public void sendKitty(){
      		}		
 
 			players[bidWinner].reorganizeHand((players[bidWinner].chooseDiscards()));
+			}
 }
 
 public void addTrickScore(int trickWinner, Card[] currentTrick){

@@ -31,5 +31,8 @@
     
     <!-- Choose/Alert Trump Dialog Fragment Strings -->
       <string name="choose_trump_dialog_text">You won! You may choose a trump color:</string>
+      
+    <!-- Game Fragment Strings -->
+      <string name="banner_ad_unit_id">ca-app-pub-8436145435379887/7134674053</string>
 
 </resources>
