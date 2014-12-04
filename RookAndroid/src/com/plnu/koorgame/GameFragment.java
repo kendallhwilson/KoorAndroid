@@ -88,19 +88,6 @@ public class GameFragment extends Fragment {
 	}
 	
 	/*
-	 * Make ad request when GameFragment is created
-	 */
-//	@Override
-//    public void onActivityCreated(Bundle bundle) {
-//        super.onActivityCreated(bundle);
-//		AdView adView = (AdView)this.findViewById(R.id.adView);
-//        AdRequest adRequest = new AdRequest.Builder().build();
-//        adView.loadAd(adRequest);
-//    }
-	
-
-	
-	/*
 	 * Displays the trick winner for timer amount
 	 * @param the player number who won
 	 */
