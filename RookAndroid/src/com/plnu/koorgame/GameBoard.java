@@ -1,6 +1,8 @@
 package com.plnu.koorgame;
 
+import com.plnu.gamecode.Card;
 import com.plnu.gamecode.Game;
+import com.plnu.koorgame.AlertTrickWinnerDialogFragment.onTrickListener;
 import com.plnu.koorgame.BidFragment.onBidListener;
 import com.plnu.koorgame.ChooseTrumpDialogFragment.onTrumpListener;
 import com.plnu.koorgame.DiscardFragment.onDiscardListener;
@@ -17,7 +19,7 @@ import android.view.View;
  * GameBoard class stores methods to change fragments or display alerts
  */
 public class GameBoard extends Activity implements onBidListener, onTrumpListener,
-	onDiscardListener, onGamePlayListener {
+	onDiscardListener, onGamePlayListener, onTrickListener {
 	
 	private BidFragment bidFragment;
 	private DiscardFragment discardFragment;
@@ -48,7 +50,8 @@ public class GameBoard extends Activity implements onBidListener, onTrumpListene
 		int [] bids = game.advanceBidding();
 		
 		if(bids[0] == -2 && bids [1] == -2 && bids [2] == -2){
-			startDiscardFragment();
+			
+			chooseTrumpColor();
 		}else{
 			startBiddingFragment(bids);
 		}
@@ -102,7 +105,7 @@ public class GameBoard extends Activity implements onBidListener, onTrumpListene
 		bidFragment.DisplayBidsUsingTimers(bids);
 
 		
-		if(game.getNumberOfBiddersRemaining() == 1)
+		if(game.getBidWinnerLocation() == 3)
 		{
 			chooseTrumpColor();
 		}
@@ -125,6 +128,27 @@ public class GameBoard extends Activity implements onBidListener, onTrumpListene
 		game.setTrumpAndInformAI(cardColors[color]);
 		startDiscardFragment();
 	}	
+	
+	@Override
+	public void resetAllTrickCards()
+	{
+		gameFragment.resetAllTrickCards();
+		game.resetCurrentPlayersTurn();
+		game.incrementNumberOfTricks();
+		game.cleanTrickArray();	
+		
+		Card[] playedCards = game.getCurrentTrick();
+		int[] playerHand = game.getPlayerCardsUI();
+		
+		if(game.getTrickWinnerLocation() != 3){
+			game.advanceGameState();
+			playedCards = game.getCurrentTrick();
+			playerHand = game.getPlayerCardsUI();
+			
+			gameFragment.displayPlayerCards(playerHand);
+			gameFragment.setOpponentsCards(playedCards, game.getTrickWinnerLocation());
+		}
+	}
 	
 	/*
 	 * Displays fragment allowing player to choose which cards to discard
@@ -159,8 +183,6 @@ public class GameBoard extends Activity implements onBidListener, onTrumpListene
 		args.putString("currentTrump", game.getTrump());
 		args.putIntArray("CurrentTeamScores", game.getCurrentTeamScores());
 		
-		game.resetCurrentPlayersTurn();
-		game.cleanRoundScores();
 		
 		gameFragment.setArguments(args);
 		
@@ -171,25 +193,54 @@ public class GameBoard extends Activity implements onBidListener, onTrumpListene
 		
 	}
 	
+	public void playerDidntLeadInitialize(){
+		if(game.getTrickWinnerLocation() != 3){
+		game.advanceGameState();
+		Card[]playedCards = game.getCurrentTrick();
+		
+		gameFragment.setOpponentsCards(playedCards, game.getTrickWinnerLocation());
+		}
+	}
+	
 	public void onPlayerPlayed(int indexToPlay){
+		int currentTrickWinnerLocation = game.getTrickWinnerLocation();
+		gameFragment.setWhoLed(game.getTrickWinnerLocation());
 		if(game.getTrickWinnerLocation() == 3){
 			game.playerPlayed(indexToPlay);
 			game.advanceGameState();
-		} else {
-			game.advanceGameState();
+		} else{
 			game.playerPlayed(indexToPlay);
 			game.advanceGameState();
 		}
 		
+		Card[] playedCards = game.getCurrentTrick();
+		int[] playerHand = game.getPlayerCardsUI();
+		
+		gameFragment.displayPlayerCards(playerHand);
+		gameFragment.setOpponentsCards(playedCards, currentTrickWinnerLocation);
+		
+		
+		if(playedCards[0].getValue() != -1 && playedCards[1].getValue() != -1 && playedCards[2].getValue() != -1 && playedCards[3].getValue() != -1){
+			AlertTrickWinnerDialogFragment trickWinnerFragment = new AlertTrickWinnerDialogFragment();
+			Bundle args2 = new Bundle();
+			args2.putString("WinnerName", "Player " + (game.getTrickWinnerLocation()+1));
+			trickWinnerFragment.setArguments(args2);
+			trickWinnerFragment.show(getFragmentManager(), "trickwinnertag");
+			
+
+		}
+		
+		if(game.getNumberOfCompletedTricks() == 10){
+			showFinalScores(game.getCurrentTeamScores());
+			
+		}
 		
 	}
-
 	/*
 	 * Called when a card is played on game play fragment
 	 */
-	@Override
-	public void cardPlayed(int card) {
-		
+	public void cardPlayed(View v) {
+		gameFragment.cardPlayed(v);
 	}
 	
 	/*
@@ -212,6 +263,9 @@ public class GameBoard extends Activity implements onBidListener, onTrumpListene
 	 * Computer team is always at index 0
 	 */
 	public void showFinalScores(int [] scores) {
+		game.resetCurrentPlayersTurn();
+		game.cleanRoundScores();
+		
 		Bundle args = new Bundle();
 		if (scores[0] > scores[1]) {
 			args.putString("WINNERNAME", "Computer Team");
@@ -229,6 +283,10 @@ public class GameBoard extends Activity implements onBidListener, onTrumpListene
 		FinalScoreDialogFragment finalScoreFragment = new FinalScoreDialogFragment();
 		finalScoreFragment.setArguments(args);
 		finalScoreFragment.show(getFragmentManager(), "finaldialogtag");
+		
+		if(scores[0] < 500 && scores[1] < 500){
+			setupNewRound();
+		}
 		
 	}
 	

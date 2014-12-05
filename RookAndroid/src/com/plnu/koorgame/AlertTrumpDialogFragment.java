@@ -16,7 +16,7 @@ public class AlertTrumpDialogFragment extends DialogFragment {
 		int winnerNum = getArguments().getInt("WINNER");
 		String color = getArguments().getString("TRUMPCOLOR");
 		AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-		String message = "Player " + winnerNum + " won the bid. The trump color is "  + color + ".";
+		String message = "Player " + (winnerNum+1) + " won the bid. The trump color is "  + color + ".";
 		builder.setMessage(message);
 		builder.setNeutralButton(R.string.ok, null);
         return builder.create();

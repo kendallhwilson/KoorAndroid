@@ -77,7 +77,7 @@ public class DiscardFragment extends Fragment implements OnClickListener {
     		for(int i=0; i <15; i++){
     			if(handArray[i].getId() == image.getId()){
     				discardedCards[numIds] = playerHandNewValues[i];
-    				playerHandNewValues[i] = -1;
+    				playerHandNewValues[i] = 100;
     			}
     		}
     		
@@ -93,7 +93,7 @@ public class DiscardFragment extends Fragment implements OnClickListener {
 			
 			for(int i=0; i <15; i++){
     			if(handArray[i].getId() == image.getId()){
-    				discardedCards[numIds] = -1;
+    				discardedCards[numIds] = 100;
     				playerHandNewValues[i] = playerHandValues[i];
     			}
     		}
@@ -110,7 +110,7 @@ public class DiscardFragment extends Fragment implements OnClickListener {
 			int[] finalPlayerHand = new int[10];
 			int counter = 0;
 			for(int i=0; i < 15; i++){
-				if(playerHandNewValues[i] != -1){
+				if(playerHandNewValues[i] != 100){
 					finalPlayerHand[counter] = playerHandNewValues[i];
 					counter++;
 				}

@@ -41,6 +41,10 @@ public class Game {
 	      players[1].myPartner = players[3];
 	      players[2].myPartner = players[0];
 	      players[3].myPartner = players[1];
+	      currentTrick[0] = new Card();
+	      currentTrick[1] = new Card();
+	      currentTrick[2] = new Card();
+	      currentTrick[3] = new Card();
 	}
 	
 	public void CleanAllBiddingObjects(){
@@ -75,13 +79,26 @@ public class Game {
 				allAIAndPlayerBids[i] = -2;
 			}
 			
-			} else { //highBid was above 195 or only 1 player remains, so we set the last highest bidder as the winner. 
-						players[bidWinner].setHighBidder(highBid);
-			       		players[bidWinner].winningBiddingTeam = true;
-			       		players[bidWinner].myPartner.winningBiddingTeam = true;
-			       		trickWinner = bidWinner;
-			       		playersRemainingInBidding = 0;
 			}
+		}
+		
+		if(allAIAndPlayerBids[0] == -2 && allAIAndPlayerBids[1] == -2 && allAIAndPlayerBids[2] == -2){
+			players[3].setHighBidder(highBid);
+			players[3].winningBiddingTeam = true;
+			players[3].myPartner.winningBiddingTeam = true;
+			bidWinner = 3;
+			trickWinner = bidWinner;
+			playersRemainingInBidding = 0;
+			currentPlayersTurn = bidWinner;
+		}
+		
+		if(playersRemainingInBidding == 1){
+			players[bidWinner].setHighBidder(highBid);
+			players[bidWinner].winningBiddingTeam = true;
+			players[bidWinner].myPartner.winningBiddingTeam = true;
+			trickWinner = bidWinner;
+			playersRemainingInBidding = 0;
+			currentPlayersTurn = bidWinner;
 		}
 		
 		return allAIAndPlayerBids;
@@ -95,6 +112,7 @@ public class Game {
 	public void playerEnteredNewBid(int playerNewBid){ //If the player entered a new bid, add it to the array before the GUI calls advanceBid again.
 		highBid = playerNewBid;
 		allAIAndPlayerBids[3] = playerNewBid;
+		bidWinner = 3;
 	}
 	
 	public int getNumberOfBiddersRemaining(){ //Allows the GUI to find how many players are remaining.
@@ -231,10 +249,9 @@ public class Game {
 	         //System.out.println("WINNER WAS PLAYER IN TRICK AT: "+MAX);
 	         trickWinner = (trickWinner+MAX)%4;
 	         addTrickScore(trickWinner,currentTrick);
-	         numberOfTricksPlayed++;
 		}
 		
-		if(numberOfTricksPlayed == 14){
+		if(numberOfTricksPlayed == 9){
 			addDiscardToScore();
 		    addRoundScoreToGameScore();
 		}
@@ -364,6 +381,7 @@ public void sendKitty(){
      		}		
 
 			players[bidWinner].reorganizeHand((players[bidWinner].chooseDiscards()));
+			}
 }
 
 public void addTrickScore(int trickWinner, Card[] currentTrick){
@@ -406,7 +424,7 @@ public int discardScore(){
 	int discardScore = 0;
 	//Need to get card values from discarded array in the Player
 	//Winner of last trick is not necessarily the one who discarded
-	for(int i = 0; i < players[bidWinner].discards.length; i++){
+	for(int i = 0; i < players[bidWinner].discards.length-1; i++){
 		discardScore += players[bidWinner].discards[i].getScore();
 	}
 	return discardScore;
@@ -465,7 +483,7 @@ public void addRoundScoreToGameScore(){
 //Postcondition: Returns the cards that are within the playerHand array.
 public int[] getPlayerCardsUI(){
 	int[] cardValues = new int[15];
-	for(int i  =0;i<15;i++){
+	for(int i=0;i<15;i++){
 		cardValues[i] = players[3].hand[i].getValue();
 	}
 	return cardValues;
@@ -509,6 +527,7 @@ public void setKitty(int[] newKitty)
 		else if(newKitty[i] <= 21){card.setCard(Card.Suit.BLUE,newKitty[i]);}		
 		else if(newKitty[i] <= 32){card.setCard(Card.Suit.GREEN,newKitty[i]);}		
 		else if(newKitty[i] <= 43){card.setCard(Card.Suit.BLACK,newKitty[i]);}
+		card.setCardVal();
 		
 		kitty[i] = card;
 	}
@@ -522,6 +541,7 @@ public void setPlayerHand(int[] newHand)
 		else if(newHand[i] <= 21){card.setCard(Card.Suit.BLUE,newHand[i]);}		
 		else if(newHand[i] <= 32){card.setCard(Card.Suit.GREEN,newHand[i]);}		
 		else if(newHand[i] <= 43){card.setCard(Card.Suit.BLACK,newHand[i]);}
+		card.setCardVal();
 		players[3].hand[i] = card;
 	}
 	
@@ -555,16 +575,15 @@ public void resetCurrentPlayersTurn(){
 }
 
 public void playerPlayed(int indexToPlay){
-	Card.Suit setSuit = players[currentPlaceInTrick].hand[indexToPlay].getSuit();
-    int setVal = players[currentPlaceInTrick].hand[indexToPlay].getCardVal();
-    int setHiddenValue = players[currentPlaceInTrick].hand[indexToPlay].getValue();
+	Card.Suit setSuit = players[currentPlayersTurn].hand[indexToPlay].getSuit();
+    int setHiddenValue = players[currentPlayersTurn].hand[indexToPlay].getValue();
     
 	currentTrick[currentPlaceInTrick] = new Card();
     currentTrick[currentPlaceInTrick].setCard(setSuit,setHiddenValue);
-    currentTrick[currentPlaceInTrick].setCardValue(setVal);
+    currentTrick[currentPlaceInTrick].setCardVal();
     
 	players[3].hand[indexToPlay].setCard(Card.Suit.BLANK, 100);
-    players[3].hand[indexToPlay].setCardValue(0);
+    players[3].hand[indexToPlay].setCardVal();
     
 	currentPlayersTurn = (currentPlayersTurn + 1) % 4;
 	currentPlaceInTrick++;
@@ -575,6 +594,21 @@ public void cleanRoundScores(){
 	roundScore[0] = 0;
 	roundScore[1] = 0;
 	numberOfTricksPlayed = 0;
+}
+
+public void incrementNumberOfTricks(){
+	numberOfTricksPlayed++;
+}
+
+public void cleanTrickArray(){
+	currentTrick[0] = new Card();
+	currentTrick[1] = new Card();
+	currentTrick[2] = new Card();
+	currentTrick[3] = new Card();
+}
+
+public int getNumberOfCompletedTricks(){
+	return numberOfTricksPlayed;
 }
 }//end of class
 

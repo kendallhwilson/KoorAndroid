@@ -786,7 +786,7 @@ public class NPC extends Player {
         {
             for(int i = 1; i < 3; i++)
             {
-                if(trick[i]!= null&&!trick[i].getSuit().equals(Card.Suit.BLANK))
+                if(trick[i] != null && trick[i].getValue() != 100)
                 {
                     if(trick[i].getSuit() == trumpSuit && current.getSuit() != trumpSuit)
                     {

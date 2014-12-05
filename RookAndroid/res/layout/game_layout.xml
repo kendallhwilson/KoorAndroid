@@ -3,22 +3,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent" >
 
-    <TextView
-        android:id="@+id/bid_number_textview"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/bid_textview"
-        android:layout_toRightOf="@+id/bid_textview"
-        android:text="@string/zero" />
-    
-    <TextView
-        android:id="@+id/trick_taker_fill"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/trick_taker_textview"
-        android:layout_toRightOf="@+id/trick_taker_textview"
-        android:text="@string/player1" 
-        android:visibility="invisible" />
     
     <LinearLayout
         android:id="@+id/card_line_2"
@@ -36,7 +20,8 @@
             android:layout_weight="0.2"
             android:padding="2dp"
             android:adjustViewBounds="true"
-            android:src="@drawable/rook" />
+            android:src="@drawable/rook" 
+            android:onClick="cardPlayed"/>
             
         <ImageView
             android:id="@+id/card7"
@@ -45,7 +30,8 @@
             android:layout_weight="0.2"
             android:padding="2dp"
             android:adjustViewBounds="true"
-            android:src="@drawable/rook" />
+            android:src="@drawable/rook" 
+            android:onClick="cardPlayed"/>
   
         <ImageView
             android:id="@+id/card8"
@@ -54,7 +40,8 @@
             android:layout_weight="0.2"
             android:padding="2dp"
             android:adjustViewBounds="true"
-            android:src="@drawable/rook" />
+            android:src="@drawable/rook" 
+            android:onClick="cardPlayed"/>
             
         <ImageView
             android:id="@+id/card9"
@@ -63,7 +50,8 @@
             android:layout_weight="0.2"
             android:padding="2dp"
             android:adjustViewBounds="true"
-            android:src="@drawable/rook" />
+            android:src="@drawable/rook" 
+            android:onClick="cardPlayed"/>
         
          <ImageView
             android:id="@+id/card10"
@@ -72,7 +60,8 @@
             android:layout_weight="0.2"
             android:padding="2dp"
             android:adjustViewBounds="true"
-            android:src="@drawable/rook" />               
+            android:src="@drawable/rook" 
+            android:onClick="cardPlayed"/>               
                 
     </LinearLayout>
 
@@ -93,7 +82,8 @@
             android:layout_weight="0.2"
             android:padding="2dp"
             android:adjustViewBounds="true"
-            android:src="@drawable/rook" />
+            android:src="@drawable/rook" 
+            android:onClick="cardPlayed"/>
 
         <ImageView
             android:id="@+id/card2"
@@ -102,7 +92,8 @@
             android:layout_weight="0.2"
             android:padding="2dp"
             android:adjustViewBounds="true"
-            android:src="@drawable/rook" />
+            android:src="@drawable/rook" 
+            android:onClick="cardPlayed"/>
 
         <ImageView
             android:id="@+id/card3"
@@ -111,7 +102,8 @@
             android:layout_weight="0.2"
             android:padding="2dp"
             android:adjustViewBounds="true"
-            android:src="@drawable/rook" />
+            android:src="@drawable/rook" 
+            android:onClick="cardPlayed"/>
 
         <ImageView
             android:id="@+id/card4"
@@ -120,7 +112,8 @@
             android:layout_weight="0.2"
             android:padding="2dp"
             android:adjustViewBounds="true"
-            android:src="@drawable/rook" />
+            android:src="@drawable/rook" 
+            android:onClick="cardPlayed"/>
 
         <ImageView
             android:id="@+id/card5"
@@ -129,7 +122,8 @@
             android:layout_weight="0.2"
             android:padding="2dp"
             android:adjustViewBounds="true"
-            android:src="@drawable/rook" />
+            android:src="@drawable/rook" 
+            android:onClick="cardPlayed"/>
     </LinearLayout>
 
     <TextView
@@ -162,8 +156,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_above="@+id/card_line_1"
-        android:layout_alignParentLeft="true"
-        android:text="@string/high_bid" />
+        android:layout_alignParentLeft="true" />
 
     <TextView
         android:id="@+id/player4_textview"

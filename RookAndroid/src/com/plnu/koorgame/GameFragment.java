@@ -1,4 +1,6 @@
 package com.plnu.koorgame;
+import com.plnu.gamecode.Card;
+import com.plnu.koorgame.AlertTrickWinnerDialogFragment.onTrickListener;
 import com.plnu.koorgame.DiscardFragment.onDiscardListener;
 
 import android.app.Activity;
@@ -7,6 +9,7 @@ import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -14,7 +17,7 @@ import android.widget.TextView;
 /*
  * Fragment for main game play
  */
-public class GameFragment extends Fragment {
+public class GameFragment extends Fragment{
 	private final int TEXT_TIME = 30000;
 	private final int COUNTDOWN_SECOND = 1000;
 	CountDownTimer textTimer;
@@ -29,6 +32,7 @@ public class GameFragment extends Fragment {
 	
 	public ImageView handArray[] = new ImageView[10];
 	private int playerHandValues[] = new int[10];
+	private int whoLed = 0;
 	
 	
 	private onGamePlayListener gamePlayCallback;
@@ -37,9 +41,8 @@ public class GameFragment extends Fragment {
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 		View v = inflater.inflate(R.layout.game_layout, container, false);
 		trickTaker = (TextView) v.findViewById(R.id.trick_taker_textview);
-		trickTakerFill = (TextView) v.findViewById(R.id.trick_taker_fill);
 		
-		player1Card = (ImageView) v.findViewById(R.id.player1_card);
+		player1Card = (ImageView) v.findViewById(R.id.player1_card); //Card slots didn't line up with how it is ordered in the array.
 		player2Card = (ImageView) v.findViewById(R.id.player2_card);
 		player3Card = (ImageView) v.findViewById(R.id.player3_card);
 		player4Card = (ImageView) v.findViewById(R.id.player4_card);
@@ -61,13 +64,29 @@ public class GameFragment extends Fragment {
 			}
 			
 			public void onFinish() {
-				trickTakerFill.setVisibility(View.INVISIBLE);
-				trickTaker.setVisibility(View.INVISIBLE);
 			}
 		};
 		
+		gamePlayCallback.playerDidntLeadInitialize();
 		displayPlayerCards();
 		return v;
+	}
+	
+	public void cardPlayed(View v) {
+		int cardLocationInHand = -1;
+		
+		ImageView image = (ImageView) v;
+		
+		for(int i=0; i < 10; i++){
+			if(handArray[i].getId() == image.getId()){
+				cardLocationInHand = i;
+			}
+		}
+		
+		if(cardLocationInHand != -1){
+			displayPlayerCard(3, playerHandValues[cardLocationInHand]);
+			gamePlayCallback.onPlayerPlayed(cardLocationInHand);
+		}
 	}
 	
 	/*
@@ -81,39 +100,38 @@ public class GameFragment extends Fragment {
 		textTimer.start();
 	}
 	
+	
 	/*
 	 * 
 	 */
 	public void displayPlayerCard(int player, int card) {
-		String cardText;
-		int imageResource;
-		
+
 		switch (player) {
 		case 1:
-			cardText = "@drawable/" + getCardText(card);
-			imageResource = getResources().getIdentifier(cardText, null, "com.plnu.koorgame");
-			player1Card.setImageResource(imageResource);
+			String cardText1 = "@drawable/" + getCardText(card);
+			int imageResource1 = getResources().getIdentifier(cardText1, null, "com.plnu.koorgame");
+			player1Card.setImageResource(imageResource1);
 			break;
 		case 2:
-			cardText = "@drawable/" + getCardText(card);
-			imageResource = getResources().getIdentifier(cardText, null, "com.plnu.koorgame");
-			player2Card.setImageResource(imageResource);			
+			String cardText2 = "@drawable/" + getCardText(card);
+			int imageResource2 = getResources().getIdentifier(cardText2, null, "com.plnu.koorgame");
+			player2Card.setImageResource(imageResource2);			
 			break;
 		case 3:
-			cardText = "@drawable/" + getCardText(card);
-			imageResource = getResources().getIdentifier(cardText, null, "com.plnu.koorgame");
-			player3Card.setImageResource(imageResource);			
+			String cardText3 = "@drawable/" + getCardText(card);
+			int imageResource3 = getResources().getIdentifier(cardText3, null, "com.plnu.koorgame");
+			player3Card.setImageResource(imageResource3);			
 			break;
 		case 4:
-			cardText = "@drawable/" + getCardText(card);
-			imageResource = getResources().getIdentifier(cardText, null, "com.plnu.koorgame");
-			player4Card.setImageResource(imageResource);			
+			String cardText4 = "@drawable/" + getCardText(card);
+			int imageResource4 = getResources().getIdentifier(cardText4, null, "com.plnu.koorgame");
+			player4Card.setImageResource(imageResource4);
 			break;
 		}
 	}
 	public interface onGamePlayListener {
-		public void cardPlayed(int card);
 		public void onPlayerPlayed(int indexToPlay);
+		public void playerDidntLeadInitialize();
 	}
 	
 	@Override
@@ -121,6 +139,7 @@ public class GameFragment extends Fragment {
 		super.onAttach(activity);
         try {
             gamePlayCallback = (onGamePlayListener) activity;
+            
         } 
         catch (ClassCastException e) {
             throw new ClassCastException(activity.toString()
@@ -134,14 +153,36 @@ public class GameFragment extends Fragment {
 		playerHandValues = getArguments().getIntArray("playerHandArray");
 		
 		for(int i=0; i < 10; i++){
+			
+			if(playerHandValues[i] != -1 && playerHandValues[i] != 100){
+				
 			String cardText = "@drawable/" + getCardText(playerHandValues[i]);
 			int imageResource = getResources().getIdentifier(cardText, null, "com.plnu.koorgame");
 			handArray[i].setImageResource(imageResource);
+			}
+		}
+	}
+	
+	public void displayPlayerCards(int[] playerHand){
+		playerHandValues = playerHand;
+		
+		for(int i=0; i < 10; i++){
+			
+			if(playerHandValues[i] != 100 && playerHandValues[i] != -1){
+			
+			String cardText = "@drawable/" + getCardText(playerHandValues[i]);
+			int imageResource = getResources().getIdentifier(cardText, null, "com.plnu.koorgame");
+			handArray[i].setImageResource(imageResource);
+			}
+			else {
+				handArray[i].setVisibility(View.INVISIBLE);
+			}
 		}
 	}
 	
 	public String getCardText(int cardNumber)
 	{
+		if(cardNumber != -1){
 		String returningCardText = "";
 		String cardColors[] = {"red", "blue", "green", "black"};
 		String cardNames[] = {"five", "six", "seven", "eight", "nine", "ten", "eleven", "twelve", 
@@ -154,7 +195,46 @@ public class GameFragment extends Fragment {
 		returningCardText = returningCardText + cardColors[cardNumber / 11];
 		
 		return returningCardText;
+		}
+		return "rook";
+	}
+	
+	public void setOpponentsCards(Card[] playedCards, int trickWinnerLocation){ //Needs to determine the starting location of where play began so the cards line up with the correct slots. Fix this.
+		
+		int cardLocation = trickWinnerLocation;
+		for(int i=0; i < 4; i++){
+			if(playedCards[i].getValue() != -1){
+			displayPlayerCard(cardLocation+1, playedCards[i].getValue());
+			cardLocation = (cardLocation + 1 ) % 4;
+			}
+		}
 		
 	}
+	
+	public void setWhoLed(int leader){
+		whoLed = leader;
+	}
+	
+	public void resetAllTrickCards(){
+		int imageResource = getResources().getIdentifier("@drawable/rook", null, "com.plnu.koorgame");
+		player1Card.setImageResource(imageResource);
+		player2Card.setImageResource(imageResource);
+		player3Card.setImageResource(imageResource);
+		player4Card.setImageResource(imageResource);
+	}
+	
+	 @Override
+	    public void onPause() {
+	      super.onPause();
+	    }
 
+	    @Override
+	    public void onResume() {
+	      super.onResume();
+	    }
+
+	    @Override
+	    public void onDestroy() {
+	      super.onDestroy();
+	    }
 }
