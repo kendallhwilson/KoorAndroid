@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:ads="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent" >
 
@@ -8,7 +10,7 @@
         android:id="@+id/card_line_2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
+        android:layout_above="@+id/adLine"
         android:orientation="horizontal"
         android:weightSum="1" 
         android:background="#D0D0D0">
@@ -18,8 +20,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="0.2"
-            android:padding="2dp"
             android:adjustViewBounds="true"
+<<<<<<< HEAD
             android:src="@drawable/rook" 
             android:onClick="cardPlayed"/>
             
@@ -28,10 +30,16 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="0.2"
+=======
+>>>>>>> refs/remotes/origin/master
             android:padding="2dp"
+<<<<<<< HEAD
             android:adjustViewBounds="true"
             android:src="@drawable/rook" 
             android:onClick="cardPlayed"/>
+=======
+            android:src="@drawable/rook" />
+>>>>>>> refs/remotes/origin/master
   
         <ImageView
             android:id="@+id/card8"
@@ -40,8 +48,21 @@
             android:layout_weight="0.2"
             android:padding="2dp"
             android:adjustViewBounds="true"
+<<<<<<< HEAD
             android:src="@drawable/rook" 
             android:onClick="cardPlayed"/>
+=======
+            android:src="@drawable/rook" />
+
+        <ImageView
+            android:id="@+id/card7"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.2"
+            android:adjustViewBounds="true"
+            android:padding="2dp"
+            android:src="@drawable/rook" />
+>>>>>>> refs/remotes/origin/master
             
         <ImageView
             android:id="@+id/card9"
@@ -80,20 +101,28 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="0.2"
-            android:padding="2dp"
             android:adjustViewBounds="true"
+<<<<<<< HEAD
             android:src="@drawable/rook" 
             android:onClick="cardPlayed"/>
+=======
+            android:padding="2dp"
+            android:src="@drawable/rook" />
+>>>>>>> refs/remotes/origin/master
 
         <ImageView
             android:id="@+id/card2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="0.2"
-            android:padding="2dp"
             android:adjustViewBounds="true"
+<<<<<<< HEAD
             android:src="@drawable/rook" 
             android:onClick="cardPlayed"/>
+=======
+            android:padding="2dp"
+            android:src="@drawable/rook" />
+>>>>>>> refs/remotes/origin/master
 
         <ImageView
             android:id="@+id/card3"
@@ -110,10 +139,14 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="0.2"
-            android:padding="2dp"
             android:adjustViewBounds="true"
+<<<<<<< HEAD
             android:src="@drawable/rook" 
             android:onClick="cardPlayed"/>
+=======
+            android:padding="2dp"
+            android:src="@drawable/rook" />
+>>>>>>> refs/remotes/origin/master
 
         <ImageView
             android:id="@+id/card5"
@@ -226,5 +259,23 @@
         android:layout_alignBottom="@+id/player3_textview"
         android:layout_toLeftOf="@+id/bid_number_textview"
         android:text="@string/player1" />
+<LinearLayout
+        android:id="@+id/adLine"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:weightSum="1" 
+        android:background="#D0D0D0">
+    <com.google.android.gms.ads.AdView
+        xmlns:ads="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/adView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        ads:adSize="BANNER"
+        ads:adUnitId="@string/banner_ad_unit_id" >
+    </com.google.android.gms.ads.AdView>
+    </LinearLayout>
 
 </RelativeLayout>
