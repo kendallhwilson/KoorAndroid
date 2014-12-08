@@ -1,5 +1,4 @@
 package com.plnu.koorgame;
-<<<<<<< HEAD
 import com.plnu.gamecode.Card;
 import com.plnu.koorgame.AlertTrickWinnerDialogFragment.onTrickListener;
 =======
@@ -231,7 +230,6 @@ public class GameFragment extends Fragment{
 		
 	}
 	
-<<<<<<< HEAD
 	public void setWhoLed(int leader){
 		whoLed = leader;
 	}
@@ -243,12 +241,7 @@ public class GameFragment extends Fragment{
 		player3Card.setImageResource(imageResource);
 		player4Card.setImageResource(imageResource);
 	}
-	
-	 @Override
-	    public void onPause() {
-	      super.onPause();
-	    }
-=======
+
     @Override
     public void onPause() {
       adView.pause();
@@ -266,15 +259,4 @@ public class GameFragment extends Fragment{
       adView.destroy();
       super.onDestroy();
     }
->>>>>>> refs/remotes/origin/master
-
-	    @Override
-	    public void onResume() {
-	      super.onResume();
-	    }
-
-	    @Override
-	    public void onDestroy() {
-	      super.onDestroy();
-	    }
 }

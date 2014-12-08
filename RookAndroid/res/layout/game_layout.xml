@@ -21,7 +21,6 @@
             android:layout_height="wrap_content"
             android:layout_weight="0.2"
             android:adjustViewBounds="true"
-<<<<<<< HEAD
             android:src="@drawable/rook" 
             android:onClick="cardPlayed"/>
             
@@ -30,16 +29,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="0.2"
-=======
->>>>>>> refs/remotes/origin/master
             android:padding="2dp"
-<<<<<<< HEAD
+
             android:adjustViewBounds="true"
             android:src="@drawable/rook" 
             android:onClick="cardPlayed"/>
-=======
-            android:src="@drawable/rook" />
->>>>>>> refs/remotes/origin/master
   
         <ImageView
             android:id="@+id/card8"
@@ -48,11 +42,9 @@
             android:layout_weight="0.2"
             android:padding="2dp"
             android:adjustViewBounds="true"
-<<<<<<< HEAD
             android:src="@drawable/rook" 
             android:onClick="cardPlayed"/>
-=======
-            android:src="@drawable/rook" />
+
 
         <ImageView
             android:id="@+id/card7"
@@ -62,7 +54,6 @@
             android:adjustViewBounds="true"
             android:padding="2dp"
             android:src="@drawable/rook" />
->>>>>>> refs/remotes/origin/master
             
         <ImageView
             android:id="@+id/card9"
@@ -102,13 +93,9 @@
             android:layout_height="wrap_content"
             android:layout_weight="0.2"
             android:adjustViewBounds="true"
-<<<<<<< HEAD
             android:src="@drawable/rook" 
-            android:onClick="cardPlayed"/>
-=======
-            android:padding="2dp"
-            android:src="@drawable/rook" />
->>>>>>> refs/remotes/origin/master
+            android:onClick="cardPlayed"
+            android:padding="2dp"/>
 
         <ImageView
             android:id="@+id/card2"
@@ -116,13 +103,9 @@
             android:layout_height="wrap_content"
             android:layout_weight="0.2"
             android:adjustViewBounds="true"
-<<<<<<< HEAD
-            android:src="@drawable/rook" 
-            android:onClick="cardPlayed"/>
-=======
+            android:onClick="cardPlayed"
             android:padding="2dp"
             android:src="@drawable/rook" />
->>>>>>> refs/remotes/origin/master
 
         <ImageView
             android:id="@+id/card3"
@@ -140,13 +123,9 @@
             android:layout_height="wrap_content"
             android:layout_weight="0.2"
             android:adjustViewBounds="true"
-<<<<<<< HEAD
             android:src="@drawable/rook" 
-            android:onClick="cardPlayed"/>
-=======
-            android:padding="2dp"
-            android:src="@drawable/rook" />
->>>>>>> refs/remotes/origin/master
+            android:onClick="cardPlayed"
+            android:padding="2dp"/>
 
         <ImageView
             android:id="@+id/card5"
