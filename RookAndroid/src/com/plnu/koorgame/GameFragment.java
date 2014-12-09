@@ -25,6 +25,7 @@ public class GameFragment extends Fragment{
 	private final int TEXT_TIME = 30000;
 	private final int COUNTDOWN_SECOND = 1000;
 	CountDownTimer textTimer;
+	CountDownTimer textTimer1;
 	
 	private TextView trickTaker;
 	private TextView trickTakerFill;
@@ -221,6 +222,9 @@ public class GameFragment extends Fragment{
 		int cardLocation = trickWinnerLocation;
 		for(int i=0; i < 4; i++){
 			if(playedCards[i].getValue() != -1){
+			// Are these the cards to be displayed on timer?? If so...
+			// DisplayCardUsingTimer(cardLocation+1, playedCards[i].getValue());
+			// Would replace below vvv
 			displayPlayerCard(cardLocation+1, playedCards[i].getValue());
 			cardLocation = (cardLocation + 1 ) % 4;
 			}
@@ -250,6 +254,7 @@ public class GameFragment extends Fragment{
     public void onResume() {
       super.onResume();
       adView.resume();
+ 
     }
 
     @Override
@@ -257,4 +262,23 @@ public class GameFragment extends Fragment{
       adView.destroy();
       super.onDestroy();
     }
+    
+    
+	public void DisplayCardUsingTimer(int player, int card)
+	{
+		final int p =player;
+		final int c = card;
+		textTimer1 = new CountDownTimer(1000, COUNTDOWN_SECOND) {
+			public void onTick(long millisTillFinished) {
+				//on tick
+				System.out.print("in the timer!");
+			}		
+			public void onFinish() {
+				displayPlayerCard(p, c);
+			}
+		};
+
+		textTimer1.start();
+	}
+    
 }
