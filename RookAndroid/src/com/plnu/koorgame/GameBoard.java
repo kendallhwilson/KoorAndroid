@@ -182,6 +182,7 @@ public class GameBoard extends Activity implements onBidListener, onTrumpListene
 		args.putIntArray("playerHandArray", game.getPlayerCardsUI());
 		args.putString("currentTrump", game.getTrump());
 		args.putIntArray("CurrentTeamScores", game.getCurrentTeamScores());
+		args.putInt("highBid", game.getHighBid());
 		
 		
 		gameFragment.setArguments(args);

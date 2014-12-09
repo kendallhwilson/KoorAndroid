@@ -28,6 +28,9 @@ public class GameFragment extends Fragment{
 	
 	private TextView trickTaker;
 	private TextView trickTakerFill;
+	private TextView highBid;
+	private TextView team1Score;
+	private TextView team2Score;
 	
 	private ImageView player1Card;
 	private ImageView player2Card;
@@ -47,6 +50,9 @@ public class GameFragment extends Fragment{
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 		View v = inflater.inflate(R.layout.game_layout, container, false);
 		trickTaker = (TextView) v.findViewById(R.id.trick_taker_textview);
+		highBid = (TextView) v.findViewById(R.id.highbid_textview);
+		team1Score = (TextView) v.findViewById(R.id.team1_textview);
+		team2Score = (TextView) v.findViewById(R.id.team2_textview);
 		
 		player1Card = (ImageView) v.findViewById(R.id.player1_card); //Card slots didn't line up with how it is ordered in the array.
 		player2Card = (ImageView) v.findViewById(R.id.player2_card);
@@ -85,6 +91,8 @@ public class GameFragment extends Fragment{
 		};
 		
 		gamePlayCallback.playerDidntLeadInitialize();
+		updateBid();
+		updateScores();
 		displayPlayerCards();
 		return v;
 	}
@@ -240,6 +248,18 @@ public class GameFragment extends Fragment{
 		player4Card.setImageResource(imageResource);
 	}
 
+	//Retrieve new highBid value
+	public void updateBid(){
+		int newBid = getArguments().getInt("highBid");
+		highBid.setText(String.valueOf(newBid));
+	}
+	
+	public void updateScores(){
+		int[] scores = getArguments().getIntArray("CurrentTeamScores");
+		team1Score.setText(String.valueOf(scores[0]));
+		team2Score.setText(String.valueOf(scores[1]));
+	}
+	
     @Override
     public void onPause() {
       adView.pause();
