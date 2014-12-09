@@ -6,7 +6,7 @@
     android:layout_height="match_parent" >
 
     
-    <LinearLayout
+   <LinearLayout
         android:id="@+id/card_line_2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -46,14 +46,6 @@
             android:onClick="cardPlayed"/>
 
 
-        <ImageView
-            android:id="@+id/card7"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="0.2"
-            android:adjustViewBounds="true"
-            android:padding="2dp"
-            android:src="@drawable/rook" />
             
         <ImageView
             android:id="@+id/card9"
