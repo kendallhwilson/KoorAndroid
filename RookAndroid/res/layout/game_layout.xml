@@ -154,13 +154,37 @@
         android:layout_alignParentRight="true"
         android:text="@string/trick_winner"
         android:visibility="invisible" />
+    
+    <TextView
+        android:id="@+id/team1score_textview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/team2score_textview"
+        android:layout_toRightOf="@+id/team1_textview"
+        />
+    
+    <TextView
+        android:id="@+id/team2score_textview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/card_line_1"
+        android:layout_toRightOf="@+id/team2_textview"
+        />
 
     <TextView
         android:id="@+id/bid_textview"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_above="@+id/card_line_1"
-        android:layout_alignParentLeft="true" />
+        android:layout_alignParentLeft="true" 
+        android:text="@string/high_bid" />
+    
+    <TextView
+        android:id="@+id/highbid_textview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/card_line_1"
+        android:layout_toRightOf="@+id/bid_textview"/>
 
     <TextView
         android:id="@+id/player4_textview"
@@ -248,5 +272,21 @@
         ads:adUnitId="@string/banner_ad_unit_id" >
     </com.google.android.gms.ads.AdView>
     </LinearLayout>
+
+<TextView
+    android:id="@+id/team1_textview"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_above="@+id/trick_taker_textview"
+    android:layout_alignLeft="@+id/player3_card"
+    android:text="@string/team1" />
+
+<TextView
+    android:id="@+id/team2_textview"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_above="@+id/card_line_1"
+    android:layout_alignLeft="@+id/team1_textview"
+    android:text="@string/team2" />
 
 </RelativeLayout>

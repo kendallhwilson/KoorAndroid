@@ -19,7 +19,7 @@ public class Game {
 	Card.Suit trumpColor = null; 
 	protected ArrayList<Card> deck = new ArrayList<Card>();
 	protected Card kitty[] = new Card[5];
-	protected int highBid = 0;
+	protected int highBid = 100;
 	protected boolean [] playerActive = new boolean[4];
 	protected int[] currentTeamScores = new int[2];
 	protected int[] roundScore = new int[2];
@@ -494,6 +494,13 @@ public int[] getPlayerCardsUI(){
 public int[] getCurrentTeamScores()
 {
 	return currentTeamScores;
+}
+
+//Precondition: highBid has been set
+//Postcondition: highBid returned
+public int getHighBid()
+{
+	return highBid;
 }
 
 //Precondition: getCurrentTrick has been instantiated.
