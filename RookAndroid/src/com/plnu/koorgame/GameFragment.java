@@ -1,11 +1,9 @@
 package com.plnu.koorgame;
 import com.plnu.gamecode.Card;
 import com.plnu.koorgame.AlertTrickWinnerDialogFragment.onTrickListener;
-=======
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdSize;
 import com.google.android.gms.ads.AdView;
->>>>>>> refs/remotes/origin/master
 import com.plnu.koorgame.DiscardFragment.onDiscardListener;
 
 import android.app.Activity;
