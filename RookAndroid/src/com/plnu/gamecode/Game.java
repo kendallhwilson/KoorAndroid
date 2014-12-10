@@ -19,7 +19,7 @@ public class Game {
 	Card.Suit trumpColor = null; 
 	protected ArrayList<Card> deck = new ArrayList<Card>();
 	protected Card kitty[] = new Card[5];
-	protected int highBid = 100;
+	protected int highBid = 0;
 	protected boolean [] playerActive = new boolean[4];
 	protected int[] currentTeamScores = new int[2];
 	protected int[] roundScore = new int[2];

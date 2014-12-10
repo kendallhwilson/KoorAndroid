@@ -141,6 +141,7 @@ public class BidFragment extends Fragment implements OnClickListener {
 	
     @Override
     public void onClick(View v) {
+
         switch (v.getId()) {
         case R.id.bid_add_five_button:
     		if (bid < 200) { //check bidding rules 
@@ -186,8 +187,10 @@ public class BidFragment extends Fragment implements OnClickListener {
 					}
 				}
 					if(newBid > 0){ //This will set the player's bid to a negative number if the last updated bid was negative. We just wont update the player's bid at that point.
-						bid = newBid;
-						myBid.setText(String.valueOf(newBid + 5));
+//						bid = newBid;
+//						myBid.setText(String.valueOf(newBid + 5));
+						bid = newBid + 5;
+						myBid.setText(String.valueOf(bid));
 					}
 			
 		}

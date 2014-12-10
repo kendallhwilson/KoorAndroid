@@ -52,8 +52,8 @@ public class GameFragment extends Fragment{
 		View v = inflater.inflate(R.layout.game_layout, container, false);
 		trickTaker = (TextView) v.findViewById(R.id.trick_taker_textview);
 		highBid = (TextView) v.findViewById(R.id.highbid_textview);
-		team1Score = (TextView) v.findViewById(R.id.team1_textview);
-		team2Score = (TextView) v.findViewById(R.id.team2_textview);
+		team1Score = (TextView) v.findViewById(R.id.team1score_textview);
+		team2Score = (TextView) v.findViewById(R.id.team2score_textview);
 		
 		player1Card = (ImageView) v.findViewById(R.id.player1_card); //Card slots didn't line up with how it is ordered in the array.
 		player2Card = (ImageView) v.findViewById(R.id.player2_card);
@@ -260,7 +260,12 @@ public class GameFragment extends Fragment{
 	//Retrieve new highBid value
 	public void updateBid(){
 		int newBid = getArguments().getInt("highBid");
-		highBid.setText(String.valueOf(newBid));
+		if(newBid >= 100){
+			highBid.setText(String.valueOf(newBid));
+		}
+		else{
+			highBid.setText(String.valueOf(100));
+		}
 	}
 	
 	public void updateScores(){

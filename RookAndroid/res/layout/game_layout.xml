@@ -195,7 +195,7 @@
 		android:maxHeight="120dp"
         android:maxWidth="90dp"
         android:scaleType="fitCenter"
-        android:src="@drawable/blankcard"
+        android:src="@drawable/blank"
          />
 
     <ImageView
@@ -209,7 +209,7 @@
         android:maxHeight="120dp"
         android:maxWidth="90dp"
         android:scaleType="fitCenter"
-        android:src="@drawable/blankcard"
+        android:src="@drawable/blank"
          />
 
     <ImageView
@@ -223,7 +223,7 @@
         android:maxHeight="120dp"
         android:maxWidth="90dp"
         android:scaleType="fitCenter"
-        android:src="@drawable/blankcard"
+        android:src="@drawable/blank"
          />
 
     <ImageView
@@ -237,7 +237,7 @@
         android:maxHeight="120dp"
         android:maxWidth="90dp"
         android:scaleType="fitCenter"
-        android:src="@drawable/blankcard"
+        android:src="@drawable/blank"
          />
 
     <TextView
