@@ -3,7 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     xmlns:ads="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent" >
+    android:layout_height="match_parent"
+    android:background="#088A29" >
 
     
    <LinearLayout
@@ -13,7 +14,7 @@
         android:layout_above="@+id/adLine"
         android:orientation="horizontal"
         android:weightSum="1" 
-        android:background="#D0D0D0">
+        android:background="#088A29">
 
         <ImageView
             android:id="@+id/card6"
@@ -21,7 +22,6 @@
             android:layout_height="wrap_content"
             android:layout_weight="0.2"
             android:adjustViewBounds="true"
-            android:src="@drawable/rook" 
             android:onClick="cardPlayed"/>
             
         <ImageView
@@ -30,9 +30,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="0.2"
             android:padding="2dp"
-
             android:adjustViewBounds="true"
-            android:src="@drawable/rook" 
             android:onClick="cardPlayed"/>
   
         <ImageView
@@ -42,7 +40,6 @@
             android:layout_weight="0.2"
             android:padding="2dp"
             android:adjustViewBounds="true"
-            android:src="@drawable/rook" 
             android:onClick="cardPlayed"/>
 
 
@@ -54,7 +51,6 @@
             android:layout_weight="0.2"
             android:padding="2dp"
             android:adjustViewBounds="true"
-            android:src="@drawable/rook" 
             android:onClick="cardPlayed"/>
         
          <ImageView
@@ -64,7 +60,6 @@
             android:layout_weight="0.2"
             android:padding="2dp"
             android:adjustViewBounds="true"
-            android:src="@drawable/rook" 
             android:onClick="cardPlayed"/>               
                 
     </LinearLayout>
@@ -77,15 +72,14 @@
         android:layout_alignParentLeft="true"
         android:orientation="horizontal"
         android:weightSum="1" 
-        android:background="#D0D0D0">
+        android:background="#088A29">
 
         <ImageView
             android:id="@+id/card1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="0.2"
-            android:adjustViewBounds="true"
-            android:src="@drawable/rook" 
+            android:adjustViewBounds="true" 
             android:onClick="cardPlayed"
             android:padding="2dp"/>
 
@@ -96,8 +90,7 @@
             android:layout_weight="0.2"
             android:adjustViewBounds="true"
             android:onClick="cardPlayed"
-            android:padding="2dp"
-            android:src="@drawable/rook" />
+            android:padding="2dp" />
 
         <ImageView
             android:id="@+id/card3"
@@ -106,7 +99,6 @@
             android:layout_weight="0.2"
             android:padding="2dp"
             android:adjustViewBounds="true"
-            android:src="@drawable/rook" 
             android:onClick="cardPlayed"/>
 
         <ImageView
@@ -114,8 +106,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="0.2"
-            android:adjustViewBounds="true"
-            android:src="@drawable/rook" 
+            android:adjustViewBounds="true" 
             android:onClick="cardPlayed"
             android:padding="2dp"/>
 
@@ -126,7 +117,6 @@
             android:layout_weight="0.2"
             android:padding="2dp"
             android:adjustViewBounds="true"
-            android:src="@drawable/rook" 
             android:onClick="cardPlayed"/>
     </LinearLayout>
 
@@ -205,7 +195,8 @@
 		android:maxHeight="120dp"
         android:maxWidth="90dp"
         android:scaleType="fitCenter"
-        android:src="@drawable/rook" />
+        android:src="@drawable/blankcard"
+         />
 
     <ImageView
         android:id="@+id/player4_card"
@@ -218,7 +209,8 @@
         android:maxHeight="120dp"
         android:maxWidth="90dp"
         android:scaleType="fitCenter"
-        android:src="@drawable/rook" />
+        android:src="@drawable/blankcard"
+         />
 
     <ImageView
         android:id="@+id/player3_card"
@@ -231,7 +223,8 @@
         android:maxHeight="120dp"
         android:maxWidth="90dp"
         android:scaleType="fitCenter"
-        android:src="@drawable/rook" />
+        android:src="@drawable/blankcard"
+         />
 
     <ImageView
         android:id="@+id/player1_card"
@@ -244,7 +237,8 @@
         android:maxHeight="120dp"
         android:maxWidth="90dp"
         android:scaleType="fitCenter"
-        android:src="@drawable/rook" />
+        android:src="@drawable/blankcard"
+         />
 
     <TextView
         android:id="@+id/player1_textview"
@@ -263,14 +257,7 @@
         android:layout_alignParentLeft="true"
         android:weightSum="1" 
         android:background="#D0D0D0">
-    <com.google.android.gms.ads.AdView
-        xmlns:ads="http://schemas.android.com/apk/res-auto"
-        android:id="@+id/adView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        ads:adSize="BANNER"
-        ads:adUnitId="@string/banner_ad_unit_id" >
-    </com.google.android.gms.ads.AdView>
+
     </LinearLayout>
 
 <TextView

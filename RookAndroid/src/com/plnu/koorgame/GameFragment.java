@@ -1,9 +1,9 @@
 package com.plnu.koorgame;
 import com.plnu.gamecode.Card;
 import com.plnu.koorgame.AlertTrickWinnerDialogFragment.onTrickListener;
-import com.google.android.gms.ads.AdRequest;
-import com.google.android.gms.ads.AdSize;
-import com.google.android.gms.ads.AdView;
+//import com.google.android.gms.ads.AdRequest;
+//import com.google.android.gms.ads.AdSize;
+//import com.google.android.gms.ads.AdView;
 import com.plnu.koorgame.DiscardFragment.onDiscardListener;
 
 import android.app.Activity;
@@ -42,7 +42,7 @@ public class GameFragment extends Fragment{
 	private int playerHandValues[] = new int[10];
 	private int whoLed = 0;
 	
-	public AdView adView;
+	//public AdView adView;
 	public String adId = "ca-app-pub-8436145435379887/7134674053";
 	
 	private onGamePlayListener gamePlayCallback;
@@ -60,6 +60,7 @@ public class GameFragment extends Fragment{
 		player3Card = (ImageView) v.findViewById(R.id.player3_card);
 		player4Card = (ImageView) v.findViewById(R.id.player4_card);
 		
+		
 		handArray[0] = (ImageView) v.findViewById(R.id.card1);
 		handArray[1] = (ImageView) v.findViewById(R.id.card2);
 		handArray[2] = (ImageView) v.findViewById(R.id.card3);
@@ -71,16 +72,16 @@ public class GameFragment extends Fragment{
 		handArray[8] = (ImageView) v.findViewById(R.id.card9);
 		handArray[9] = (ImageView) v.findViewById(R.id.card10);
 		
-		adView = new AdView(getActivity());
-	    adView.setAdSize(AdSize.BANNER);
-	    adView.setAdUnitId(adId);
-	    LinearLayout adLineView = (LinearLayout)v.findViewById(R.id.adLine);
-	    adLineView.addView(adView);
-		adView = (AdView)v.findViewById(R.id.adView);
-        AdRequest.Builder adReq = new AdRequest.Builder();
-        //adReq.addTestDevice("74685C1D33AFBBEDF9DC3EF0EF6BA54E");
-        AdRequest adRequest = adReq.build();
-        adView.loadAd(adRequest);
+//		adView = new AdView(getActivity());
+//	    adView.setAdSize(AdSize.BANNER);
+//	    adView.setAdUnitId(adId);
+//	    LinearLayout adLineView = (LinearLayout)v.findViewById(R.id.adLine);
+//	    adLineView.addView(adView);
+//		adView = (AdView)v.findViewById(R.id.adView);
+//        AdRequest.Builder adReq = new AdRequest.Builder();
+//        //adReq.addTestDevice("74685C1D33AFBBEDF9DC3EF0EF6BA54E");
+//        AdRequest adRequest = adReq.build();
+//        adView.loadAd(adRequest);
 		
 		textTimer = new CountDownTimer(TEXT_TIME, COUNTDOWN_SECOND) {
 			public void onTick(long millisTillFinished) {
@@ -245,12 +246,16 @@ public class GameFragment extends Fragment{
 	}
 	
 	public void resetAllTrickCards(){
-		int imageResource = getResources().getIdentifier("@drawable/rook", null, "com.plnu.koorgame");
+		int imageResource = getResources().getIdentifier("@drawable/blankcard", null, "com.plnu.koorgame");
+
 		player1Card.setImageResource(imageResource);
 		player2Card.setImageResource(imageResource);
 		player3Card.setImageResource(imageResource);
 		player4Card.setImageResource(imageResource);
+
+
 	}
+	
 
 	//Retrieve new highBid value
 	public void updateBid(){
@@ -266,20 +271,20 @@ public class GameFragment extends Fragment{
 	
     @Override
     public void onPause() {
-      adView.pause();
+    //  adView.pause();
       super.onPause();
     }
 
     @Override
     public void onResume() {
       super.onResume();
-      adView.resume();
+     // adView.resume();
  
     }
 
     @Override
     public void onDestroy() {
-      adView.destroy();
+   //   adView.destroy();
       super.onDestroy();
     }
     
