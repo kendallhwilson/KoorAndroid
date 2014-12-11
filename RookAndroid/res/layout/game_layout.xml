@@ -261,7 +261,7 @@
         android:background="#088A29">
         
         <com.google.android.gms.ads.AdView
-        xmlns:ads="http://schemas.android.com/apk/res-auto"
+        xmlns:ads="http://schemas.android.com/apk/com.plnu.koorgame"
         android:id="@+id/adView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
