@@ -196,7 +196,7 @@
 		android:maxHeight="100dp"
         android:maxWidth="75dp"
         android:scaleType="fitCenter"
-        android:src="@drawable/blankcard"
+        android:src="@drawable/blank"
          />
 
     <ImageView
@@ -210,7 +210,7 @@
         android:maxHeight="100dp"
         android:maxWidth="75dp"
         android:scaleType="fitCenter"
-        android:src="@drawable/blankcard"
+        android:src="@drawable/blank"
          />
 
     <ImageView
@@ -224,7 +224,7 @@
         android:maxHeight="100dp"
         android:maxWidth="75dp"
         android:scaleType="fitCenter"
-        android:src="@drawable/blankcard"
+        android:src="@drawable/blank"
          />
 
     <ImageView
@@ -238,7 +238,7 @@
         android:maxHeight="100dp"
         android:maxWidth="75dp"
         android:scaleType="fitCenter"
-        android:src="@drawable/blankcard"
+        android:src="@drawable/blank"
          />
 
     <TextView
@@ -258,7 +258,16 @@
         android:layout_alignParentBottom="true"
         android:layout_alignParentLeft="true"
         android:weightSum="1" 
-        android:background="#D0D0D0">
+        android:background="#088A29">
+        
+        <com.google.android.gms.ads.AdView
+        xmlns:ads="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/adView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        ads:adSize="BANNER"
+        ads:adUnitId="@string/banner_ad_unit_id" >
+    </com.google.android.gms.ads.AdView>
 
     </LinearLayout>
 
@@ -278,13 +287,5 @@
     android:layout_alignLeft="@+id/team1_textview"
     android:text="@string/team2" />
 
-    <com.google.android.gms.ads.AdView
-        xmlns:ads="http://schemas.android.com/apk/res-auto"
-        android:id="@+id/adView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        ads:adSize="BANNER"
-        ads:adUnitId="@string/banner_ad_unit_id" >
-    </com.google.android.gms.ads.AdView>
 
 </RelativeLayout>
