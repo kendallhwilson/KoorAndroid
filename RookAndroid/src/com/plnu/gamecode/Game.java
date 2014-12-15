@@ -539,7 +539,7 @@ public void setPlayerHand(int[] newHand)
 		else if(newHand[i] <= 21){card.setCard(Card.Suit.BLUE,newHand[i]);}		
 		else if(newHand[i] <= 32){card.setCard(Card.Suit.GREEN,newHand[i]);}		
 		else if(newHand[i] <= 43){card.setCard(Card.Suit.BLACK,newHand[i]);}
-		else if(newHand[i] == 44){card.setCard(Card.Suit.NOSUIT, newHand[i]);
+		else if(newHand[i] == 44){card.setCard(Card.Suit.NOSUIT, newHand[i]);}
 		card.setCardVal();
 		players[3].hand[i] = card;
 	}
@@ -555,7 +555,7 @@ public void setPlayerDiscards(int[] playerDiscards)
 		else if(playerDiscards[i] <= 21){card.setCard(Card.Suit.BLUE,playerDiscards[i]);}		
 		else if(playerDiscards[i] <= 32){card.setCard(Card.Suit.GREEN,playerDiscards[i]);}		
 		else if(playerDiscards[i] <= 43){card.setCard(Card.Suit.BLACK,playerDiscards[i]);}
-		else if(playerDiscards[i] == 44){card.setCard(Card.Suit.NOSUIT, playerDiscards[i]);
+		else if(playerDiscards[i] == 44){card.setCard(Card.Suit.NOSUIT, playerDiscards[i]);}
 		card.setCardVal();
 		players[3].discards[i] = card;
 	}
