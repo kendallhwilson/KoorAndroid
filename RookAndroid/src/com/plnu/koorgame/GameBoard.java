@@ -12,7 +12,9 @@ import android.app.Activity;
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
+import android.content.Intent;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.view.SurfaceView;
 import android.view.View;
 /*
@@ -47,13 +49,11 @@ public class GameBoard extends Activity implements onBidListener, onTrumpListene
 	public void setupNewRound(){
 		game.makeDeck();
 		game.dealCards();
+		game.CleanAllBiddingObjects();
 		int [] bids = game.advanceBidding();
-		
-		if(bids[0] == -2 && bids [1] == -2 && bids [2] == -2){
-			
+		startBiddingFragment(bids);
+		if(bids[0] == -2 && bids [1] == -2 && bids [2] == -2){	
 			chooseTrumpColor();
-		}else{
-			startBiddingFragment(bids);
 		}
 	}
 	
@@ -71,7 +71,7 @@ public class GameBoard extends Activity implements onBidListener, onTrumpListene
 	    
 		bidFragment.setArguments(args);
 		FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
-		fragmentTransaction.add(R.id.fragment_container, bidFragment);
+		fragmentTransaction.replace(R.id.fragment_container, bidFragment);
 		fragmentTransaction.commit();
 		getFragmentManager().executePendingTransactions();
 	
@@ -132,21 +132,26 @@ public class GameBoard extends Activity implements onBidListener, onTrumpListene
 	@Override
 	public void resetAllTrickCards()
 	{
-		gameFragment.resetAllTrickCards();
 		game.resetCurrentPlayersTurn();
-		game.incrementNumberOfTricks();
 		game.cleanTrickArray();	
 		
-		Card[] playedCards = game.getCurrentTrick();
-		int[] playerHand = game.getPlayerCardsUI();
+		if(game.getNumberOfCompletedTricks() != 10)
+		{
+			gameFragment.resetAllTrickCards();
 		
-		if(game.getTrickWinnerLocation() != 3){
-			game.advanceGameState();
-			playedCards = game.getCurrentTrick();
-			playerHand = game.getPlayerCardsUI();
+			Card[] playedCards = game.getCurrentTrick();
+			int[] playerHand = game.getPlayerCardsUI();
+		
+			if(game.getTrickWinnerLocation() != 3){
+				game.advanceGameState();
+				playedCards = game.getCurrentTrick();
+				playerHand = game.getPlayerCardsUI();
 			
-			gameFragment.displayPlayerCards(playerHand);
-			gameFragment.setOpponentsCards(playedCards, game.getTrickWinnerLocation());
+				gameFragment.displayPlayerCards(playerHand);
+				gameFragment.setOpponentsCards(playedCards, game.getTrickWinnerLocation());
+			}
+		} else {
+			game.cleanRoundScores(); //At this point, we know we won't be playing another trick in this round. This needs to go here so that it doesn't asynchronously change completedTricks.
 		}
 	}
 	
@@ -170,9 +175,10 @@ public class GameBoard extends Activity implements onBidListener, onTrumpListene
 	 * Listener when discarding is done
 	 */
 	@Override
-	public void doneDiscarding(int[] playerHand, int[] kitty) {
-		game.setKitty(kitty);
+	public void doneDiscarding(int[] playerHand, int[] playerDiscards) {
+		game.setPlayerDiscards(playerDiscards);
 		game.setPlayerHand(playerHand);
+		
 		startGameFragment();
 	}	
 	
@@ -204,37 +210,37 @@ public class GameBoard extends Activity implements onBidListener, onTrumpListene
 	}
 	
 	public void onPlayerPlayed(int indexToPlay){
-		int currentTrickWinnerLocation = game.getTrickWinnerLocation();
-		gameFragment.setWhoLed(game.getTrickWinnerLocation());
-		if(game.getTrickWinnerLocation() == 3){
-			game.playerPlayed(indexToPlay);
-			game.advanceGameState();
-		} else{
-			game.playerPlayed(indexToPlay);
-			game.advanceGameState();
-		}
+		if(game.getNumberOfCompletedTricks() != 10){
+			int currentTrickWinnerLocation = game.getTrickWinnerLocation();
+			gameFragment.setWhoLed(game.getTrickWinnerLocation());
+			if(game.getTrickWinnerLocation() == 3){
+				game.playerPlayed(indexToPlay);
+				game.advanceGameState();
+			} else{
+				game.playerPlayed(indexToPlay);
+				game.advanceGameState();
+			}
 		
-		Card[] playedCards = game.getCurrentTrick();
-		int[] playerHand = game.getPlayerCardsUI();
+			Card[] playedCards = game.getCurrentTrick();
+			int[] playerHand = game.getPlayerCardsUI();
 		
-		gameFragment.displayPlayerCards(playerHand);
-		gameFragment.setOpponentsCards(playedCards, currentTrickWinnerLocation);
+			gameFragment.displayPlayerCards(playerHand);
+			gameFragment.setOpponentsCards(playedCards, currentTrickWinnerLocation);
 		
 		
-		if(playedCards[0].getValue() != -1 && playedCards[1].getValue() != -1 && playedCards[2].getValue() != -1 && playedCards[3].getValue() != -1){
-			AlertTrickWinnerDialogFragment trickWinnerFragment = new AlertTrickWinnerDialogFragment();
-			Bundle args2 = new Bundle();
-			args2.putString("WinnerName", "Player " + (game.getTrickWinnerLocation()+1));
-			trickWinnerFragment.setArguments(args2);
-			trickWinnerFragment.show(getFragmentManager(), "trickwinnertag");
+			if(playedCards[0].getValue() != -1 && playedCards[1].getValue() != -1 && playedCards[2].getValue() != -1 && playedCards[3].getValue() != -1){
+				AlertTrickWinnerDialogFragment trickWinnerFragment = new AlertTrickWinnerDialogFragment();
+				Bundle args2 = new Bundle();
+				args2.putString("WinnerName", "Player " + (game.getTrickWinnerLocation()+1));
+				trickWinnerFragment.setArguments(args2);
+				trickWinnerFragment.show(getFragmentManager(), "trickwinnertag");
 			
-
+				game.incrementNumberOfTricks();
+			}
 		}
-		
 		if(game.getNumberOfCompletedTricks() == 10){
-			showFinalScores(game.getCurrentTeamScores());
-			
-		}
+					showFinalScores(game.getCurrentTeamScores());					
+				}
 		
 	}
 	/*
@@ -265,7 +271,6 @@ public class GameBoard extends Activity implements onBidListener, onTrumpListene
 	 */
 	public void showFinalScores(int [] scores) {
 		game.resetCurrentPlayersTurn();
-		game.cleanRoundScores();
 		
 		Bundle args = new Bundle();
 		if (scores[0] > scores[1]) {
@@ -280,15 +285,22 @@ public class GameBoard extends Activity implements onBidListener, onTrumpListene
 			args.putInt("WINNERSCORE", scores[1]);
 			args.putInt("LOSERSCORE", scores[0]);
 		}
-
+		
+		
 		FinalScoreDialogFragment finalScoreFragment = new FinalScoreDialogFragment();
 		finalScoreFragment.setArguments(args);
 		finalScoreFragment.show(getFragmentManager(), "finaldialogtag");
 		
 		if(scores[0] < 500 && scores[1] < 500){
 			setupNewRound();
+		} else {
+			gameEnd();
 		}
 		
+	}
+	
+	public void gameEnd(){
+		this.finish();
 	}
 	
 	public void cardClick(View v) {

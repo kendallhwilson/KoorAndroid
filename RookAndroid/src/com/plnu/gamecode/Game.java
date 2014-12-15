@@ -47,17 +47,24 @@ public class Game {
 	      currentTrick[3] = new Card();
 	}
 	
-	public void CleanAllBiddingObjects(){
+	public void CleanAllBiddingObjects(){ //Actually cleans bidding and player hand objects.
 		//Resetting all values in playerActive to true. This allows us to reuse the class variables we created to store the values between calls.
 		for(int i=0; i<4;i++){
 			playerActive[i] = true;
 			players[i].bidding = true;
+			
+			for(int j=0; j < 5; j++){ //Resetting discarded cards.
+				players[i].discards[j] = null;
+			}
+			
+			
 		}
 		
 		highBid = 100; //Setting highBid back to minimum.
 		bidWinner = 0; //Setting the bid winner to the first bidder.
 		playersRemainingInBidding = 4; //4 Players bidding
 		allAIAndPlayerBids = new int[] {0,0,0,0};
+		
 		
 	}
 	public int[] advanceBidding() {
@@ -121,6 +128,8 @@ public class Game {
 	
 	public String setTrumpAndInformAI(String chosenColor){
 		if(bidWinner < 3){ //Player did not win the bid.
+			players[bidWinner].addKittyToHand(kitty);
+			players[bidWinner].reorganizeHand((players[bidWinner].chooseDiscards()));
 			players[bidWinner].determineSuitLengths();
 			players[bidWinner].determineStrongestSuit();
 			trumpColor = players[bidWinner].chooseTrump();
@@ -250,6 +259,7 @@ public class Game {
 	         trickWinner = (trickWinner+MAX)%4;
 	         addTrickScore(trickWinner,currentTrick);
 		}
+		System.out.println("Number Of Tricks Completed: " + numberOfTricksPlayed);
 		
 		if(numberOfTricksPlayed == 9){
 			addDiscardToScore();
@@ -354,35 +364,7 @@ public void dealCards(){
 	
 }
 
-/**
- * addKittyToHand selects the winner within the player array and replaces their 5 null card values with the 5 cards from the 
- * kitty. After that chooseDiscards() is called for the players hand, which returns a boolean array of cards to get rid of.
- * That boolean array is used as the argument for reorganizeHand(), which is called for computer players to determine
- * which cards are strongest/ and which to get rid of. For RPC, you can simply choose which cards to get rid of.
- */
 
-public void sendKitty(){
-
-	
-			players[bidWinner].addKittyToHand(kitty);
-			
-			//Print their cards if the real player won
-			
-			if(bidWinner==3){	
-		//Player.chooseTrump depends on determineStrongestSuit being called beforehand. 
-		//This resolves the issue of the player not being able to see the kitty before making the trump decision.
-		
-     		players[bidWinner].determineSuitLengths();
-     		players[bidWinner].determineStrongestSuit();
-     		trumpColor = players[bidWinner].chooseTrump();
-     		System.out.println("Trump card: " + trumpColor);
-     		for(int a = 0; a < players.length; a++){
-     			  players[a].setTrump(trumpColor);
-     		}		
-
-			players[bidWinner].reorganizeHand((players[bidWinner].chooseDiscards()));
-			}
-}
 
 public void addTrickScore(int trickWinner, Card[] currentTrick){
 	int trickScore=0;
@@ -391,13 +373,11 @@ public void addTrickScore(int trickWinner, Card[] currentTrick){
 	}
 	
 	if (trickWinner%2==0){
-		System.out.println("team0 and trickWinner is " + trickWinner);
 		roundScore[0] += trickScore;
 		tricksWon++;
 	}
 	else{ 
 		roundScore[1] += trickScore;
-		System.out.println("team1 and trickWinner is " + trickWinner);
 	}	
 }
 
@@ -496,6 +476,11 @@ public int[] getCurrentTeamScores()
 	return currentTeamScores;
 }
 
+public int[] getCurrentRoundScores()
+{
+	return roundScore;
+}
+
 //Precondition: highBid has been set
 //Postcondition: highBid returned
 public int getHighBid()
@@ -555,6 +540,18 @@ public void setPlayerHand(int[] newHand)
 	players[3].sortHand(10);
 }
 
+public void setPlayerDiscards(int[] playerDiscards)
+{
+	for(int i=0; i < 5; i++){
+		Card card = new Card();
+		if(playerDiscards[i] <= 10){card.setCard(Card.Suit.RED,playerDiscards[i]);}		
+		else if(playerDiscards[i] <= 21){card.setCard(Card.Suit.BLUE,playerDiscards[i]);}		
+		else if(playerDiscards[i] <= 32){card.setCard(Card.Suit.GREEN,playerDiscards[i]);}		
+		else if(playerDiscards[i] <= 43){card.setCard(Card.Suit.BLACK,playerDiscards[i]);}
+		card.setCardVal();
+		players[3].discards[i] = card;
+	}
+}
 public String getTrump(){
 	if(trumpColor==Card.Suit.BLACK)
 		return "Black";

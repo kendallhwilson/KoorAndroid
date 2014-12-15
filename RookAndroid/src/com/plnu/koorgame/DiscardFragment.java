@@ -116,7 +116,7 @@ public class DiscardFragment extends Fragment implements OnClickListener {
 				}
 			}
 			
-			for (int i = 0; i < discardIds.length; i++) {
+			for (int i = 0; i < discardIds.length -  1; i++) {
 				view.findViewById(discardIds[i]).setVisibility(View.INVISIBLE);
 			}
 			discardCallback.doneDiscarding(finalPlayerHand, discardedCards);
@@ -126,7 +126,7 @@ public class DiscardFragment extends Fragment implements OnClickListener {
 	}
 	
 	public interface onDiscardListener {
-		public void doneDiscarding(int[] playerHand, int[] kitty);
+		public void doneDiscarding(int[] playerHand, int[] playerDiscards);
 	}
 	
 	@Override

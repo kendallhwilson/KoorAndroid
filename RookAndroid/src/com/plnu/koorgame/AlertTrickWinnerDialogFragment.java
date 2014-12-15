@@ -24,6 +24,7 @@ public class AlertTrickWinnerDialogFragment extends DialogFragment {
 		builder.setNeutralButton(R.string.ok, new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int something) {
             	trickCallback.resetAllTrickCards();
+            	
             }
         });
         
