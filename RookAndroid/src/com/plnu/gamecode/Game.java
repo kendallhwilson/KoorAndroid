@@ -53,11 +53,6 @@ public class Game {
 			playerActive[i] = true;
 			players[i].bidding = true;
 			
-			for(int j=0; j < 5; j++){ //Resetting discarded cards.
-				players[i].discards[j] = null;
-			}
-			
-			
 		}
 		
 		highBid = 100; //Setting highBid back to minimum.
@@ -66,6 +61,18 @@ public class Game {
 		allAIAndPlayerBids = new int[] {0,0,0,0};
 		
 		
+	}
+	
+	public void CleanAllGamePlayObjects(){
+		for(int i=0; i < 4; i++){
+			for(int j=0; j < 5; j++){ //Resetting discarded cards.
+				players[i].discards[j] = null;
+			}
+		
+			for(int j=0; j < 15; j++){
+				players[i].hand[j] = new Card();
+			}
+		}
 	}
 	public int[] advanceBidding() {
 		
@@ -259,7 +266,6 @@ public class Game {
 	         trickWinner = (trickWinner+MAX)%4;
 	         addTrickScore(trickWinner,currentTrick);
 		}
-		System.out.println("Number Of Tricks Completed: " + numberOfTricksPlayed);
 		
 		if(numberOfTricksPlayed == 9){
 			addDiscardToScore();
@@ -533,6 +539,7 @@ public void setPlayerHand(int[] newHand)
 		else if(newHand[i] <= 21){card.setCard(Card.Suit.BLUE,newHand[i]);}		
 		else if(newHand[i] <= 32){card.setCard(Card.Suit.GREEN,newHand[i]);}		
 		else if(newHand[i] <= 43){card.setCard(Card.Suit.BLACK,newHand[i]);}
+		else if(newHand[i] == 44){card.setCard(Card.Suit.NOSUIT, newHand[i]);
 		card.setCardVal();
 		players[3].hand[i] = card;
 	}
@@ -548,6 +555,7 @@ public void setPlayerDiscards(int[] playerDiscards)
 		else if(playerDiscards[i] <= 21){card.setCard(Card.Suit.BLUE,playerDiscards[i]);}		
 		else if(playerDiscards[i] <= 32){card.setCard(Card.Suit.GREEN,playerDiscards[i]);}		
 		else if(playerDiscards[i] <= 43){card.setCard(Card.Suit.BLACK,playerDiscards[i]);}
+		else if(playerDiscards[i] == 44){card.setCard(Card.Suit.NOSUIT, playerDiscards[i]);
 		card.setCardVal();
 		players[3].discards[i] = card;
 	}

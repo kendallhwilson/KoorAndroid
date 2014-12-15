@@ -21,8 +21,8 @@ public class DiscardFragment extends Fragment implements OnClickListener {
 	private int [] discardIds = {-1, -1, -1, -1, -1}; //testing purposes only
 	private int numIds = 0;
 	public ImageView handArray[] = new ImageView[15];
-	private int playerHandValues[] = new int[15];
-	private int playerHandNewValues[] = new int[15];
+	private int playerHandValues[] = {100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100}; //This might solve the 9 cards only appearing issue?
+	private int playerHandNewValues[] = {100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100};
 	private int discardedCards[] = new int[5];
 	
 	private onDiscardListener discardCallback;
@@ -107,7 +107,7 @@ public class DiscardFragment extends Fragment implements OnClickListener {
 	@Override
 	public void onClick(View v) {
 		if (numDiscarded == 5) {
-			int[] finalPlayerHand = new int[10];
+			int[] finalPlayerHand = {100, 100, 100, 100, 100, 100, 100, 100, 100, 100}; //This might solve the 9 cards only appearing issue?;
 			int counter = 0;
 			for(int i=0; i < 15; i++){
 				if(playerHandNewValues[i] != 100){

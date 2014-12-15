@@ -47,6 +47,7 @@ public class GameBoard extends Activity implements onBidListener, onTrumpListene
 	 * Allows us to create a new deck and restart a round if we have not reached 500 or it is the first round of the game.
 	 */
 	public void setupNewRound(){
+		game.CleanAllGamePlayObjects();
 		game.makeDeck();
 		game.dealCards();
 		game.CleanAllBiddingObjects();
