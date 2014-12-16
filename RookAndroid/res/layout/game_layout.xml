@@ -272,14 +272,6 @@
     </LinearLayout>
 
 <TextView
-    android:id="@+id/team1_textview"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:layout_above="@+id/trick_taker_textview"
-    android:layout_alignLeft="@+id/player3_card"
-    android:text="@string/team1" />
-
-<TextView
     android:id="@+id/team2_textview"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
@@ -287,5 +279,12 @@
     android:layout_alignLeft="@+id/team1_textview"
     android:text="@string/team2" />
 
+<TextView
+    android:id="@+id/team1_textview"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_above="@+id/trick_taker_textview"
+    android:layout_alignLeft="@+id/trick_taker_textview"
+    android:text="@string/team1" />
 
 </RelativeLayout>
