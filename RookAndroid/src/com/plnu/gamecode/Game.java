@@ -73,6 +73,19 @@ public class Game {
 				players[i].hand[j] = new Card();
 			}
 		}
+		
+		  players[0] = new NPC(); //Just to be safe, we will reinstantiate all of the objects. 
+	      players[1] = new NPC();
+	      players[2] = new NPC();
+	      players[3] = new RPC();
+	      players[0].myPartner = players[2];
+	      players[1].myPartner = players[3];
+	      players[2].myPartner = players[0];
+	      players[3].myPartner = players[1];
+	      currentTrick[0] = new Card();
+	      currentTrick[1] = new Card();
+	      currentTrick[2] = new Card();
+	      currentTrick[3] = new Card();
 	}
 	public int[] advanceBidding() {
 		
