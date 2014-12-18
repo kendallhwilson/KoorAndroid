@@ -111,7 +111,7 @@ public class GameFragment extends Fragment{
 		}
 		
 		if(cardLocationInHand != -1){
-			displayPlayerCard(4, playerHandValues[cardLocationInHand]);
+			displayPlayerCard(3, playerHandValues[cardLocationInHand]);
 			gamePlayCallback.onPlayerPlayed(cardLocationInHand);
 		}
 	}
@@ -227,11 +227,14 @@ public class GameFragment extends Fragment{
 	}
 	
 	public void setOpponentsCards(Card[] playedCards, int trickWinnerLocation){ //Needs to determine the starting location of where play began so the cards line up with the correct slots. Fix this.
-		int timeDelay = 1000;
+		
 		int cardLocation = trickWinnerLocation;
 		for(int i=0; i < 4; i++){
 			if(playedCards[i].getValue() != -1){
-			DisplayCardUsingTimer(cardLocation+1, playedCards[i].getValue(), timeDelay*i+1);
+			// Are these the cards to be displayed on timer?? If so...
+			// DisplayCardUsingTimer(cardLocation+1, playedCards[i].getValue());
+			// Would replace below vvv
+			displayPlayerCard(cardLocation+1, playedCards[i].getValue());
 			cardLocation = (cardLocation + 1 ) % 4;
 			}
 		}
@@ -291,11 +294,11 @@ public class GameFragment extends Fragment{
     }
     
     
-	public void DisplayCardUsingTimer(int player, int card, int timeDelay)
+	public void DisplayCardUsingTimer(int player, int card)
 	{
 		final int p =player;
 		final int c = card;
-		textTimer1 = new CountDownTimer(timeDelay, COUNTDOWN_SECOND) {
+		textTimer1 = new CountDownTimer(1000, COUNTDOWN_SECOND) {
 			public void onTick(long millisTillFinished) {
 				//on tick
 				System.out.print("in the timer!");
