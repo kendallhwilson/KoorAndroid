@@ -117,7 +117,7 @@ public class Card {
 				case 11: //one
 					return 15;
 				case 100: //blank cards
-					return -1;
+					return 0;
 					
 				default:
 					return 0;
