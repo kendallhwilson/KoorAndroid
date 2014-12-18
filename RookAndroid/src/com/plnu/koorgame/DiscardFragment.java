@@ -21,8 +21,8 @@ public class DiscardFragment extends Fragment implements OnClickListener {
 	private int [] discardIds = {-1, -1, -1, -1, -1}; //testing purposes only
 	private int numIds = 0;
 	public ImageView handArray[] = new ImageView[15];
-	private int playerHandValues[] = {100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100}; //This might solve the 9 cards only appearing issue?
-	private int playerHandNewValues[] = {100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100};
+	private int playerHandValues[] = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
+	private int playerHandNewValues[] = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
 	private int discardedCards[] = new int[5];
 	
 	private onDiscardListener discardCallback;
@@ -49,8 +49,14 @@ public class DiscardFragment extends Fragment implements OnClickListener {
 		handArray[13] = (ImageView) view.findViewById(R.id.card14);
 		handArray[14] = (ImageView) view.findViewById(R.id.card15);
 		
-		displayPlayerCards();
 		playerHandNewValues = getArguments().getIntArray("PlayerHandWithKitty");
+		
+		for(int i=0; i < 15; i++){ //THE BUG WAS CAUSED BY GETARGUMENTS().GETINTARRAY RETURNING A REFERENCE...
+			playerHandValues[i] = playerHandNewValues[i];
+		}
+		
+		displayPlayerCards();
+		
 		return view;
 	}
 	
@@ -65,6 +71,12 @@ public class DiscardFragment extends Fragment implements OnClickListener {
 		super.onPause();
 		
 	}
+	
+	 @Override
+	    public void onDestroy() {
+	      super.onDestroy();
+	    }
+	    
 	
     public void cardClick(View v) {
 		ImageView image = (ImageView) v;
@@ -145,8 +157,7 @@ public class DiscardFragment extends Fragment implements OnClickListener {
 	public void displayPlayerCards(){	
 		//Card color notes: value \ 11 = color.
 		//Card value notes: value % 11 = number.
-		playerHandValues = getArguments().getIntArray("PlayerHandWithKitty");
-		
+
 		for(int i=0; i < 15; i++){
 			String cardText = "@drawable/" + getCardText(playerHandValues[i]);
 			int imageResource = getResources().getIdentifier(cardText, null, "com.plnu.koorgame");

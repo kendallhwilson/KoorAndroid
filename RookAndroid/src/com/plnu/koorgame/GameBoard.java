@@ -27,6 +27,7 @@ public class GameBoard extends Activity implements onBidListener, onTrumpListene
 	private DiscardFragment discardFragment;
 	private GameFragment gameFragment;
 	private String trumpColor;
+	private CountDownTimer highlight1, highlight2, advanceGame;
 	
 	private Game game;
 
@@ -34,10 +35,6 @@ public class GameBoard extends Activity implements onBidListener, onTrumpListene
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.game_board);
-		
-		bidFragment = new BidFragment();
-		discardFragment = new DiscardFragment();
-		gameFragment = new GameFragment();
 		
 		game = new Game();
 		setupNewRound();
@@ -47,7 +44,15 @@ public class GameBoard extends Activity implements onBidListener, onTrumpListene
 	 * Allows us to create a new deck and restart a round if we have not reached 500 or it is the first round of the game.
 	 */
 	public void setupNewRound(){
+		
+		bidFragment = new BidFragment();
+		discardFragment = new DiscardFragment();
+		gameFragment = new GameFragment();
+		
+		game.resetCurrentPlayersTurn();
+		game.cleanTrickArray();	
 		game.CleanAllGamePlayObjects();
+		game.cleanRoundScores();
 		game.makeDeck();
 		game.dealCards();
 		game.CleanAllBiddingObjects();
@@ -178,8 +183,17 @@ public class GameBoard extends Activity implements onBidListener, onTrumpListene
 	@Override
 	public void doneDiscarding(int[] playerHand, int[] playerDiscards) {
 		game.setPlayerDiscards(playerDiscards);
+		
+		for(int i=0; i < 10; i++){
+			System.out.println("PH Pre: " + playerHand[i]);
+		}
 		game.setPlayerHand(playerHand);
 		
+		int[] player = game.getPlayerCardsUI();
+		
+		for(int i=0; i < 10; i++){
+			System.out.println("PH Post: " + player[i]);
+		}
 		startGameFragment();
 	}	
 	
@@ -202,7 +216,7 @@ public class GameBoard extends Activity implements onBidListener, onTrumpListene
 	}
 	
 	public void playerDidntLeadInitialize(){
-		if(game.getTrickWinnerLocation() != 3){
+		if(game.getBidWinnerLocation() != 3){
 		game.advanceGameState();
 		Card[]playedCards = game.getCurrentTrick();
 		
@@ -229,21 +243,38 @@ public class GameBoard extends Activity implements onBidListener, onTrumpListene
 			gameFragment.setOpponentsCards(playedCards, currentTrickWinnerLocation);
 		
 		
-			if(playedCards[0].getValue() != -1 && playedCards[1].getValue() != -1 && playedCards[2].getValue() != -1 && playedCards[3].getValue() != -1){
-				AlertTrickWinnerDialogFragment trickWinnerFragment = new AlertTrickWinnerDialogFragment();
-				Bundle args2 = new Bundle();
-				args2.putString("WinnerName", "Player " + (game.getTrickWinnerLocation()+1));
-				trickWinnerFragment.setArguments(args2);
-				trickWinnerFragment.show(getFragmentManager(), "trickwinnertag");
-			
+			if(playedCards[0].getValue() != -1 && playedCards[1].getValue() != -1 && playedCards[2].getValue() != -1 && playedCards[3].getValue() != -1){			
 				game.incrementNumberOfTricks();
-			}
-		}
-		if(game.getNumberOfCompletedTricks() == 10){
+				
+				highlight2 = new CountDownTimer(4000, 1000) { //We have to wait for all the cards to be drawn and such. This was previously called in the dialog.
+					public void onTick(long millisTillFinished) {
+					}		
+					public void onFinish() {
+						if(game.getNumberOfCompletedTricks() < 10){
+							resetAllTrickCards();
+						}
+					}
+				}.start();
+				
+				highlight1 = new CountDownTimer(2000, 1000) { //We have to wait for all the cards to be drawn and such. This was previously called in the dialog.
+					public void onTick(long millisTillFinished) {
+					}		
+					public void onFinish() {
+						if(game.getNumberOfCompletedTricks() != 10){
+							gameFragment.winnerHighlightToggle(game.getTrickWinnerLocation()+1);
+						}
+					}
+				}.start();
+				
+				
+				if(game.getNumberOfCompletedTricks() == 10){
 					showFinalScores(game.getCurrentTeamScores());					
 				}
+				}
+			}
+		}
+
 		
-	}
 	/*
 	 * Called when a card is played on game play fragment
 	 */
@@ -292,11 +323,17 @@ public class GameBoard extends Activity implements onBidListener, onTrumpListene
 		finalScoreFragment.setArguments(args);
 		finalScoreFragment.show(getFragmentManager(), "finaldialogtag");
 		
-		if(scores[0] < 500 && scores[1] < 500){
-			setupNewRound();
-		} else {
-			gameEnd();
-		}
+		advanceGame = new CountDownTimer(6000, 1000) { //We have to wait for all the cards to be drawn and such. This was previously called in the dialog.
+			public void onTick(long millisTillFinished) {
+			}		
+			public void onFinish() {
+					if(game.getCurrentTeamScores()[0] < 500 && game.getCurrentTeamScores()[1] < 500){
+						setupNewRound();
+					} else {
+						gameEnd();
+					}
+			}
+		}.start();
 		
 	}
 	

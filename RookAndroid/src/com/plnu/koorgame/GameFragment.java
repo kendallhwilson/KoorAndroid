@@ -8,6 +8,7 @@ import com.plnu.koorgame.DiscardFragment.onDiscardListener;
 
 import android.app.Activity;
 import android.app.Fragment;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.view.LayoutInflater;
@@ -38,6 +39,7 @@ public class GameFragment extends Fragment{
 	private ImageView player3Card;
 	private ImageView player4Card;
 	
+	private int numberOfTricksCompleted = 0;
 	public ImageView handArray[] = new ImageView[10];
 	private int playerHandValues[] = new int[10];
 	private int whoLed = 0;
@@ -111,7 +113,7 @@ public class GameFragment extends Fragment{
 		}
 		
 		if(cardLocationInHand != -1){
-			displayPlayerCard(3, playerHandValues[cardLocationInHand]);
+			displayPlayerCard(4, playerHandValues[cardLocationInHand]);
 			gamePlayCallback.onPlayerPlayed(cardLocationInHand);
 		}
 	}
@@ -209,7 +211,7 @@ public class GameFragment extends Fragment{
 	
 	public String getCardText(int cardNumber)
 	{
-		if(cardNumber != -1){
+		if(cardNumber != -1 && cardNumber != 100){
 		String returningCardText = "";
 		String cardColors[] = {"red", "blue", "green", "black"};
 		String cardNames[] = {"five", "six", "seven", "eight", "nine", "ten", "eleven", "twelve", 
@@ -227,14 +229,11 @@ public class GameFragment extends Fragment{
 	}
 	
 	public void setOpponentsCards(Card[] playedCards, int trickWinnerLocation){ //Needs to determine the starting location of where play began so the cards line up with the correct slots. Fix this.
-		
+		int displayTime = 500;
 		int cardLocation = trickWinnerLocation;
 		for(int i=0; i < 4; i++){
 			if(playedCards[i].getValue() != -1){
-			// Are these the cards to be displayed on timer?? If so...
-			// DisplayCardUsingTimer(cardLocation+1, playedCards[i].getValue());
-			// Would replace below vvv
-			displayPlayerCard(cardLocation+1, playedCards[i].getValue());
+			DisplayCardUsingTimer(cardLocation+1, playedCards[i].getValue(), displayTime*(i+1));
 			cardLocation = (cardLocation + 1 ) % 4;
 			}
 		}
@@ -252,8 +251,13 @@ public class GameFragment extends Fragment{
 		player2Card.setImageResource(imageResource);
 		player3Card.setImageResource(imageResource);
 		player4Card.setImageResource(imageResource);
-
-
+		
+			player1Card.setAlpha((float) 1.0);
+			player2Card.setAlpha((float) 1.0);	
+			player3Card.setAlpha((float) 1.0);		
+			player4Card.setAlpha((float) 1.0);
+			
+			numberOfTricksCompleted++;
 	}
 	
 
@@ -274,6 +278,44 @@ public class GameFragment extends Fragment{
 		team2Score.setText(String.valueOf(scores[1]));
 	}
 	
+	public void DisplayCardUsingTimer(int player, int card, int displayTime)
+	{
+		final int p =player;
+		final int c = card;
+		
+			if(numberOfTricksCompleted < 10){
+				textTimer1 = new CountDownTimer(displayTime, COUNTDOWN_SECOND) {
+				public void onTick(long millisTillFinished) {
+				}		
+				public void onFinish() {
+					displayPlayerCard(p, c);
+				}
+			};
+		
+			textTimer1.start();
+		}
+	}
+	
+	public void winnerHighlightToggle(int winner) //Not very robust... Needs to be cleaned up. 
+	{
+			switch (winner) {
+			case 1:
+				player1Card.setAlpha((float) 0.5);
+				break;
+			case 2:
+				player2Card.setAlpha((float) 0.5);
+				break;
+			case 3:
+				player3Card.setAlpha((float) 0.5);	
+				break;
+			case 4:
+				player4Card.setAlpha((float) 0.5);
+
+				break;
+			}
+		
+	}
+	
     @Override
     public void onPause() {
       adView.pause();
@@ -292,23 +334,5 @@ public class GameFragment extends Fragment{
       adView.destroy();
       super.onDestroy();
     }
-    
-    
-	public void DisplayCardUsingTimer(int player, int card)
-	{
-		final int p =player;
-		final int c = card;
-		textTimer1 = new CountDownTimer(1000, COUNTDOWN_SECOND) {
-			public void onTick(long millisTillFinished) {
-				//on tick
-				System.out.print("in the timer!");
-			}		
-			public void onFinish() {
-				displayPlayerCard(p, c);
-			}
-		};
-
-		textTimer1.start();
-	}
     
 }

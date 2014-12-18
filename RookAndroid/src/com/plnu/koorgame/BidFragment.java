@@ -266,5 +266,11 @@ public class BidFragment extends Fragment implements OnClickListener {
 		textTimer3.start();
 	}
 	
+	 @Override
+	    public void onDestroy() {
+	      super.onDestroy();
+	    }
+	    
+	 
 }
 

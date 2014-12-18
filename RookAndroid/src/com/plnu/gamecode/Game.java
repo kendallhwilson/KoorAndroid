@@ -93,7 +93,13 @@ public class Game {
 				allAIAndPlayerBids[i] = -2;
 			}
 			
-			}
+		} else if (highBid > 195 && playersRemainingInBidding > 1){
+			players[bidWinner].setHighBidder(highBid);
+			players[bidWinner].winningBiddingTeam = true;
+			players[bidWinner].myPartner.winningBiddingTeam = true;
+			trickWinner = bidWinner;
+			playersRemainingInBidding = 0;
+			currentPlayersTurn = bidWinner;
 		}
 		
 		if(allAIAndPlayerBids[0] == -2 && allAIAndPlayerBids[1] == -2 && allAIAndPlayerBids[2] == -2){
@@ -114,7 +120,7 @@ public class Game {
 			playersRemainingInBidding = 0;
 			currentPlayersTurn = bidWinner;
 		}
-		
+		}
 		return allAIAndPlayerBids;
 	}
 	
@@ -525,6 +531,7 @@ public void setKitty(int[] newKitty)
 		else if(newKitty[i] <= 21){card.setCard(Card.Suit.BLUE,newKitty[i]);}		
 		else if(newKitty[i] <= 32){card.setCard(Card.Suit.GREEN,newKitty[i]);}		
 		else if(newKitty[i] <= 43){card.setCard(Card.Suit.BLACK,newKitty[i]);}
+		else if(newKitty[i] == 44){card.setCard(Card.Suit.NOSUIT, newKitty[i]);}
 		card.setCardVal();
 		
 		kitty[i] = card;
