@@ -338,22 +338,4 @@ public class GameFragment extends Fragment{
       super.onDestroy();
     }
     
-    
-	public void DisplayCardUsingTimer(int player, int card)
-	{
-		final int p =player;
-		final int c = card;
-		textTimer1 = new CountDownTimer(1000, COUNTDOWN_SECOND) {
-			public void onTick(long millisTillFinished) {
-				//on tick
-				System.out.print("in the timer!");
-			}		
-			public void onFinish() {
-				displayPlayerCard(p, c);
-			}
-		};
-
-		textTimer1.start();
-	}
-    
 }
