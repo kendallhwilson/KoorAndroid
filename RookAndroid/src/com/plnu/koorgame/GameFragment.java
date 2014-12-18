@@ -230,10 +230,13 @@ public class GameFragment extends Fragment{
 	
 	public void setOpponentsCards(Card[] playedCards, int trickWinnerLocation){ //Needs to determine the starting location of where play began so the cards line up with the correct slots. Fix this.
 		int displayTime = 500;
+
 		int cardLocation = trickWinnerLocation;
 		for(int i=0; i < 4; i++){
 			if(playedCards[i].getValue() != -1){
+
 			DisplayCardUsingTimer(cardLocation+1, playedCards[i].getValue(), displayTime*(i+1));
+
 			cardLocation = (cardLocation + 1 ) % 4;
 			}
 		}
@@ -334,5 +337,23 @@ public class GameFragment extends Fragment{
       adView.destroy();
       super.onDestroy();
     }
+    
+    
+	public void DisplayCardUsingTimer(int player, int card)
+	{
+		final int p =player;
+		final int c = card;
+		textTimer1 = new CountDownTimer(1000, COUNTDOWN_SECOND) {
+			public void onTick(long millisTillFinished) {
+				//on tick
+				System.out.print("in the timer!");
+			}		
+			public void onFinish() {
+				displayPlayerCard(p, c);
+			}
+		};
+
+		textTimer1.start();
+	}
     
 }
