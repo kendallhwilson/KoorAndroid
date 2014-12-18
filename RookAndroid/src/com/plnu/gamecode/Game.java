@@ -64,11 +64,17 @@ public class Game {
 	}
 	
 	public void CleanAllGamePlayObjects(){
+		
 		for(int i=0; i < 4; i++){
 			for(int j=0; j < 5; j++){ //Resetting discarded cards.
 				players[i].discards[j] = null;
+				
 			}
-		
+			
+			players[i].bidAmount = 0;
+			players[i].winningBiddingTeam = false;
+			
+			players[i].setHighBidder(-1);
 			for(int j=0; j < 15; j++){
 				players[i].hand[j] = new Card();
 			}
@@ -79,7 +85,6 @@ public class Game {
 		for(int i=0; i < 3; i++){ //For each AI PLAYER, we iterate through and see if they want to bid. If they do, they replace the bid. 
 			
 			if(highBid < 195 && playersRemainingInBidding > 1){
-			
 			players[i].bidOrPass(players[i].bidding);
 			
 			if(players[i].bidding == true){ //If the player is still bidding
