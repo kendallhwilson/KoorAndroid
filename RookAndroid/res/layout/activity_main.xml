@@ -40,6 +40,7 @@
 		style="@style/menu_button"
 		android:layout_alignParentBottom="true"
 		android:layout_marginTop="@dimen/menu_button_margin"
-		android:text="@string/upgrade_button_text" />
+		android:text="@string/upgrade_button_text" 
+		android:onClick="openPlayStore"/>
 
 </RelativeLayout>
