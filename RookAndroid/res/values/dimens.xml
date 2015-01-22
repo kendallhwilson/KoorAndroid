@@ -11,6 +11,9 @@
     <dimen name="menu_button_height">60dp</dimen>
     <dimen name="menu_button_margin">10dp</dimen>
     
+    <!--  Help Page Dimensions -->
+    <dimen name="help_title_text_size">20sp</dimen>
+    
     <!--  Bid Fragment Dimensions -->
     <dimen name="bid_text_size">20sp</dimen>
     <dimen name="top_bid_margin">20dp</dimen>

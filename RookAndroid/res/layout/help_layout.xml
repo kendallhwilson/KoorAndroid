@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+
+    <TextView
+        android:id="@+id/titleTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="17dp"
+        android:text="@string/help_title"
+        android:textColor="@color/background_blue"
+        android:textSize="@dimen/help_title_text_size" />
+
+    <TextView
+        android:id="@+id/biddingTitleTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/titleTextView"
+        android:layout_marginRight="22dp"
+        android:layout_marginTop="42dp"
+        android:layout_toLeftOf="@+id/titleTextView"
+        android:text="@string/help_bidding_title"
+        android:textSize="@dimen/help_title_text_size" />
+
+    <TextView
+        android:id="@+id/biddingTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/biddingTitleTextView"
+        android:layout_marginTop="27dp"
+        android:layout_toLeftOf="@+id/titleTextView"
+        android:text="@string/help_bidding_text" />
+    
+    </RelativeLayout>

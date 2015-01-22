@@ -10,6 +10,11 @@
     <string name="upgrade_button_text">Upgrade (No Ads)</string>
     <string name="menu_image_descrip">Main large menu image</string>
     
+   <!-- Help Page Strings -->
+    <string name="help_title">Need Help?</string>
+    <string name="help_bidding_title">Bidding</string>
+    <string name="help_bidding_text">This is how you bid. Bidding is hard.</string>
+   
     <!-- Bidding Fragment Strings -->
     <string name="player1">Player 1:</string>
     <string name="player2">Player 2:</string>
