@@ -36,6 +36,15 @@ public class MainActivity extends Activity {
 		startActivity(intent);
 	}
 	
+	public void openHelpMenu(View view) {
+		Intent intent = new Intent(this, HelpMenu.class);
+		startActivity(intent);
+	}
+
+	public void openSettingsMenu(View view) {
+		Intent intent = new Intent(this, SettingsMenu.class);
+		startActivity(intent);
+	}
 	public void openPlayStore(View view){
 		Intent intent = new Intent(Intent.ACTION_VIEW);
 		intent.setData(Uri.parse("market://details?id=org.dowell.rook"));

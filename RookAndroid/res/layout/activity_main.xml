@@ -31,10 +31,27 @@
     <Button
         android:id="@+id/play_button"
         style="@style/menu_button"
-        android:layout_above="@+id/upgrade_button"
+        android:layout_above="@+id/help_button"
+        android:layout_marginTop="@dimen/menu_button_margin"
         android:text="@string/play_button_text"
         android:onClick="startGame" />
     
+    <Button
+        android:id="@+id/help_button"
+        style="@style/menu_button"
+        android:layout_above="@+id/settings_button"
+		android:layout_marginTop="@dimen/menu_button_margin"
+		android:text="@string/help_button_text"
+        android:onClick="openHelpMenu" />
+    
+    <Button
+        android:id="@+id/settings_button"
+        style="@style/menu_button"
+        android:layout_above="@+id/upgrade_button"
+        android:layout_marginTop="@dimen/menu_button_margin"
+        android:text="@string/settings_button_text"
+        android:onClick="openSettingsMenu" />
+        
     <Button
 		android:id="@+id/upgrade_button"
 		style="@style/menu_button"
