@@ -13,26 +13,82 @@
         android:layout_marginTop="17dp"
         android:text="@string/help_title"
         android:textColor="@color/background_blue"
+        android:textStyle="bold"
         android:textSize="@dimen/help_title_text_size" />
 
     <TextView
         android:id="@+id/biddingTitleTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
         android:layout_below="@+id/titleTextView"
-        android:layout_marginRight="22dp"
-        android:layout_marginTop="42dp"
-        android:layout_toLeftOf="@+id/titleTextView"
+        android:layout_marginLeft="@dimen/help_margin_left"
+        android:layout_marginStart="@dimen/help_margin_left"
+        android:layout_marginTop="@dimen/help_margin_top"
         android:text="@string/help_bidding_title"
+        android:textStyle="bold"
         android:textSize="@dimen/help_title_text_size" />
-
+    
     <TextView
         android:id="@+id/biddingTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/biddingTitleTextView"
+        android:layout_alignStart="@+id/biddingTitleTextView"
         android:layout_below="@+id/biddingTitleTextView"
-        android:layout_marginTop="27dp"
-        android:layout_toLeftOf="@+id/titleTextView"
+        android:layout_marginLeft="@dimen/help_margin_left"
+        android:layout_marginRight="@dimen/help_margin_left"
+        android:layout_marginEnd="@dimen/help_margin_left"
+        android:layout_marginStart="@dimen/help_margin_left"
+        android:layout_marginTop="@dimen/help_margin_top"
         android:text="@string/help_bidding_text" />
-    
+
+    <TextView
+        android:id="@+id/playingTitleTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/biddingTitleTextView"
+        android:layout_alignStart="@+id/biddingTitleTextView"
+        android:layout_below="@+id/biddingTextView"
+        android:layout_marginTop="@dimen/help_margin_top"
+        android:text="@string/help_playing_title"
+        android:textStyle="bold"
+    	android:textSize="@dimen/help_title_text_size" />
+
+    <TextView
+        android:id="@+id/playingTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/biddingTextView"
+        android:layout_alignStart="@+id/biddingTextView"
+        android:layout_below="@+id/playingTitleTextView"
+        android:layout_marginTop="@dimen/help_margin_top"
+        android:layout_marginRight="@dimen/help_margin_left"
+        android:layout_marginEnd="@dimen/help_margin_left"
+        android:text="@string/help_playing_text" />
+
+     <TextView
+        android:id="@+id/scoringTitleTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/biddingTitleTextView"
+        android:layout_alignStart="@+id/biddingTitleTextView"
+        android:layout_below="@+id/playingTextView"
+        android:layout_marginTop="@dimen/help_margin_top"
+        android:text="@string/help_scoring_title"
+        android:textStyle="bold"
+    	android:textSize="@dimen/help_title_text_size" />
+
+    <TextView
+        android:id="@+id/scoringTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/biddingTextView"
+        android:layout_alignStart="@+id/biddingTextView"
+        android:layout_below="@+id/scoringTitleTextView"
+        android:layout_marginRight="@dimen/help_margin_left"
+        android:layout_marginEnd="@dimen/help_margin_left"
+        android:layout_marginTop="@dimen/help_margin_top"
+        android:text="@string/help_scoring_text" />   
     </RelativeLayout>

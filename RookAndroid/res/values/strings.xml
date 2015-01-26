@@ -14,6 +14,12 @@
     <string name="help_title">Need Help?</string>
     <string name="help_bidding_title">Bidding</string>
     <string name="help_bidding_text">This is how you bid. Bidding is hard.</string>
+    <string name="help_playing_title">Playing</string>
+    <string name="help_playing_text">This is how you play the game. Playing can be hard. 
+        La fslkja;ld lkasdj;flj adks</string>
+    <string name="help_scoring_title">Scoring</string>
+    <string name="help_scoring_text">The scoring rules are as follows: \nScore 1 is 20\n 
+        Score 2 is 40</string>
    
     <!-- Bidding Fragment Strings -->
     <string name="player1">Player 1:</string>
