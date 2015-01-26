@@ -13,13 +13,24 @@
    <!-- Help Page Strings -->
     <string name="help_title">Need Help?</string>
     <string name="help_bidding_title">Bidding</string>
-    <string name="help_bidding_text">This is how you bid. Bidding is hard.</string>
+    <string name="help_bidding_text">Ten cards are dealt to each player, and five cards are dealt to the 
+        "kitty."\nThe bid minimum is 100 and proceeds clockwise where each player may pass or bid.\n
+        The winner of bidding chooses trump and gets the kitty. The winner can then discard five cards
+        to place back in the kitty. They then get to choose a trump color for the game.
+        </string>
     <string name="help_playing_title">Playing</string>
-    <string name="help_playing_text">This is how you play the game. Playing can be hard. 
-        La fslkja;ld lkasdj;flj adks</string>
+    <string name="help_playing_text">This is a team game. Partners are across from each other on
+        the game board.\nThe objective is to be the first team to reach a certain number of points
+        (this can be changed in Settings)\nOnce trump is chosen, cards are played in a clockwise 
+        fashion. Players must follow the lead suit if they have it, otherwise they can play any card.
+        Every time all four players play, the trick is taken and points are added. A trump card 
+        beats any non-trump card, and a non-suit card can\'t take the trick. The player that took
+        the trick leads off the next round. This continues for ten tricks, until the cards are
+        dealt again. Gameplay continues until the specified winning number of points is reached.</string>
     <string name="help_scoring_title">Scoring</string>
-    <string name="help_scoring_text">The scoring rules are as follows: \nScore 1 is 20\n 
-        Score 2 is 40</string>
+    <string name="help_scoring_text">A team scores by capturing tricks with point cards, weighted
+        as follows:\nEvery 5 is 5 points\nEvery 10 and 14 are 10 points\nEvery 1 is 10 points
+        \nThe Rook is 20 points</string>
    
     <!-- Settings Page Strings -->
       <string name="settings_title">Change Game Settings</string>
