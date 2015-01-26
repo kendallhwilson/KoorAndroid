@@ -17,6 +17,7 @@ import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.view.SurfaceView;
 import android.view.View;
+import android.view.WindowManager;
 /*
  * GameBoard class stores methods to change fragments or display alerts
  */

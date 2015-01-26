@@ -5,6 +5,8 @@ import android.app.Dialog;
 import android.app.DialogFragment;
 import android.content.DialogInterface;
 import android.os.Bundle;
+import android.view.Window;
+import android.view.WindowManager;
 
 /*
  * Alert the player of the winner of the bid and the trump color
@@ -21,5 +23,15 @@ public class AlertTrumpDialogFragment extends DialogFragment {
 		builder.setNeutralButton(R.string.ok, null);
         return builder.create();
     }
+	
+	@Override public void onStart() {
+		super.onStart();
+		
+		Window window = getDialog().getWindow();
+		WindowManager.LayoutParams windowParams = window.getAttributes();
+		windowParams.dimAmount = 0;
+		windowParams.flags |= WindowManager.LayoutParams.FLAG_DIM_BEHIND;
+		window.setAttributes(windowParams);
+	}
 
 }
