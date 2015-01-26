@@ -2,7 +2,106 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/background_blue" >
+    android:layout_height="match_parent" >
     
+    <TextView
+        android:id="@+id/settingsTitleTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="15dp"
+        android:text="@string/settings_title"
+        android:textColor="@color/background_blue"
+        android:textStyle="bold"
+        android:textSize="@dimen/settings_title_text_size" />
+    
+    <TextView
+        android:id="@+id/pointsTitleTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/settingsTitleTextView"
+        android:layout_marginLeft="@dimen/settings_margin_left"
+        android:layout_marginStart="@dimen/settings_margin_left"
+        android:layout_marginTop="@dimen/settings_margin_top"
+        android:text="@string/settings_points"
+        android:textStyle="bold"
+        android:textSize="@dimen/settings_title_text_size" />
+
+    <Spinner
+        android:id="@+id/pointsSpinner"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/pointsTitleTextView"
+        android:layout_alignStart="@+id/pointsTitleTextView"
+        android:layout_below="@+id/pointsTitleTextView"
+        android:layout_marginTop="@dimen/settings_margin_top"
+        android:drawSelectorOnTop="true"
+        android:prompt="@string/points_prompt"
+        android:entries="@array/points_array" />
+    
+    <TextView
+        android:id="@+id/backgroundTitleTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/pointsTitleTextView"
+        android:layout_alignStart="@+id/pointsTitleTextView"
+        android:layout_below="@+id/pointsSpinner"
+        android:layout_marginTop="@dimen/settings_margin_top"
+        android:layout_marginBottom="@dimen/settings_margin_top"
+        android:text="@string/settings_background"
+        android:textStyle="bold"
+        android:textSize="@dimen/settings_title_text_size" />
+
+    <Button
+        android:id="@+id/backgroundButtonBlue"
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/backgroundTitleTextView"
+        android:layout_alignStart="@+id/backgroundTitleTextView"
+        android:layout_below="@+id/backgroundTitleTextView"
+        android:background="@color/game_board_blue" 
+        android:onClick="blueBackgroundSelect"/>
+ 
+    <Button
+        android:id="@+id/backgroundButtonRed"
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@+id/backgroundButtonBlue"
+        android:layout_toEndOf="@+id/backgroundButtonBlue"
+        android:layout_below="@+id/backgroundTitleTextView"
+        android:background="@color/game_board_red"
+        android:layout_marginLeft="@dimen/settings_margin_left"
+        android:layout_marginStart="@dimen/settings_margin_left" 
+        android:onClick="redBackgroundSelect"/>
+ 
+    <Button
+        android:id="@+id/backgroundButtonGreen"
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@+id/backgroundButtonRed"
+        android:layout_toEndOf="@+id/backgroundButtonRed"
+        android:layout_below="@+id/backgroundTitleTextView"
+        android:background="@color/game_board_green"
+        android:layout_marginLeft="@dimen/settings_margin_left"
+        android:layout_marginStart="@dimen/settings_margin_left" 
+        android:onClick="greenBackgroundSelect"/>
+
+    <Button
+        android:id="@+id/backgroundButtonPurple"
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@+id/backgroundButtonGreen"
+        android:layout_toEndOf="@+id/backgroundButtonGreen"
+        android:layout_below="@+id/backgroundTitleTextView"
+        android:background="@color/game_board_purple"
+        android:layout_marginLeft="@dimen/settings_margin_left"
+        android:layout_marginStart="@dimen/settings_margin_left"
+        android:onClick="purpleBackgroundSelect" />
     </RelativeLayout>

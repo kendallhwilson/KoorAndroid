@@ -4,4 +4,8 @@
     <color name="white">#FFFFFF</color>
     <color name="menu_button_shadow_color">#A8A8A8</color>
     <color name="menu_button_text_color">#0047B2</color>
+    <color name="game_board_green">#088A29</color>
+    <color name="game_board_blue">#000099</color>
+    <color name="game_board_red">#A30000</color>
+    <color name="game_board_purple">#6B006B</color>
 </resources>

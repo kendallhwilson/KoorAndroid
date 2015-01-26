@@ -16,6 +16,11 @@
     <dimen name="help_margin_top">10dp</dimen>
     <dimen name="help_margin_left">15dp</dimen>
     
+    <!--  Settings Page Dimensions -->
+    <dimen name="settings_title_text_size">18sp</dimen>
+    <dimen name="settings_margin_top">10dp</dimen>
+    <dimen name="settings_margin_left">15dp</dimen>
+    
     <!--  Bid Fragment Dimensions -->
     <dimen name="bid_text_size">20sp</dimen>
     <dimen name="top_bid_margin">20dp</dimen>

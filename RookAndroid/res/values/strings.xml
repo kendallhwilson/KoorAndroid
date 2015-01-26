@@ -21,6 +21,19 @@
     <string name="help_scoring_text">The scoring rules are as follows: \nScore 1 is 20\n 
         Score 2 is 40</string>
    
+    <!-- Settings Page Strings -->
+      <string name="settings_title">Change Game Settings</string>
+      <string name="settings_points">Change Winning Points:</string>
+      <string name="settings_background">Change Background Color:</string>
+      <string name="points_prompt">Change Winning Points</string>
+      <string-array name="points_array">
+		<item>100</item>
+		<item>200</item>
+		<item>300</item>
+		<item>400</item>
+		<item>500</item>
+		</string-array>
+    
     <!-- Bidding Fragment Strings -->
     <string name="player1">Player 1:</string>
     <string name="player2">Player 2:</string>

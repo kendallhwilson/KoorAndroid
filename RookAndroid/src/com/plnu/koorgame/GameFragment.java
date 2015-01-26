@@ -17,6 +17,7 @@ import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 /*
@@ -56,6 +57,18 @@ public class GameFragment extends Fragment{
 		highBid = (TextView) v.findViewById(R.id.highbid_textview);
 		team1Score = (TextView) v.findViewById(R.id.team1score_textview);
 		team2Score = (TextView) v.findViewById(R.id.team2score_textview);
+		
+		/*
+		 * Terrible way of setting background colors because background is crazy
+		 */
+		RelativeLayout background = (RelativeLayout) v.findViewById(R.id.backgroundGame);
+		background.setBackgroundColor(E.GAME_BOARD_COLOR);
+		LinearLayout gameLayout = (LinearLayout) v.findViewById(R.id.card_line_1);
+		gameLayout.setBackgroundColor(E.GAME_BOARD_COLOR);
+		LinearLayout gameLayout2 = (LinearLayout) v.findViewById(R.id.card_line_2);
+		gameLayout2.setBackgroundColor(E.GAME_BOARD_COLOR);
+		LinearLayout gameLayout3 = (LinearLayout) v.findViewById(R.id.adLine);
+		gameLayout3.setBackgroundColor(E.GAME_BOARD_COLOR);		
 		
 		player1Card = (ImageView) v.findViewById(R.id.player1_card); //Card slots didn't line up with how it is ordered in the array.
 		player2Card = (ImageView) v.findViewById(R.id.player2_card);

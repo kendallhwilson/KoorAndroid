@@ -10,7 +10,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="17dp"
+        android:layout_marginTop="@dimen/help_margin_top"
         android:text="@string/help_title"
         android:textColor="@color/background_blue"
         android:textStyle="bold"
