@@ -5,20 +5,27 @@ import android.os.Bundle;
 import android.app.Activity;
 import android.content.Intent;
 import android.view.View;
+import android.widget.RelativeLayout;
 
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
 
 public class MainActivity extends Activity {
+	
+	RelativeLayout background;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
+		
+		background = (RelativeLayout) findViewById(R.id.main_background);
+		background.setBackgroundColor(getResources().getColor(E.GAME_BOARD_COLOR));
 	}
     
     @Override
     protected void onResume() {
+    	background.setBackgroundColor(getResources().getColor(E.GAME_BOARD_COLOR));
         super.onResume();
     }
     
