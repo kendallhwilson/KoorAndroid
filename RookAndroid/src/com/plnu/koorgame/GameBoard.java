@@ -328,7 +328,7 @@ public class GameBoard extends Activity implements onBidListener, onTrumpListene
 			public void onTick(long millisTillFinished) {
 			}		
 			public void onFinish() {
-					if(game.getCurrentTeamScores()[0] < 500 && game.getCurrentTeamScores()[1] < 500){
+					if(game.getCurrentTeamScores()[0] < E.WINNING_POINT_TOTAL && game.getCurrentTeamScores()[1] < E.WINNING_POINT_TOTAL){
 						setupNewRound();
 					} else {
 						gameEnd();
