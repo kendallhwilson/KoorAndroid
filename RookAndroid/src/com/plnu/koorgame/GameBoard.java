@@ -261,7 +261,7 @@ public class GameBoard extends Activity implements onBidListener, onTrumpListene
 					public void onTick(long millisTillFinished) {
 					}		
 					public void onFinish() {
-						if(game.getNumberOfCompletedTricks() != 10){
+						if(game.getNumberOfCompletedTricks() >= 10){
 							gameFragment.winnerHighlightToggle(game.getTrickWinnerLocation()+1);
 						}
 					}

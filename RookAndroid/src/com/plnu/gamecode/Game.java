@@ -182,6 +182,11 @@ public class Game {
 	//----- Code above this line is utilized for gameplay through the GUI. Everything below is only utilized for CMD gameplay and must be converted.----
 	
 	public void advanceGameState(){
+		
+		if(numberOfTricksPlayed >= 10)
+		{
+			return;
+		}
 		if(currentTrick[0].getValue() == -1 && currentTrick[1].getValue() == -1 && currentTrick[2].getValue() == -1 && currentTrick[3].getValue() == -1){
 			//Play the card that the leader of the trick wants to play, at index 0
 			if(trickWinner != 3){
