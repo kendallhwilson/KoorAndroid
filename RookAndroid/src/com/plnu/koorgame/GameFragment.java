@@ -34,6 +34,7 @@ public class GameFragment extends Fragment{
 	private TextView highBid;
 	private TextView team1Score;
 	private TextView team2Score;
+	private TextView trumpView;
 	
 	private ImageView player1Card;
 	private ImageView player2Card;
@@ -57,6 +58,8 @@ public class GameFragment extends Fragment{
 		highBid = (TextView) v.findViewById(R.id.highbid_textview);
 		team1Score = (TextView) v.findViewById(R.id.team1score_textview);
 		team2Score = (TextView) v.findViewById(R.id.team2score_textview);
+		trumpView = (TextView) v.findViewById(R.id.trump_textview);
+		trumpView.setText(getArguments().getString("currentTrump"));
 
 		
 		player1Card = (ImageView) v.findViewById(R.id.player1_card); //Card slots didn't line up with how it is ordered in the array.

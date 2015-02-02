@@ -177,6 +177,23 @@
         android:layout_height="wrap_content"
         android:layout_above="@+id/card_line_1"
         android:layout_toRightOf="@+id/bid_textview"/>
+    
+    <TextView
+        android:id="@+id/trumpTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/bid_textview"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:text="@string/trump" />
+    
+    <TextView
+        android:id="@+id/trump_textview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/bid_textview"
+        android:layout_toRightOf="@+id/trumpTitle"
+        android:text="" />    
 
     <TextView
         android:id="@+id/player4_textview"

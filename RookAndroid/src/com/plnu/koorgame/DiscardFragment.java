@@ -28,11 +28,21 @@ public class DiscardFragment extends Fragment implements OnClickListener {
 	private onDiscardListener discardCallback;
 	private boolean trumpChosen = false;
 	
+	private Button blackButton;
+	private Button redButton;
+	private Button greenButton;
+	private Button blueButton;
+	
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 		view = inflater.inflate(R.layout.discard_layout, container, false);
 		Button discardButton = (Button) view.findViewById(R.id.discard_button);
 		discardButton.setOnClickListener(this);
+		
+		blackButton = (Button) view.findViewById(R.id.backgroundButtonBlack);
+		redButton = (Button) view.findViewById(R.id.backgroundButtonRed);
+		greenButton = (Button) view.findViewById(R.id.backgroundButtonGreen);
+		blueButton = (Button) view.findViewById(R.id.backgroundButtonBlue);
 		
 		handArray[0] = (ImageView) view.findViewById(R.id.card1);
 		handArray[1] = (ImageView) view.findViewById(R.id.card2);
@@ -191,9 +201,38 @@ public class DiscardFragment extends Fragment implements OnClickListener {
 		
 	}
 	
-	public void trumpChosen()
+	
+	public void blackTrump()
 	{
 		trumpChosen = true;
+		blueButton.setVisibility(View.INVISIBLE);
+		greenButton.setVisibility(View.INVISIBLE);
+		redButton.setVisibility(View.INVISIBLE);
+	}
+	
+	public void redTrump()
+	{
+		trumpChosen = true;
+		blueButton.setVisibility(View.INVISIBLE);
+		greenButton.setVisibility(View.INVISIBLE);
+		blackButton.setVisibility(View.INVISIBLE);
+	}
+	
+	public void greenTrump()
+	{
+		trumpChosen = true;
+		blueButton.setVisibility(View.INVISIBLE);
+		redButton.setVisibility(View.INVISIBLE);
+		blackButton.setVisibility(View.INVISIBLE);
+		
+	}
+	
+	public void blueTrump()
+	{
+		trumpChosen = true;
+		greenButton.setVisibility(View.INVISIBLE);
+		redButton.setVisibility(View.INVISIBLE);
+		blackButton.setVisibility(View.INVISIBLE);
 	}
 
 }

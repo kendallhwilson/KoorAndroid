@@ -336,25 +336,25 @@ public class GameBoard extends Activity implements onBidListener,
 	public void blackTrumpSelect(View v) {
 		String cardColors[] = {"BLACK", "RED", "GREEN", "BLUE"};
 		game.setTrumpAndInformAI(cardColors[0]);
-		discardFragment.trumpChosen();
+		discardFragment.blackTrump();
 	
 	}
 	public void redTrumpSelect(View v) {
 		String cardColors[] = {"BLACK", "RED", "GREEN", "BLUE"};
 		game.setTrumpAndInformAI(cardColors[1]);
-		discardFragment.trumpChosen();
+		discardFragment.redTrump();
 	
 	}
 	public void greenTrumpSelect(View v) {
 		String cardColors[] = {"BLACK", "RED", "GREEN", "BLUE"};
 		game.setTrumpAndInformAI(cardColors[2]);
-		discardFragment.trumpChosen();
+		discardFragment.greenTrump();
 	
 	}
 	public void blueTrumpSelect(View v) {
 		String cardColors[] = {"BLACK", "RED", "GREEN", "BLUE"};
 		game.setTrumpAndInformAI(cardColors[3]);
-		discardFragment.trumpChosen();
+		discardFragment.blueTrump();
 	}
     
     @Override
