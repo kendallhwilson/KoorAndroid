@@ -1,8 +1,8 @@
 package com.plnu.koorgame;
 
-import com.plnu.koorgame.ChooseTrumpDialogFragment.onTrumpListener;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.app.Fragment;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -26,6 +26,7 @@ public class DiscardFragment extends Fragment implements OnClickListener {
 	private int discardedCards[] = new int[5];
 	
 	private onDiscardListener discardCallback;
+	private boolean trumpChosen = false;
 	
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -118,23 +119,31 @@ public class DiscardFragment extends Fragment implements OnClickListener {
      */
 	@Override
 	public void onClick(View v) {
-		if (numDiscarded == 5) {
-			int[] finalPlayerHand = {100, 100, 100, 100, 100, 100, 100, 100, 100, 100}; //This might solve the 9 cards only appearing issue?;
-			int counter = 0;
-			for(int i=0; i < 15; i++){
-				if(playerHandNewValues[i] != 100){
-					finalPlayerHand[counter] = playerHandNewValues[i];
-					counter++;
+		if (trumpChosen)
+		{
+			if (numDiscarded == 5) {
+				int[] finalPlayerHand = {100, 100, 100, 100, 100, 100, 100, 100, 100, 100}; //This might solve the 9 cards only appearing issue?;
+				int counter = 0;
+				for(int i=0; i < 15; i++){
+					if(playerHandNewValues[i] != 100){
+						finalPlayerHand[counter] = playerHandNewValues[i];
+						counter++;
+					}
 				}
+				
+				for (int i = 0; i < discardIds.length -  1; i++) {
+					view.findViewById(discardIds[i]).setVisibility(View.INVISIBLE);
+				}
+				discardCallback.doneDiscarding(finalPlayerHand, discardedCards);
 			}
-			
-			for (int i = 0; i < discardIds.length -  1; i++) {
-				view.findViewById(discardIds[i]).setVisibility(View.INVISIBLE);
-			}
-			discardCallback.doneDiscarding(finalPlayerHand, discardedCards);
 		}
-		
-		
+		else
+		{
+			new AlertDialog.Builder(getActivity())
+			.setMessage("You must choose trump color")
+			.setPositiveButton(android.R.string.yes, null)
+			.show();
+		}
 	}
 	
 	public interface onDiscardListener {
@@ -180,6 +189,11 @@ public class DiscardFragment extends Fragment implements OnClickListener {
 		
 		return returningCardText;
 		
+	}
+	
+	public void trumpChosen()
+	{
+		trumpChosen = true;
 	}
 
 }

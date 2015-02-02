@@ -4,24 +4,18 @@ import com.plnu.gamecode.Card;
 import com.plnu.gamecode.Game;
 import com.plnu.koorgame.AlertTrickWinnerDialogFragment.onTrickListener;
 import com.plnu.koorgame.BidFragment.onBidListener;
-import com.plnu.koorgame.ChooseTrumpDialogFragment.onTrumpListener;
 import com.plnu.koorgame.DiscardFragment.onDiscardListener;
 import com.plnu.koorgame.GameFragment.onGamePlayListener;
 
 import android.app.Activity;
-import android.app.Fragment;
-import android.app.FragmentManager;
 import android.app.FragmentTransaction;
-import android.content.Intent;
 import android.os.Bundle;
 import android.os.CountDownTimer;
-import android.view.SurfaceView;
 import android.view.View;
-import android.view.WindowManager;
 /*
  * GameBoard class stores methods to change fragments or display alerts
  */
-public class GameBoard extends Activity implements onBidListener, onTrumpListener,
+public class GameBoard extends Activity implements onBidListener,
 	onDiscardListener, onGamePlayListener, onTrickListener {
 	
 	private BidFragment bidFragment;
@@ -60,7 +54,8 @@ public class GameBoard extends Activity implements onBidListener, onTrumpListene
 		int [] bids = game.advanceBidding();
 		startBiddingFragment(bids);
 		if(bids[0] == -2 && bids [1] == -2 && bids [2] == -2){	
-			chooseTrumpColor();
+			//chooseTrumpColor();
+			startDiscardFragment();
 		}
 	}
 	
@@ -114,27 +109,11 @@ public class GameBoard extends Activity implements onBidListener, onTrumpListene
 		
 		if(game.getBidWinnerLocation() == 3)
 		{
-			chooseTrumpColor();
+			startDiscardFragment();
+			//chooseTrumpColor();
 		}
 	}
 	
-	/*
-	 * Displays dialog to allow user to choose trump color
-	 */
-	public void chooseTrumpColor(){
-		ChooseTrumpDialogFragment chooseTrumpFragment = new ChooseTrumpDialogFragment();
-		chooseTrumpFragment.show(getFragmentManager(), "trumpdialogtag");
-	}
-	
-	/*
-	 * Listener for trump value
-	 */
-	@Override
-	public void trumpPass(int color) {
-		String cardColors[] = {"BLACK", "RED", "GREEN", "BLUE"};
-		game.setTrumpAndInformAI(cardColors[color]);
-		startDiscardFragment();
-	}	
 	
 	@Override
 	public void resetAllTrickCards()
@@ -183,19 +162,27 @@ public class GameBoard extends Activity implements onBidListener, onTrumpListene
 	 */
 	@Override
 	public void doneDiscarding(int[] playerHand, int[] playerDiscards) {
-		game.setPlayerDiscards(playerDiscards);
 		
-		for(int i=0; i < 10; i++){
-			System.out.println("PH Pre: " + playerHand[i]);
+		//if (!trumpSelect) //they haven't selected trump color dialog says you must do so
+		//{
+			//chooseTrump();
+		//}
+		//else //they selected trump and discarded - game moves on to actual playing
+		{
+			game.setPlayerDiscards(playerDiscards);
+		
+			for(int i=0; i < 10; i++){
+				System.out.println("PH Pre: " + playerHand[i]);
+			}
+			game.setPlayerHand(playerHand);
+		
+			int[] player = game.getPlayerCardsUI();
+		
+			for(int i=0; i < 10; i++){
+				System.out.println("PH Post: " + player[i]);
+			}
+			startGameFragment();
 		}
-		game.setPlayerHand(playerHand);
-		
-		int[] player = game.getPlayerCardsUI();
-		
-		for(int i=0; i < 10; i++){
-			System.out.println("PH Post: " + player[i]);
-		}
-		startGameFragment();
 	}	
 	
 	public void startGameFragment() {
@@ -348,27 +335,26 @@ public class GameBoard extends Activity implements onBidListener, onTrumpListene
 	
 	public void blackTrumpSelect(View v) {
 		String cardColors[] = {"BLACK", "RED", "GREEN", "BLUE"};
-		game.setTrumpAndInformAI(cardColors[1]);
-		startDiscardFragment();
+		game.setTrumpAndInformAI(cardColors[0]);
+		discardFragment.trumpChosen();
 	
 	}
 	public void redTrumpSelect(View v) {
 		String cardColors[] = {"BLACK", "RED", "GREEN", "BLUE"};
-		game.setTrumpAndInformAI(cardColors[2]);
-		startDiscardFragment();
+		game.setTrumpAndInformAI(cardColors[1]);
+		discardFragment.trumpChosen();
 	
 	}
 	public void greenTrumpSelect(View v) {
 		String cardColors[] = {"BLACK", "RED", "GREEN", "BLUE"};
-		game.setTrumpAndInformAI(cardColors[3]);
-		startDiscardFragment();
+		game.setTrumpAndInformAI(cardColors[2]);
+		discardFragment.trumpChosen();
 	
 	}
 	public void blueTrumpSelect(View v) {
 		String cardColors[] = {"BLACK", "RED", "GREEN", "BLUE"};
-		game.setTrumpAndInformAI(cardColors[4]);
-		startDiscardFragment();
-	
+		game.setTrumpAndInformAI(cardColors[3]);
+		discardFragment.trumpChosen();
 	}
     
     @Override
