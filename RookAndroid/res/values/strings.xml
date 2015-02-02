@@ -68,6 +68,7 @@
     <!-- Discard Fragment Strings -->
     <string name="discard_instructions">Click a card to discard it! You can only choose five.</string>
     <string name="discard_button_text">Discard</string>
+    <string name="choose_trump_text">Choose Trump Color</string>
     
     <!-- Choose/Alert Trump Dialog Fragment Strings -->
       <string name="choose_trump_dialog_text">You won! You may choose a trump color:</string>

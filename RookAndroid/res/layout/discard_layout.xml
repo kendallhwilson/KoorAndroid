@@ -217,5 +217,68 @@
             android:onClick="cardClick"/>
     </LinearLayout>
 
+	<TextView
+	    android:id="@+id/chooseTrumpTitle"
+	    android:layout_width="wrap_content"
+	    android:layout_height="wrap_content"
+	    android:layout_above="@+id/discard_button"
+	    android:layout_alignParentLeft="true"
+	    android:layout_alignParentStart="true"
+	    android:layout_marginLeft="16dp"
+	    android:text="@string/choose_trump_text" />
 
+    <Button
+        android:id="@+id/backgroundButtonBlack"
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/chooseTrumpTitle"
+        android:layout_alignStart="@+id/chooseTrumpTitle"
+        android:layout_below="@+id/card_line_3"
+        android:layout_above="@+id/discard_button"
+        android:background="@color/trump_black" 
+        android:onClick="blackTrumpSelect"/>
+ 
+    <Button
+        android:id="@+id/backgroundButtonRed"
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@+id/backgroundButtonBlack"
+        android:layout_toEndOf="@+id/backgroundButtonBlack"
+        android:layout_below="@+id/card_line_3"
+        android:layout_above="@+id/discard_button"
+        android:background="@color/trump_red"
+        android:layout_marginLeft="@dimen/settings_margin_left"
+        android:layout_marginStart="@dimen/settings_margin_left" 
+        android:onClick="redTrumpSelect"/>
+ 
+    <Button
+        android:id="@+id/backgroundButtonGreen"
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@+id/backgroundButtonRed"
+        android:layout_toEndOf="@+id/backgroundButtonRed"
+        android:layout_below="@+id/card_line_3"
+        android:layout_above="@+id/discard_button"
+        android:background="@color/trump_green"
+        android:layout_marginLeft="@dimen/settings_margin_left"
+        android:layout_marginStart="@dimen/settings_margin_left" 
+        android:onClick="greenTrumpSelect"/>
+
+    <Button
+        android:id="@+id/backgroundButtonBlue"
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@+id/backgroundButtonGreen"
+        android:layout_toEndOf="@+id/backgroundButtonGreen"
+        android:layout_below="@+id/card_line_3"
+        android:layout_above="@+id/discard_button"
+        android:background="@color/trump_blue"
+        android:layout_marginLeft="@dimen/settings_margin_left"
+        android:layout_marginStart="@dimen/settings_margin_left"
+        android:onClick="blueTrumpSelect" />	
+	
 </RelativeLayout>

@@ -8,4 +8,11 @@
     <color name="game_board_blue">#000099</color>
     <color name="game_board_red">#A30000</color>
     <color name="game_board_purple">#6B006B</color>
+    
+    <color name="trump_black">#000000</color>
+    <color name="trump_red">#DF0101</color>
+    <color name="trump_green">#01DF01</color>
+    <color name="trump_blue">#0080FF</color>
+    
+    
 </resources>

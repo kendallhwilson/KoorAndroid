@@ -345,6 +345,31 @@ public class GameBoard extends Activity implements onBidListener, onTrumpListene
 	public void cardClick(View v) {
 		discardFragment.cardClick(v);
 	}
+	
+	public void blackTrumpSelect(View v) {
+		String cardColors[] = {"BLACK", "RED", "GREEN", "BLUE"};
+		game.setTrumpAndInformAI(cardColors[1]);
+		startDiscardFragment();
+	
+	}
+	public void redTrumpSelect(View v) {
+		String cardColors[] = {"BLACK", "RED", "GREEN", "BLUE"};
+		game.setTrumpAndInformAI(cardColors[2]);
+		startDiscardFragment();
+	
+	}
+	public void greenTrumpSelect(View v) {
+		String cardColors[] = {"BLACK", "RED", "GREEN", "BLUE"};
+		game.setTrumpAndInformAI(cardColors[3]);
+		startDiscardFragment();
+	
+	}
+	public void blueTrumpSelect(View v) {
+		String cardColors[] = {"BLACK", "RED", "GREEN", "BLUE"};
+		game.setTrumpAndInformAI(cardColors[4]);
+		startDiscardFragment();
+	
+	}
     
     @Override
     protected void onResume() {
