@@ -272,7 +272,7 @@
         android:id="@+id/backgroundButtonBlue"
         style="?android:attr/buttonStyleSmall"
         android:layout_width="wrap_content"
-        android:layout_height="10dp"
+        android:layout_height="5dp"
         android:layout_toRightOf="@+id/backgroundButtonGreen"
         android:layout_toEndOf="@+id/backgroundButtonGreen"
         android:layout_below="@+id/card_line_3"

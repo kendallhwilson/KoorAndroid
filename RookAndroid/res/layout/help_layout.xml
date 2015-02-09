@@ -30,10 +30,12 @@
         android:layout_marginLeft="@dimen/help_margin_left"
         android:layout_marginStart="@dimen/help_margin_left"
         android:layout_marginTop="@dimen/help_margin_top"
-        android:text="@string/help_bidding_title"
+        android:text="@string/help_playing_title"
         android:textStyle="bold"
         android:textSize="@dimen/help_title_text_size" />
     
+ 
+         
     <TextView
         android:id="@+id/biddingTextView"
         android:layout_width="wrap_content"
@@ -46,17 +48,17 @@
         android:layout_marginEnd="@dimen/help_margin_left"
         android:layout_marginStart="@dimen/help_margin_left"
         android:layout_marginTop="@dimen/help_margin_top"
-        android:text="@string/help_bidding_text" />
-
+        android:text="@string/help_playing_text" /> 
+        
     <TextView
         android:id="@+id/playingTitleTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignLeft="@+id/biddingTitleTextView"
         android:layout_alignStart="@+id/biddingTitleTextView"
-        android:layout_below="@+id/biddingTextView"
+        android:layout_below="@+id/helpImage"
         android:layout_marginTop="@dimen/help_margin_top"
-        android:text="@string/help_playing_title"
+        android:text="@string/help_bidding_title"
         android:textStyle="bold"
     	android:textSize="@dimen/help_title_text_size" />
 
@@ -70,7 +72,7 @@
         android:layout_marginTop="@dimen/help_margin_top"
         android:layout_marginRight="@dimen/help_margin_left"
         android:layout_marginEnd="@dimen/help_margin_left"
-        android:text="@string/help_playing_text" />
+        android:text="@string/help_bidding_text" />
 
      <TextView
         android:id="@+id/scoringTitleTextView"
@@ -94,6 +96,15 @@
         android:layout_marginRight="@dimen/help_margin_left"
         android:layout_marginEnd="@dimen/help_margin_left"
         android:layout_marginTop="@dimen/help_margin_top"
-        android:text="@string/help_scoring_text" />   
+        android:text="@string/help_scoring_text" />
+
+    <ImageView
+        android:id="@+id/helpImage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/biddingTextView"
+        android:layout_below="@+id/biddingTextView"
+        android:src="@drawable/helpimage" />
+   
     </RelativeLayout>
     </ScrollView>

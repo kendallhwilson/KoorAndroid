@@ -13,27 +13,31 @@
    <!-- Help Page Strings -->
     <string name="help_title">Need Help?</string>
     <string name="help_bidding_title">Bidding</string>
-    <string name="help_bidding_text">Ten cards are dealt to each player, and five cards are dealt to the 
-        "kitty."\nThe bid minimum is 100 and proceeds clockwise where each player may pass or bid.\n
-        The winner of bidding chooses trump and gets the kitty. The winner can then discard five cards
+    <string name="help_bidding_text">•Ten cards are dealt to each player, and five cards are dealt to the 
+        "kitty."\n•The bid minimum is 100 and proceeds clockwise where each player may pass or bid.
+        \n•The winner of bidding chooses trump and gets the kitty. The winner can then discard five cards
         to place back in the kitty. They then get to choose a trump color for the game.
         </string>
     <string name="help_playing_title">Playing</string>
-    <string name="help_playing_text">This is a team game. Partners are across from each other on
-        the game board.\nThe objective is to be the first team to reach a certain number of points
-        (this can be changed in Settings)\nOnce trump is chosen, cards are played in a clockwise 
+    <string name="help_playing_text">•This is a team game. Partners are across from each other on
+        the game board.\n•The objective is to be the first team to reach a certain number of points
+        (this can be changed in Settings)\n•Once trump is chosen, cards are played in a clockwise 
         fashion. Players must follow the lead suit if they have it, otherwise they can play any card.
         Every time all four players play, the trick is taken and points are added. A trump card 
         beats any non-trump card, and a non-suit card can\'t take the trick. The player that took
         the trick leads off the next round. This continues for ten tricks, until the cards are
-        dealt again. Gameplay continues until the specified winning number of points is reached.</string>
+        dealt again. Gameplay continues until the specified winning number of points is reached.
+        \n•For example, in the image below, you are partners with player 2, and players 1 and 3
+         are partners. The winning card will take the points of the trick.</string>
     <string name="help_scoring_title">Scoring</string>
     <string name="help_scoring_text">A team scores by capturing tricks with point cards, weighted
-        as follows:\nEvery 5 is 5 points\nEvery 10 and 14 are 10 points\nEvery 1 is 10 points
-        \nThe Rook is 20 points\nThe team that captures the last trick also counts the kitty in
+        as follows:\n•The Rook is 20 points\n•Every 1 is 15 points\n•Every 10 and 14 are 10 points
+        \n•Every 5 is 5 points\nThe team that captures the last trick also counts the kitty in
         the point total.\nThe team that won the most tricks adds an additional 20 points.
        	\nIf a team won the bid and did not meet their bid, they are set back by the number of points
-       	their bid was. If a team did not win the bid, they count the number of points they made. </string>
+       	their bid was. If a team did not win the bid, they count the number of points they made.
+       	\nFor example, in the image above, the 1 card will take the trick as it is the highest
+       	scoring card. </string>
    
     <!-- Settings Page Strings -->
       <string name="settings_title">Change Game Settings</string>
