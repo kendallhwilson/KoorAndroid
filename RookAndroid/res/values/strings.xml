@@ -45,11 +45,11 @@
       <string name="settings_background">Change Background Color:</string>
       <string name="points_prompt">Change Winning Points</string>
       <string-array name="points_array">
-		<item>100</item>
-		<item>200</item>
-		<item>300</item>
-		<item>400</item>
 		<item>500</item>
+		<item>400</item>
+		<item>300</item>
+		<item>200</item>
+		<item>100</item>
 		</string-array>
     
     <!-- Bidding Fragment Strings -->
@@ -70,9 +70,9 @@
     <string name="trick_winner">Trick Winner is:</string>
     
     <!-- Discard Fragment Strings -->
-    <string name="discard_instructions">Click a card to discard it! You can only choose five.</string>
+    <string name="discard_instructions">Click five cards to discard.</string>
     <string name="discard_button_text">Discard</string>
-    <string name="choose_trump_text">Choose Trump</string>
+    <string name="choose_trump_text">Choose Trump:</string>
     
     <!-- Choose/Alert Trump Dialog Fragment Strings -->
       <string name="choose_trump_dialog_text">You must first choose a trump color</string>

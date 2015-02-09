@@ -53,7 +53,8 @@ public class SettingsMenu extends Activity implements OnItemSelectedListener {
 	
     public void onItemSelected(AdapterView<?> parent, View view, 
             int pos, long id) {
-    	E.WINNING_POINT_TOTAL = (pos+1) * 100;
+    	E.WINNING_POINT_TOTAL = 500 - ((pos) * 100);
+    	System.out.println("WINNINT POINT TOTAL IS: " + E.WINNING_POINT_TOTAL + "!!!!!!!!!");
     }
 
 	@Override
