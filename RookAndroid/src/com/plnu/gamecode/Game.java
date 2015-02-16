@@ -289,9 +289,10 @@ public class Game {
 	         //System.out.println("WINNER WAS PLAYER IN TRICK AT: "+MAX);
 	         trickWinner = (trickWinner+MAX)%4;
 	         addTrickScore(trickWinner,currentTrick);
+	         numberOfTricksPlayed++;
 		}
 		
-		if(numberOfTricksPlayed == 9){
+		if(numberOfTricksPlayed == 10){
 			addDiscardToScore();
 		    addRoundScoreToGameScore();
 		}

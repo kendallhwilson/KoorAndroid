@@ -232,8 +232,6 @@ public class GameBoard extends Activity implements onBidListener,
 		
 		
 			if(playedCards[0].getValue() != -1 && playedCards[1].getValue() != -1 && playedCards[2].getValue() != -1 && playedCards[3].getValue() != -1){			
-				game.incrementNumberOfTricks();
-				
 				highlight2 = new CountDownTimer(4000, 1000) { //We have to wait for all the cards to be drawn and such. This was previously called in the dialog.
 					public void onTick(long millisTillFinished) {
 					}		
