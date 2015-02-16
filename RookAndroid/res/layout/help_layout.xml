@@ -104,7 +104,7 @@
         android:layout_height="wrap_content"
         android:layout_alignLeft="@+id/biddingTextView"
         android:layout_below="@+id/biddingTextView"
-        android:src="@drawable/helpimage" />
+        />
    
     </RelativeLayout>
     </ScrollView>

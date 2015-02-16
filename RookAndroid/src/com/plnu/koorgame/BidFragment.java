@@ -1,7 +1,5 @@
 package com.plnu.koorgame;
 
-import com.plnu.koorgame.R.drawable;
-
 import android.app.Activity;
 import android.app.Fragment;
 import android.os.Bundle;
