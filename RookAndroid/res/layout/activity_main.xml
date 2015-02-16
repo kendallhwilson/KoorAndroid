@@ -26,7 +26,8 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/game_title"
         android:layout_above="@+id/play_button"
-        android:src="@drawable/menu_image" 
+        android:layout_centerHorizontal="true"
+        android:src="@drawable/menuimage" 
         android:contentDescription="@string/menu_image_descrip"/>
     
     <Button
@@ -48,17 +49,10 @@
     <Button
         android:id="@+id/settings_button"
         style="@style/menu_button"
-        android:layout_above="@+id/upgrade_button"
+        android:layout_alignParentBottom="true"
         android:layout_marginTop="@dimen/menu_button_margin"
         android:text="@string/settings_button_text"
         android:onClick="openSettingsMenu" />
         
-    <Button
-		android:id="@+id/upgrade_button"
-		style="@style/menu_button"
-		android:layout_alignParentBottom="true"
-		android:layout_marginTop="@dimen/menu_button_margin"
-		android:text="@string/upgrade_button_text" 
-		android:onClick="openPlayStore"/>
 
 </RelativeLayout>
