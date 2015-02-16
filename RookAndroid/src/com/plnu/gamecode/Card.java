@@ -5,7 +5,6 @@
  */
 
 package com.plnu.gamecode;
-import java.util.*;
 
 /**
  * Represents a single playing card; these are stored in arrays to represent each player's hand.
@@ -18,7 +17,6 @@ public class Card {
     public enum Suit { RED, BLUE, GREEN, BLACK, NOSUIT, BLANK };
 
     private Suit suit;
-    private String image;
     private int value;
     private int cardVal;
     
