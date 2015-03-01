@@ -1,14 +1,10 @@
 package com.plnu.koorgame;
 
-import android.net.Uri;
 import android.os.Bundle;
 import android.app.Activity;
 import android.content.Intent;
 import android.view.View;
 import android.widget.RelativeLayout;
-
-import com.google.android.gms.ads.AdRequest;
-import com.google.android.gms.ads.AdView;
 
 public class MainActivity extends Activity {
 	
@@ -50,11 +46,6 @@ public class MainActivity extends Activity {
 
 	public void openSettingsMenu(View view) {
 		Intent intent = new Intent(this, SettingsMenu.class);
-		startActivity(intent);
-	}
-	public void openPlayStore(View view){
-		Intent intent = new Intent(Intent.ACTION_VIEW);
-		intent.setData(Uri.parse("market://details?id=org.dowell.rook"));
 		startActivity(intent);
 	}
 

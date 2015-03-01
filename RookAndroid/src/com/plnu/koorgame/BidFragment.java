@@ -32,7 +32,6 @@ public class BidFragment extends Fragment implements OnClickListener {
 	private onBidListener bidCallback;
 	
 	//Variables to go with timer
-	private final int TEXT_TIME = 1000;
 	private final int COUNTDOWN_SECOND = 1000;
 	CountDownTimer textTimer1, textTimer2, textTimer3;
 	
