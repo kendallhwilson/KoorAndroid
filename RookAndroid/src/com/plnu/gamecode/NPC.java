@@ -21,6 +21,7 @@ public class NPC extends Player {
     int handValue = 0;
     int longestSuitLength = 0;
     int maxBid = 200;
+    int numberOfTimesAskedToBid = 0;
     boolean[] discarded = new boolean[15];
     int numberPossibleCards = 15;
     //protected ArrayList<Integer> junkCards = new ArrayList<Integer>();
@@ -116,7 +117,7 @@ public class NPC extends Player {
      */
     public void bidOrPass(boolean bid) {
     	//50/50 chance of bid or pass
-        Random generator = new Random();
+      /*  Random generator = new Random();
         int num = generator.nextInt(2);
         if (num == 1) {
             bidding = false;
@@ -126,6 +127,44 @@ public class NPC extends Player {
         else{
         	bidding = bid;
         }
+        
+        */
+
+    	int bidChance = 2; // 50/50 shot to start. Can only go up.
+    	
+    	Random generator = new Random(); 
+    	int randomNumber = -1;
+    	longestSuitLength = longestSuit();
+  
+    	if(longestSuitLength >= 5 && findRook() != -1){
+    		bidChance = 7; //Seems like a pretty decent hand.
+    	} else if(longestSuitLength >= 5) {
+    		bidChance = 6; //Still seems strong, but not as good without the rook. 
+    	}
+ 
+    	if(longestSuitLength >= 7){ //This could be a rediculous hand.
+    		bidChance = 8;
+    		if(findRook() != -1){ //Welp, looks like it really is a rediculous hand.
+    			bidChance = 9;
+    		}
+    	}
+    	
+    	bidChance -= numberOfTimesAskedToBid; // Each time we pass around the table, we don't want to keep having the same likelihood if someone else is also bidding.
+    	
+    	if(bidChance == 0){
+    		bidding = false;
+    	} else {
+    		randomNumber = generator.nextInt(bidChance);
+    		if(randomNumber == 1){
+    			bidding = false;
+    		}
+    		else {
+    			bidding = true;
+    		}
+    	}
+    	
+    	numberOfTimesAskedToBid++;
+    	
     }
 
     /**
