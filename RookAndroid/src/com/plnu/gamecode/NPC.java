@@ -149,6 +149,13 @@ public class NPC extends Player {
     		}
     	}
     	
+    	if(longestSuitLength >= 3){ //This isn't looking too good.
+    		bidChance = 3;
+    		if(findRook() != -1){
+    			bidChance = 2;
+    		}
+    	}
+    	
     	bidChance -= numberOfTimesAskedToBid; // Each time we pass around the table, we don't want to keep having the same likelihood if someone else is also bidding.
     	
     	if(bidChance == 0){
