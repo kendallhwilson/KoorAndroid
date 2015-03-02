@@ -166,7 +166,7 @@ public class NPC extends Player {
     			bidding = false;
     		}
     		else {
-    			bidding = true;
+    			bidding = bid;
     		}
     	}
     	

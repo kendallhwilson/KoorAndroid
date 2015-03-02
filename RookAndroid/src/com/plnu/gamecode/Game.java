@@ -460,7 +460,7 @@ public void addRoundScoreToGameScore(){
 		//updating human score even though computers won the bid
 		currentTeamScores[1] += roundScore[1];
 		
-		if(roundScore[0]<players[bidWinner].bidAmount){
+		if(roundScore[0]< players[bidWinner].bidAmount){
 			currentTeamScores[0] -= players[bidWinner].bidAmount;
 		}
 	
@@ -476,9 +476,7 @@ public void addRoundScoreToGameScore(){
 		
 		if(roundScore[1]<players[bidWinner].bidAmount){
 			currentTeamScores[1] -= players[bidWinner].bidAmount;
-		}
-	
-		else{
+		}else{
 		currentTeamScores[1] += roundScore[1];
 		}
 	}
