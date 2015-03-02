@@ -158,7 +158,7 @@ public class NPC extends Player {
     	
     	bidChance -= numberOfTimesAskedToBid; // Each time we pass around the table, we don't want to keep having the same likelihood if someone else is also bidding.
     	
-    	if(bidChance == 0){
+    	if(bidChance <= 0){
     		bidding = false;
     	} else {
     		randomNumber = generator.nextInt(bidChance);

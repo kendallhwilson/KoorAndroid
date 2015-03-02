@@ -340,6 +340,7 @@ public class Game {
 		
 		//"shuffling" the deck
 		long seed = System.nanoTime();
+		System.out.println("SEED: " + seed);
 		Collections.shuffle(deck, new Random(seed));
 		  
 		  count++;
