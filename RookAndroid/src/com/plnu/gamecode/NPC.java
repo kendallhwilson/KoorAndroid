@@ -158,7 +158,7 @@ public class NPC extends Player {
     	
     	bidChance -= numberOfTimesAskedToBid; // Each time we pass around the table, we don't want to keep having the same likelihood if someone else is also bidding.
     	
-    	if(bidChance <= 0){
+    	if(bidChance <= 0 || bidding == false){
     		bidding = false;
     	} else {
     		randomNumber = generator.nextInt(bidChance);
@@ -597,7 +597,7 @@ public class NPC extends Player {
         for(int i = 0; i < 15; i++)
         {
           if(hand[i] != null 
-                && !(hand[i].getSuit().equals(Card.Suit.BLANK)))
+                && !(hand[i].getSuit().equals(Card.Suit.BLANK)) && hand[i].getCardVal() != 0)
           {
             maxIndex++;
             validLeadCards[maxIndex] = hand[i];
@@ -641,7 +641,7 @@ public class NPC extends Player {
            if(hand[handIndex] != null && potentialWinners.get(i) != null 
                && hand[handIndex].getValue() == potentialWinners.get(i).getValue()
                && hand[handIndex].getSuit() != trumpSuit
-               && !(hand[handIndex].getSuit().equals(Card.Suit.BLANK)))
+               && !(hand[handIndex].getSuit().equals(Card.Suit.BLANK)) && hand[handIndex].getCardVal() != 0)
            {
             return handIndex;
            }
@@ -668,7 +668,7 @@ public class NPC extends Player {
           if(trick[0]!=null)
           {
             if(trick[0].getSuit().equals(trumpSuit) &&
-                                    hand[i].getCardVal() ==44)
+                                    hand[i].getCardVal() ==44 && !hand[i].getSuit().equals(Card.Suit.BLANK) && hand[i].getCardVal() != 0)
             {
                card = hand[i];
                maxIndex++;
@@ -676,7 +676,7 @@ public class NPC extends Player {
             }
             else if(hand[i] != null
                &&hand[i].getSuit() == trick[0].getSuit()
-                  && !(hand[i].getSuit().equals(Card.Suit.BLANK)))
+                  && !(hand[i].getSuit().equals(Card.Suit.BLANK)) && hand[i].getCardVal() != 0)
             {
 			      card = hand[i];
                maxIndex++;
@@ -721,13 +721,13 @@ public class NPC extends Player {
           if(trick[0] != null)
           {
             if(trick[0].getSuit().equals(trumpSuit) &&
-                                    hand[i].getCardVal() ==44)
+                                    hand[i].getCardVal() ==44 && !hand[i].getSuit().equals(Card.Suit.BLANK) && hand[i].getCardVal() != 0)
             {
                card = hand[i];
                maxIndex++;
                validFollowCards[maxIndex] = hand[i];
             }
-            else if(hand[i] != null && (hand[i].getSuit() == trick[0].getSuit()))
+            else if(hand[i] != null && (hand[i].getSuit() == trick[0].getSuit()) && !hand[i].getSuit().equals(Card.Suit.BLANK) && hand[i].getCardVal() != 0)
             {
 			      card = hand[i];
                maxIndex++;
@@ -741,7 +741,7 @@ public class NPC extends Player {
 			   // compile list of cards in hand, have rules based on list
 			 for (int i = 0; i<15; i++)
           {
-				if (hand[i] != null)
+				if (hand[i] != null && !hand[i].getSuit().equals(Card.Suit.BLANK) && hand[i].getCardVal() != 0)
             {
               maxIndex++;
               validFollowCards[maxIndex] = hand[i];
@@ -785,7 +785,7 @@ public class NPC extends Player {
             if(hand[handIndex] != null && potentialWinners.get(i) != null 
                   && hand[handIndex].getValue() == potentialWinners.get(i).getValue()
                       && hand[handIndex].getSuit() == getTrump()
-                           &&!hand[handIndex].getSuit().equals(Card.Suit.BLANK))
+                           &&!hand[handIndex].getSuit().equals(Card.Suit.BLANK) && hand[handIndex].getCardVal() != 0)
             {
               //if(testCheck)
                   //System.out.println("Playing High Trump from hand index " + handIndex + " value of " + hand[handIndex].getValue());
@@ -948,7 +948,7 @@ public class NPC extends Player {
         for(int i = 0; i < 15; i++)
         {
             if(hand[i] != null
-                  && !hand[i].getSuit().equals(Card.Suit.BLANK))
+                  && !hand[i].getSuit().equals(Card.Suit.BLANK) && hand[i].getCardVal() != 0) 
             {
                 if(hand[i].getSuit() != trumpSuit)
                 {
@@ -986,7 +986,7 @@ public class NPC extends Player {
         
         for(int i = 0; i < 15; i++)
         {
-            if(hand[i] != null && !hand[i].getSuit().equals(Card.Suit.BLANK))
+            if(hand[i] != null && !hand[i].getSuit().equals(Card.Suit.BLANK) && hand[i].getCardVal() != 0)
             {
                 if(hand[i].getSuit() != trumpSuit)
                 {
@@ -1016,7 +1016,7 @@ public class NPC extends Player {
 
         for(int i = 0; i < 15; i++)
         {
-            if(hand[i] != null && !hand[i].getSuit().equals(Card.Suit.BLANK))
+            if(hand[i] != null && !hand[i].getSuit().equals(Card.Suit.BLANK) && hand[i].getCardVal() != 0)
             {
                 if(hand[i].getSuit() != trumpSuit)
                 {
@@ -1070,7 +1070,7 @@ public class NPC extends Player {
         {
             if(prospWinners.get(i) != null 
                   && prospWinners.get(i).getSuit() == currentHighCard.getSuit()
-                     && !prospWinners.get(i).getSuit().equals(Card.Suit.BLANK))
+                     && !prospWinners.get(i).getSuit().equals(Card.Suit.BLANK) && prospWinners.get(i).getCardVal() != 0)
             {
                 if(prospWinners.get(i).getRank() <= currentHighCard.getRank())
                 {
@@ -1079,7 +1079,7 @@ public class NPC extends Player {
 
                 for(int handIndex = 0; handIndex < 15; handIndex++)
                 {
-                    if(hand[handIndex] != null && hand[handIndex].getValue() == prospWinners.get(i).getValue())
+                    if(hand[handIndex] != null && hand[handIndex].getValue() == prospWinners.get(i).getValue() && !hand[handIndex].getSuit().equals(Card.Suit.BLANK) && hand[handIndex].getCardVal() != 0)
                     {
                        Card forwarding = new Card();
                        forwarding.setCard(prospWinners.get(i).getSuit(), prospWinners.get(i).getValue());
@@ -1111,12 +1111,12 @@ public class NPC extends Player {
         {
             if(validCards[i].getScore() != 0 
                   && ((validCards[i].getSuit() != trumpSuit) || trumpLed)
-                     && !validCards[i].getSuit().equals(Card.Suit.BLANK))
+                     && !validCards[i].getSuit().equals(Card.Suit.BLANK) && validCards[i].getCardVal() != 0)
             {
                 for(int checkPotentialWinner = 0; checkPotentialWinner < prospWinners.size(); checkPotentialWinner++)
                 {
                     if(prospWinners.get(checkPotentialWinner) != null)
-                      if(!prospWinners.get(checkPotentialWinner).getSuit().equals(Card.Suit.BLANK))
+                      if(!prospWinners.get(checkPotentialWinner).getSuit().equals(Card.Suit.BLANK) && prospWinners.get(checkPotentialWinner).getCardVal() != 0)
                         if(prospWinners.get(checkPotentialWinner).getSuit() == validCards[i].getSuit())
                             if(prospWinners.get(checkPotentialWinner).getValue() != validCards[i].getValue())
                                 return getHandIndexOf(validCards[i]);
@@ -1139,7 +1139,7 @@ public class NPC extends Player {
         {
             if(validCards[i].getScore() != 0 
                   && (validCards[i].getSuit() != trumpSuit || trumpLed)
-                     &&!validCards[i].getSuit().equals(Card.Suit.BLANK))
+                     &&!validCards[i].getSuit().equals(Card.Suit.BLANK) && validCards[i].getCardVal() != 0)
             {
                 return getHandIndexOf(validCards[i]);
             }
@@ -1203,7 +1203,7 @@ public class NPC extends Player {
             for(int i = 0; i < prospWinners.size(); i++)
             {
                 if(prospWinners.get(i).getSuit() == currentHighCard.getSuit()
-                     && !prospWinners.get(i).getSuit().equals(Card.Suit.BLANK))
+                     && !prospWinners.get(i).getSuit().equals(Card.Suit.BLANK) && prospWinners.get(i).getCardVal() != 0)
                 {
                     for(int handIndex = 0; handIndex <= maxIndex; handIndex++)
                     {
@@ -1242,7 +1242,7 @@ public class NPC extends Player {
                     //check to see if the valid card is trump or worth points.
                     if(validCards[i].getScore() == 0 
                         && (trumpLed ||validCards[i].getSuit() != trumpSuit)
-                           && !validCards[i].getSuit().equals(Card.Suit.BLANK))
+                           && !validCards[i].getSuit().equals(Card.Suit.BLANK) && validCards[i].getCardVal() != 0)
                         return getHandIndexOf(validCards[i]);
                 }
         }
@@ -1260,7 +1260,7 @@ public class NPC extends Player {
         for(int i = 0; i <= maxIndex; i++)
         {
             if(validCards[i].getSuit() == trumpSuit
-                  && !validCards[i].getSuit().equals(Card.Suit.BLANK))
+                  && !validCards[i].getSuit().equals(Card.Suit.BLANK) && validCards[i].getCardVal() != 0)
                 return getHandIndexOf(validCards[i]);
         }
         return -1;

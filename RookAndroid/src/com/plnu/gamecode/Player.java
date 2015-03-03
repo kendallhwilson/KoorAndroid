@@ -581,25 +581,15 @@ public class Player {
       sortHand(hand.length);
       
       //Check that hand is sorted
-      /*System.out.println("Sorted hand of player "+indexOfPlaceInTrick+
+      System.out.println("Sorted hand of player "+indexOfPlaceInTrick+
                               " places after the trickWinner(after they discard)");
       for(int i=0;i<hand.length;i++)
       {
-         if(hand[i].getCardVal()!=0) //Stops the card from being displayed if the cardValue is equal to zero.
-         {
             System.out.println(i +". "+ hand[i].getCardVal() 
                         + " " + hand[i].getSuit());
-         }
-      }*/
-         
-      //Check that card is added to trick
-      System.out.println("Trick so far: ");
-      for(int i=0;i<=indexOfPlaceInTrick;i++)
-      {
-         if(trick[i]!=null)
-            System.out.println(trick[i].getCardVal() 
-                        + " " + trick[i].getSuit()+"\n");
       }
+      
+      System.out.println("Card played by player " +indexOfPlaceInTrick+ trick[indexOfPlaceInTrick].getCardVal() + " " + trick[indexOfPlaceInTrick].getSuit());
       return trick;
     }
 

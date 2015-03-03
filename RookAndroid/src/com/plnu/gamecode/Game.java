@@ -206,6 +206,8 @@ public class Game {
 		     players[trickWinner].hand[indexToPlay].setCard(Card.Suit.BLANK, 100);
 		     players[trickWinner].hand[indexToPlay].setCardValue(0);
 		     
+		     players[trickWinner].sortHand(players[trickWinner].hand.length);
+		     
 		     currentPlayersTurn = (currentPlayersTurn + 1) % 4;
 		     currentPlaceInTrick++;
 			}
@@ -339,7 +341,8 @@ public class Game {
 		deck.add(card);
 		
 		//"shuffling" the deck
-		long seed = System.nanoTime();
+		//long seed = System.nanoTime();
+		long seed = 10865663962555L;
 		System.out.println("SEED: " + seed);
 		Collections.shuffle(deck, new Random(seed));
 		  
@@ -461,12 +464,12 @@ public void addRoundScoreToGameScore(){
 		//updating human score even though computers won the bid
 		currentTeamScores[1] += roundScore[1];
 		
-		if(roundScore[0]< players[bidWinner].bidAmount){
-			currentTeamScores[0] -= players[bidWinner].bidAmount;
+		if(roundScore[0] >=  players[bidWinner].bidAmount){
+			currentTeamScores[0] += roundScore[0];
 		}
 	
 		else{
-		currentTeamScores[0] += roundScore[0];
+			currentTeamScores[0] = currentTeamScores[0] -  players[bidWinner].bidAmount;
 		}
 	}
 	//else the human team won the bid
@@ -475,10 +478,11 @@ public void addRoundScoreToGameScore(){
 		//updating computer score even though human team won
 		currentTeamScores[0] += roundScore[0];
 		
-		if(roundScore[1]<players[bidWinner].bidAmount){
+		if(roundScore[1] >= players[bidWinner].bidAmount){
+			currentTeamScores[1] += roundScore[1];
 			currentTeamScores[1] -= players[bidWinner].bidAmount;
 		}else{
-		currentTeamScores[1] += roundScore[1];
+			currentTeamScores[1] = currentTeamScores[1] - players[bidWinner].bidAmount;
 		}
 	}
 	
