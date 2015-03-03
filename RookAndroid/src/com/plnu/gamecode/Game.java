@@ -341,8 +341,8 @@ public class Game {
 		deck.add(card);
 		
 		//"shuffling" the deck
-		//long seed = System.nanoTime();
-		long seed = 10865663962555L;
+		long seed = System.nanoTime();
+		//long seed = 10865663962555L;
 		System.out.println("SEED: " + seed);
 		Collections.shuffle(deck, new Random(seed));
 		  
