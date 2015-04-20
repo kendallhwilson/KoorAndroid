@@ -185,7 +185,15 @@
         android:layout_height="wrap_content"
         android:layout_above="@+id/bid_textview"
         android:layout_toRightOf="@+id/trumpTitle"
-        android:text="" />
+        android:text="" />    
+
+    <TextView
+        android:id="@+id/player4_textview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/player4_card"
+        android:layout_alignLeft="@+id/player2_textview"
+        android:text="@string/player4" />
 
     <ImageView
         android:id="@+id/player2_card"
@@ -200,6 +208,30 @@
         android:scaleType="fitCenter"
         android:src="@drawable/blankcard"
          />
+
+    <ImageView
+        android:id="@+id/player4_card"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/card_line_1"
+        android:layout_alignLeft="@+id/player2_card"
+        android:layout_weight="0.25"
+        android:adjustViewBounds="true"
+        android:maxHeight="100dp"
+        android:maxWidth="75dp"
+        android:scaleType="fitCenter"
+        android:src="@drawable/blankcard"
+         />
+
+    <TextView
+        android:id="@+id/player1_textview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/player3_textview"
+        android:layout_alignBottom="@+id/player3_textview"
+        android:layout_toLeftOf="@+id/bid_number_textview"
+        android:text="@string/player1" 
+        />
 <LinearLayout
         android:id="@+id/adLine"
         android:layout_width="match_parent"
@@ -238,21 +270,11 @@
     android:text="@string/team1" />
 
 <TextView
-    android:id="@+id/player1_textview"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:layout_alignParentLeft="true"
-    android:layout_below="@+id/player2_card"
-    android:layout_marginTop="289dp"
-    android:text="@string/player1" />
-
-<TextView
     android:id="@+id/player3_textview"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:layout_alignBaseline="@+id/player1_textview"
-    android:layout_alignBottom="@+id/player1_textview"
     android:layout_alignParentRight="true"
+    android:layout_below="@+id/player2_card"
     android:text="@string/player3" />
 
 <ImageView
@@ -272,31 +294,8 @@
     android:id="@+id/player1_card"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:layout_alignRight="@+id/highbid_textview"
-    android:layout_alignTop="@+id/player3_card"
-    android:layout_weight="0.25"
-    android:adjustViewBounds="true"
-    android:maxHeight="100dp"
-    android:maxWidth="75dp"
-    android:scaleType="fitCenter"
-    android:src="@drawable/blankcard" />
-
-<TextView
-    android:id="@+id/player4_textview"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:layout_alignLeft="@+id/player2_textview"
-    android:layout_alignTop="@+id/player4_card"
-    android:layout_marginTop="13dp"
-    android:text="@string/player4" />
-
-<ImageView
-    android:id="@+id/player4_card"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:layout_above="@+id/team1score_textview"
-    android:layout_alignLeft="@+id/player2_card"
-    android:layout_marginBottom="88dp"
+    android:layout_alignParentLeft="true"
+    android:layout_below="@+id/player1_textview"
     android:layout_weight="0.25"
     android:adjustViewBounds="true"
     android:maxHeight="100dp"
