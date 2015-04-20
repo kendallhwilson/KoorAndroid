@@ -58,6 +58,7 @@
         android:layout_alignLeft="@+id/biddingTextView"
         android:layout_alignStart="@+id/biddingTextView"
         android:layout_below="@+id/biddingTextView"
+        android:src="@drawable/helpimage"
         />       
     <TextView
         android:id="@+id/playingTitleTextView"
