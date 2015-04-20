@@ -278,11 +278,12 @@
     android:text="@string/player3" />
 
 <ImageView
-    android:id="@+id/player3_card"
+    android:id="@+id/player1_card"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:layout_alignParentRight="true"
-    android:layout_below="@+id/player3_textview"
+    android:layout_alignRight="@+id/highbid_textview"
+    android:layout_below="@+id/player1_textview"
+    android:layout_marginTop="372dp"
     android:layout_weight="0.25"
     android:adjustViewBounds="true"
     android:maxHeight="100dp"
@@ -291,11 +292,11 @@
     android:src="@drawable/blankcard" />
 
 <ImageView
-    android:id="@+id/player1_card"
+    android:id="@+id/player3_card"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:layout_alignParentLeft="true"
-    android:layout_below="@+id/player1_textview"
+    android:layout_alignParentRight="true"
+    android:layout_alignTop="@+id/player1_card"
     android:layout_weight="0.25"
     android:adjustViewBounds="true"
     android:maxHeight="100dp"
