@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="fill_parent"
   	android:layout_height="fill_parent"> 
+
 <RelativeLayout
     android:layout_width="match_parent"
     android:layout_height="wrap_content" >
@@ -50,6 +51,14 @@
         android:layout_marginTop="@dimen/help_margin_top"
         android:text="@string/help_playing_text" /> 
         
+     <ImageView
+        android:id="@+id/helpImage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/biddingTextView"
+        android:layout_alignStart="@+id/biddingTextView"
+        android:layout_below="@+id/biddingTextView"
+        />       
     <TextView
         android:id="@+id/playingTitleTextView"
         android:layout_width="wrap_content"
@@ -98,13 +107,6 @@
         android:layout_marginTop="@dimen/help_margin_top"
         android:text="@string/help_scoring_text" />
 
-    <ImageView
-        android:id="@+id/helpImage"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/biddingTextView"
-        android:layout_below="@+id/biddingTextView"
-        />
    
     </RelativeLayout>
     </ScrollView>
