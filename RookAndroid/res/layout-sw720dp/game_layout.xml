@@ -7,7 +7,6 @@
     android:layout_height="match_parent"
     android:background="#088A29" >
 
-    
    <LinearLayout
         android:id="@+id/card_line_2"
         android:layout_width="match_parent"
