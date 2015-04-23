@@ -467,7 +467,6 @@ public void addRoundScoreToGameScore(){
 		if(roundScore[0] >=  players[bidWinner].bidAmount){
 			currentTeamScores[0] += roundScore[0];
 		}
-	
 		else{
 			currentTeamScores[0] = currentTeamScores[0] -  players[bidWinner].bidAmount;
 		}
@@ -480,7 +479,6 @@ public void addRoundScoreToGameScore(){
 		
 		if(roundScore[1] >= players[bidWinner].bidAmount){
 			currentTeamScores[1] += roundScore[1];
-			currentTeamScores[1] -= players[bidWinner].bidAmount;
 		}else{
 			currentTeamScores[1] = currentTeamScores[1] - players[bidWinner].bidAmount;
 		}

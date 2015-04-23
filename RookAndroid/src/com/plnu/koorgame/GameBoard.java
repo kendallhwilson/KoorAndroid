@@ -249,7 +249,8 @@ public class GameBoard extends Activity implements onBidListener,
 						if(game.getNumberOfCompletedTricks() <= 10){
 							gameFragment.winnerHighlightToggle(game.getTrickWinnerLocation()+1);
 						}
-						else if (game.getNumberOfCompletedTricks() == 10){
+						
+						if (game.getNumberOfCompletedTricks() >= 10){
 							showFinalScores(game.getCurrentTeamScores());					
 						}
 					}
