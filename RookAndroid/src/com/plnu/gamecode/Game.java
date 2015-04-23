@@ -457,6 +457,17 @@ public void addRoundScoreToGameScore(){
 			roundScore[1] +=20;
 		}
 	}
+	else //Tiebreaker. Whoever took last trick wins in the event that both teams took 5.
+	{
+		if(trickWinner % 2 == 0)
+		{
+			roundScore[0] +=20;
+		}
+		else
+		{
+			roundScore[1] += 20;
+		}
+	}
 
 	//computer team won the bid
 	if (bidWinner%2==0){
