@@ -113,6 +113,9 @@ public class Game {
 			trickWinner = bidWinner;
 			playersRemainingInBidding = 0;
 			currentPlayersTurn = bidWinner;
+			allAIAndPlayerBids[0] = -2;
+			allAIAndPlayerBids[1] = -2;
+			allAIAndPlayerBids[2] = -2;
 			return allAIAndPlayerBids;
 		}
 		
@@ -123,6 +126,9 @@ public class Game {
 			trickWinner = bidWinner;
 			playersRemainingInBidding = 0;
 			currentPlayersTurn = bidWinner;
+			allAIAndPlayerBids[0] = -2;
+			allAIAndPlayerBids[1] = -2;
+			allAIAndPlayerBids[2] = -2;
 			return allAIAndPlayerBids;
 		}
 		
