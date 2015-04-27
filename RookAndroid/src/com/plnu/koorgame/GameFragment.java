@@ -120,7 +120,7 @@ public class GameFragment extends Fragment{
 	
 	public void undoDisplayPlayed()
 	{
-		String cardText4 = "@drawable/blank.jpg";
+		String cardText4 = "@drawable/blankcard";
 		int imageResource4 = getResources().getIdentifier(cardText4, null, "com.plnu.koorgame");
 		player4Card.setImageResource(imageResource4);
 

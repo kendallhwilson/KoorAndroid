@@ -349,7 +349,7 @@ public class Player {
         greenLength = 0;
         blackLength = 0;
         isRookPresent = false;
-        for(int i = 0; i < 15; i++){
+        for(int i = 0; i < 10; i++){
             if(hand[i].getSuit() == Card.Suit.RED){
                  redLength++;
             }

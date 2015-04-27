@@ -220,7 +220,7 @@ public class GameBoard extends Activity implements onBidListener,
 			if(game.getTrickWinnerLocation() == 3){
 				game.playerPlayed(indexToPlay);
 				game.advanceGameState();
-			} else{
+			} else {
 				Card[] tempTrick = game.getCurrentTrick();
 				Card leadCard = tempTrick[0];
 				

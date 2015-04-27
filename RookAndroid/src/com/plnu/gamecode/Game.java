@@ -115,20 +115,20 @@ public class Game {
 			currentPlayersTurn = bidWinner;
 		}
 		
-		if(allAIAndPlayerBids[0] == -2 && allAIAndPlayerBids[1] == -2 && allAIAndPlayerBids[2] == -2){
-			players[3].setHighBidder(highBid);
-			players[3].winningBiddingTeam = true;
-			players[3].myPartner.winningBiddingTeam = true;
-			bidWinner = 3;
+		if(playersRemainingInBidding == 1){
+			players[bidWinner].setHighBidder(highBid);
+			players[bidWinner].winningBiddingTeam = true;
+			players[bidWinner].myPartner.winningBiddingTeam = true;
 			trickWinner = bidWinner;
 			playersRemainingInBidding = 0;
 			currentPlayersTurn = bidWinner;
 		}
 		
-		if(playersRemainingInBidding == 1){
-			players[bidWinner].setHighBidder(highBid);
-			players[bidWinner].winningBiddingTeam = true;
-			players[bidWinner].myPartner.winningBiddingTeam = true;
+		if(allAIAndPlayerBids[0] == -2 && allAIAndPlayerBids[1] == -2 && allAIAndPlayerBids[2] == -2){
+			players[3].setHighBidder(highBid);
+			players[3].winningBiddingTeam = true;
+			players[3].myPartner.winningBiddingTeam = true;
+			bidWinner = 3;
 			trickWinner = bidWinner;
 			playersRemainingInBidding = 0;
 			currentPlayersTurn = bidWinner;
