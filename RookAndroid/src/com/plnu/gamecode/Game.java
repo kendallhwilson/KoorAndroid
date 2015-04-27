@@ -113,6 +113,7 @@ public class Game {
 			trickWinner = bidWinner;
 			playersRemainingInBidding = 0;
 			currentPlayersTurn = bidWinner;
+			return allAIAndPlayerBids;
 		}
 		
 		if(playersRemainingInBidding == 1){
@@ -122,6 +123,7 @@ public class Game {
 			trickWinner = bidWinner;
 			playersRemainingInBidding = 0;
 			currentPlayersTurn = bidWinner;
+			return allAIAndPlayerBids;
 		}
 		
 		if(allAIAndPlayerBids[0] == -2 && allAIAndPlayerBids[1] == -2 && allAIAndPlayerBids[2] == -2){
@@ -132,6 +134,7 @@ public class Game {
 			trickWinner = bidWinner;
 			playersRemainingInBidding = 0;
 			currentPlayersTurn = bidWinner;
+			return allAIAndPlayerBids;
 		}
 		}
 		return allAIAndPlayerBids;
