@@ -22,10 +22,10 @@ public class Player {
     protected boolean rookPlayed = false;
     protected Card.Suit strongestSuit = Card.Suit.RED;
     protected Card.Suit secondLongestSuit = Card.Suit.BLUE;
-    protected int redLength = 0;
-    protected int blueLength = 0;
-    protected int greenLength = 0;
-    protected int blackLength = 0;
+    public int redLength = 0;
+    public int blueLength = 0;
+    public int greenLength = 0;
+    public int blackLength = 0;
     protected boolean isRookPresent = false;
     protected boolean enemiesOutOfTrump[] = new boolean [2];
     protected Player myPartner = null;
@@ -34,7 +34,7 @@ public class Player {
     /**
      * Array of Card objects used as the internal representation of a players hand
      */
-    protected Card[] hand = new Card[15];
+    public Card[] hand = new Card[15];
     protected Card[] discards = new Card[5];
     /**
      * States true if the player is still bidding and false if the player has passed

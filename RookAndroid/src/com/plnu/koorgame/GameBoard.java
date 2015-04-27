@@ -214,12 +214,38 @@ public class GameBoard extends Activity implements onBidListener,
 	
 	public void onPlayerPlayed(int indexToPlay){
 		if(game.getNumberOfCompletedTricks() != 10){
+			
 			int currentTrickWinnerLocation = game.getTrickWinnerLocation();
 			gameFragment.setWhoLed(game.getTrickWinnerLocation());
 			if(game.getTrickWinnerLocation() == 3){
 				game.playerPlayed(indexToPlay);
 				game.advanceGameState();
 			} else{
+				Card[] tempTrick = game.getCurrentTrick();
+				Card leadCard = tempTrick[0];
+				
+				if(leadCard.getSuit() == Card.Suit.RED){
+					if(game.players[3].redLength > 0 && game.players[3].hand[indexToPlay].getSuit() != Card.Suit.RED){
+						gameFragment.undoDisplayPlayed();
+						return;
+					}
+				} else if(leadCard.getSuit() == Card.Suit.BLACK){
+					if(game.players[3].blackLength > 0 && game.players[3].hand[indexToPlay].getSuit() != Card.Suit.BLACK){
+						gameFragment.undoDisplayPlayed();
+						return;
+					}
+				} else if(leadCard.getSuit() == Card.Suit.GREEN){
+					if(game.players[3].greenLength > 0 && game.players[3].hand[indexToPlay].getSuit() != Card.Suit.GREEN){
+						gameFragment.undoDisplayPlayed();
+						return;
+					}
+				} else {
+					if(game.players[3].blueLength > 0 && game.players[3].hand[indexToPlay].getSuit() != Card.Suit.BLUE){
+						gameFragment.undoDisplayPlayed();
+						return;
+					}
+				}
+				
 				game.playerPlayed(indexToPlay);
 				game.advanceGameState();
 			}

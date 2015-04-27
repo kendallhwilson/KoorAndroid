@@ -118,6 +118,14 @@ public class GameFragment extends Fragment{
 		}
 	}
 	
+	public void undoDisplayPlayed()
+	{
+		String cardText4 = "@drawable/blank.jpg";
+		int imageResource4 = getResources().getIdentifier(cardText4, null, "com.plnu.koorgame");
+		player4Card.setImageResource(imageResource4);
+
+	}
+	
 	/*
 	 * Displays the trick winner for timer amount
 	 * @param the player number who won

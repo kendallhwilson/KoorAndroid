@@ -12,7 +12,7 @@ import java.util.Random;
  */
 
 public class Game {
-	Player [] players = new Player[4];
+	public Player [] players = new Player[4];
 	int bidWinner = 0; 
 	int trickWinner = 0;
 	Card [] currentTrick = new Card[4];
@@ -395,6 +395,7 @@ public void dealCards(){
 	
    for(int i = 0; i < 4; i++){
       players[i].sortHand(10);
+      players[i].determineSuitLengths();
    }
 	
 }
@@ -538,6 +539,25 @@ public Card[] getCurrentTrick()
 	return currentTrick;
 }
 
+public int getHumanRedLength()
+{
+	return players[3].redLength;
+}
+
+public int getHumanBlueLength()
+{
+	return players[3].blueLength;
+}
+
+public int getHumanGreenLength()
+{
+	return players[3].greenLength;
+}
+
+public int getHumanBlackLength()
+{
+	return players[3].blackLength;
+}
 //Precondition: kitty has been instantiated.
 //Postcondition: kitty is returned as an array of cards.
 public int[] getPlayerHandWithKitty()
@@ -638,6 +658,7 @@ public void playerPlayed(int indexToPlay){
 	currentPlayersTurn = (currentPlayersTurn + 1) % 4;
 	currentPlaceInTrick++;
 	
+	players[3].determineSuitLengths();
 }
 
 public void cleanRoundScores(){
