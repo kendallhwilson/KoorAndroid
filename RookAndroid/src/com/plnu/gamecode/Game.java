@@ -16,7 +16,7 @@ public class Game {
 	int bidWinner = 0; 
 	int trickWinner = 0;
 	Card [] currentTrick = new Card[4];
-	Card.Suit trumpColor = null; 
+	public Card.Suit trumpColor = null; 
 	protected ArrayList<Card> deck = new ArrayList<Card>();
 	protected Card kitty[] = new Card[5];
 	protected int highBid = 0;
@@ -451,7 +451,7 @@ public void addRoundScoreToGameScore(){
 	
 	//tricksWon refers to number of tricks won by computer team, adds 20 pts if its greater than 5
 	if(tricksWon!=5){
-		if(tricksWon>5){
+		if(tricksWon<5){
 			roundScore[0] += 20;
 		}
 		else{

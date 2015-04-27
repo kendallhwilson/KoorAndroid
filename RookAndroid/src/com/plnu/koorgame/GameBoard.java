@@ -224,7 +224,11 @@ public class GameBoard extends Activity implements onBidListener,
 				Card[] tempTrick = game.getCurrentTrick();
 				Card leadCard = tempTrick[0];
 				
-				if(leadCard.getSuit() == Card.Suit.RED){
+				if(game.players[3].hand[indexToPlay].getValue() == 44){ //We must treat the rook as though it was trump for the following rules.
+					game.players[3].hand[indexToPlay].setSuit(game.trumpColor);
+				}
+				
+				if(leadCard.getSuit() == Card.Suit.RED){ //Cascading through each suit. If the player doesn't follow lead and they have cards of that color, we reject their play.
 					if(game.players[3].redLength > 0 && game.players[3].hand[indexToPlay].getSuit() != Card.Suit.RED){
 						gameFragment.undoDisplayPlayed();
 						return;
