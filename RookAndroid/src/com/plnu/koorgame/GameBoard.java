@@ -83,7 +83,7 @@ public class GameBoard extends Activity implements onBidListener,
 		//They passed the bid
 		game.playerDroppedFromBidding();
 		
-		while(game.getNumberOfBiddersRemaining() > 1){
+		while(game.getNumberOfBiddersRemaining() >= 1){
 			int [] bids = game.advanceBidding(); 
 			bidFragment.displayPlayerBid(1, bids[0]);
 			bidFragment.displayPlayerBid(2,  bids[1]);
@@ -94,6 +94,7 @@ public class GameBoard extends Activity implements onBidListener,
 		
 		showBidWinner(game.getBidWinnerLocation(), trumpColor);
 		startGameFragment();
+		System.out.println("BIDWIN:" + game.bidWinner + "In onPlayerPassedBid.");
 	}
 	/*
 	 * Interface with BidFragment
@@ -186,7 +187,7 @@ public class GameBoard extends Activity implements onBidListener,
 	}	
 	
 	public void startGameFragment() {
-		
+		System.out.println("BIDWIN:" + game.bidWinner + "In startGameFragment.");
 		Bundle args = new Bundle();
 		args.putIntArray("playerHandArray", game.getPlayerCardsUI());
 		args.putString("currentTrump", game.getTrump());

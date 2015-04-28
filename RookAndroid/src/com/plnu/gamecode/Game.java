@@ -13,7 +13,7 @@ import java.util.Random;
 
 public class Game {
 	public Player [] players = new Player[4];
-	int bidWinner = 0; 
+	public int bidWinner = 0; 
 	int trickWinner = 0;
 	Card [] currentTrick = new Card[4];
 	public Card.Suit trumpColor = null; 
@@ -105,7 +105,7 @@ public class Game {
 				playersRemainingInBidding--;
 				allAIAndPlayerBids[i] = -2;
 			}
-			
+			System.out.println("BIDWIN:" + bidWinner + "In advanceBidding.");
 		} else if (highBid > 195 && playersRemainingInBidding > 1){
 			players[bidWinner].setHighBidder(highBid);
 			players[bidWinner].winningBiddingTeam = true;
@@ -117,9 +117,7 @@ public class Game {
 			allAIAndPlayerBids[1] = -2;
 			allAIAndPlayerBids[2] = -2;
 			return allAIAndPlayerBids;
-		}
-		
-		if(playersRemainingInBidding == 1){
+		} else if(playersRemainingInBidding == 1){
 			players[bidWinner].setHighBidder(highBid);
 			players[bidWinner].winningBiddingTeam = true;
 			players[bidWinner].myPartner.winningBiddingTeam = true;
@@ -130,9 +128,7 @@ public class Game {
 			allAIAndPlayerBids[1] = -2;
 			allAIAndPlayerBids[2] = -2;
 			return allAIAndPlayerBids;
-		}
-		
-		if(allAIAndPlayerBids[0] == -2 && allAIAndPlayerBids[1] == -2 && allAIAndPlayerBids[2] == -2){
+		} else if(allAIAndPlayerBids[0] == -2 && allAIAndPlayerBids[1] == -2 && allAIAndPlayerBids[2] == -2){
 			players[3].setHighBidder(highBid);
 			players[3].winningBiddingTeam = true;
 			players[3].myPartner.winningBiddingTeam = true;
@@ -460,7 +456,7 @@ public void addRoundScoreToGameScore(){
 	
 	//tricksWon refers to number of tricks won by computer team, adds 20 pts if its greater than 5
 	if(tricksWon!=5){
-		if(tricksWon<5){
+		if(tricksWon>5){
 			roundScore[0] += 20;
 		}
 		else{
