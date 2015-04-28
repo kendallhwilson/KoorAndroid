@@ -88,7 +88,9 @@ public class Game {
 	      currentTrick[3] = new Card();
 	}
 	public int[] advanceBidding() {
-		
+		if(allAIAndPlayerBids[3] == -2){
+			playersRemainingInBidding--;
+		}
 		for(int i=0; i < 3; i++){ //For each AI PLAYER, we iterate through and see if they want to bid. If they do, they replace the bid. 
 			
 			if(highBid < 195 && playersRemainingInBidding > 1){
@@ -100,13 +102,17 @@ public class Game {
 				bidWinner = i;
 				allAIAndPlayerBids[i] = highBid;	
 			}
-			else if(allAIAndPlayerBids[i] != -2){ //If they no longer want to bid, remove them. We check to see if they have already been removed by comparing their score to -2, our removed player value.
+			else { //If they no longer want to bid, remove them. We check to see if they have already been removed by comparing their score to -2, our removed player value.
 				players[i].bidding = false;
 				playersRemainingInBidding--;
 				allAIAndPlayerBids[i] = -2;
+				}
 			}
 			System.out.println("BIDWIN:" + bidWinner + "In advanceBidding.");
-		} else if (highBid > 195 && playersRemainingInBidding > 1){
+			
+		} 
+		
+		if (highBid > 195 || playersRemainingInBidding <= 1){
 			players[bidWinner].setHighBidder(highBid);
 			players[bidWinner].winningBiddingTeam = true;
 			players[bidWinner].myPartner.winningBiddingTeam = true;
@@ -117,34 +123,12 @@ public class Game {
 			allAIAndPlayerBids[1] = -2;
 			allAIAndPlayerBids[2] = -2;
 			return allAIAndPlayerBids;
-		} else if(playersRemainingInBidding == 1){
-			players[bidWinner].setHighBidder(highBid);
-			players[bidWinner].winningBiddingTeam = true;
-			players[bidWinner].myPartner.winningBiddingTeam = true;
-			trickWinner = bidWinner;
-			playersRemainingInBidding = 0;
-			currentPlayersTurn = bidWinner;
-			allAIAndPlayerBids[0] = -2;
-			allAIAndPlayerBids[1] = -2;
-			allAIAndPlayerBids[2] = -2;
-			return allAIAndPlayerBids;
-		} else if(allAIAndPlayerBids[0] == -2 && allAIAndPlayerBids[1] == -2 && allAIAndPlayerBids[2] == -2){
-			players[3].setHighBidder(highBid);
-			players[3].winningBiddingTeam = true;
-			players[3].myPartner.winningBiddingTeam = true;
-			bidWinner = 3;
-			trickWinner = bidWinner;
-			playersRemainingInBidding = 0;
-			currentPlayersTurn = bidWinner;
-			return allAIAndPlayerBids;
-		}
 		}
 		return allAIAndPlayerBids;
 	}
 	
 	public void playerDroppedFromBidding() { //This allows the GUI to remove the player from bidding and still use advanceBid to let the AI compete.
 		allAIAndPlayerBids[3] = -2;
-		playersRemainingInBidding--;
 	}
 	
 	public void playerEnteredNewBid(int playerNewBid){ //If the player entered a new bid, add it to the array before the GUI calls advanceBid again.
