@@ -113,6 +113,11 @@ public class Game {
 		} 
 		
 		if (highBid > 195 || playersRemainingInBidding <= 1){
+			
+			if(highBid == 100){
+				bidWinner = 3;
+			}
+			
 			players[bidWinner].setHighBidder(highBid);
 			players[bidWinner].winningBiddingTeam = true;
 			players[bidWinner].myPartner.winningBiddingTeam = true;
