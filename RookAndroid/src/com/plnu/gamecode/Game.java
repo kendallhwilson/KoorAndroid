@@ -28,6 +28,9 @@ public class Game {
 	int currentPlaceInTrick = 0;
 	int numberOfTricksPlayed = 0;
 	
+	int points = 0;
+	
+	
 	int count = 1;
 	int allAIAndPlayerBids[] = new int[4];
 	int playersRemainingInBidding = 4;
@@ -73,7 +76,9 @@ public class Game {
 				players[i].hand[j] = new Card();
 			}
 		}
-		
+
+
+		  points = 0;
 		  players[0] = new NPC(); //Just to be safe, we will reinstantiate all of the objects. 
 	      players[1] = new NPC();
 	      players[2] = new NPC();
@@ -88,9 +93,11 @@ public class Game {
 	      currentTrick[3] = new Card();
 	}
 	public int[] advanceBidding() {
+		
 		if(allAIAndPlayerBids[3] == -2){
 			playersRemainingInBidding--;
 		}
+		
 		for(int i=0; i < 3; i++){ //For each AI PLAYER, we iterate through and see if they want to bid. If they do, they replace the bid. 
 			
 			if(highBid < 195 && playersRemainingInBidding > 1){
@@ -400,7 +407,10 @@ public void addTrickScore(int trickWinner, Card[] currentTrick){
 	int trickScore=0;
 	for(int i =0;i<4;i++){
 		trickScore += currentTrick[i].getScore();
+		System.out.println("POINTS: "+currentTrick[i].getSuit().toString() + " " +currentTrick[i].getCardVal() + " "+ currentTrick[i].getScore());
 	}
+	points += trickScore;
+	System.out.println("POINTS:"+ points);
 	
 	if (trickWinner%2==0){
 		roundScore[0] += trickScore;
@@ -425,6 +435,8 @@ public void addDiscardToScore(){
 	if(trickWinner == 1 || trickWinner == 3){
 		roundScore[1] += discardScore();
 	}
+	
+	
 }
 /** 
  * discardScore() grabs the discards array from the original bidWinner and adds the scores
@@ -434,15 +446,17 @@ public int discardScore(){
 	int discardScore = 0;
 	//Need to get card values from discarded array in the Player
 	//Winner of last trick is not necessarily the one who discarded
-	for(int i = 0; i < players[bidWinner].discards.length-1; i++){
+	for(int i = 0; i < 5; i++){
 		discardScore += players[bidWinner].discards[i].getScore();
+		System.out.println("POINTS: "+players[bidWinner].discards[i].getSuit().toString() + " " +players[bidWinner].discards[i].getCardVal() + " "+ players[bidWinner].discards[i].getScore());
 	}
 	return discardScore;
 }
 
 
 public void addRoundScoreToGameScore(){
-	
+	points += 20;
+	points += discardScore();
 	//tricksWon refers to number of tricks won by computer team, adds 20 pts if its greater than 5
 	if(tricksWon!=5){
 		if(tricksWon>5){
@@ -463,7 +477,7 @@ public void addRoundScoreToGameScore(){
 			roundScore[1] += 20;
 		}
 	}
-
+	System.out.println("POINTS: " +points);
 	//computer team won the bid
 	if (bidWinner%2==0){
 		

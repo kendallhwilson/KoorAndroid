@@ -8,13 +8,13 @@
     android:background="#088A29" >
 
    <LinearLayout
-        android:id="@+id/card_line_2"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/adLine"
-        android:orientation="horizontal"
-        android:weightSum="1" 
-        android:background="#088A29">
+       android:id="@+id/card_line_2"
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content"
+       android:layout_above="@+id/adLine"
+       android:background="#088A29"
+       android:orientation="horizontal"
+       android:weightSum="1" >
 
         <ImageView
             android:id="@+id/card6"
@@ -69,9 +69,9 @@
         android:layout_height="wrap_content"
         android:layout_above="@+id/card_line_2"
         android:layout_alignParentLeft="true"
+        android:background="#088A29"
         android:orientation="horizontal"
-        android:weightSum="1" 
-        android:background="#088A29">
+        android:weightSum="1" >
 
         <ImageView
             android:id="@+id/card1"
