@@ -323,18 +323,11 @@ public class GameBoard extends Activity implements onBidListener,
 		game.resetCurrentPlayersTurn();
 		
 		Bundle args = new Bundle();
-		if (scores[0] > scores[1]) {
-			args.putString("WINNERNAME", "Computer Team");
-			args.putString("LOSERNAME", "Your Team");
-			args.putInt("WINNERSCORE", scores[0]);
-			args.putInt("LOSERSCORE", scores[1]);
-		}
-		else {
-			args.putString("WINNERNAME", "Your Team");
-			args.putString("LOSERNAME", "Computer Team");
-			args.putInt("WINNERSCORE", scores[1]);
-			args.putInt("LOSERSCORE", scores[0]);
-		}
+		
+		args.putString("COMPUTERNAME", "Computer Team");
+		args.putString("YOURNAME", "Your Team");
+		args.putInt("COMPUTERSCORE", scores[0]);
+		args.putInt("YOURSCORE", scores[1]);
 		
 		
 		FinalScoreDialogFragment finalScoreFragment = new FinalScoreDialogFragment();
