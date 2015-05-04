@@ -116,62 +116,65 @@ public class NPC extends Player {
      * New system:  Count rank of cards, boost for multiplicity of suit, and decide then.
      */
     public void bidOrPass(boolean bid) {
-    	//50/50 chance of bid or pass
-      /*  Random generator = new Random();
-        int num = generator.nextInt(2);
-        if (num == 1) {
-            bidding = false;
-        }
-        //handValue = determineHandStrength();
-        //longestSuitLength = longestSuit();
-        else{
-        	bidding = bid;
-        }
-        
-        */
-
-    	int bidChance = 2; // 50/50 shot to start. Can only go up.
+    	String[] userHand = computeHandStrengthString().split(",");
+    	int[] userHandBinary = new int[userHand.length];
     	
-    	Random generator = new Random(); 
-    	int randomNumber = -1;
-    	longestSuitLength = longestSuit();
-  
-    	if(longestSuitLength >= 5 && findRook() != -1){
-    		bidChance = 7; //Seems like a pretty decent hand.
-    	} else if(longestSuitLength >= 5) {
-    		bidChance = 6; //Still seems strong, but not as good without the rook. 
-    	}
- 
-    	if(longestSuitLength >= 7){ //This could be a rediculous hand.
-    		bidChance = 8;
-    		if(findRook() != -1){ //Welp, looks like it really is a rediculous hand.
-    			bidChance = 9;
-    		}
+    	for(int i=0; i < userHand.length; i++){
+    		userHandBinary[i] = Integer.parseInt(userHand[i]);
     	}
     	
-    	if(longestSuitLength >= 3){ //This isn't looking too good.
-    		bidChance = 3;
-    		if(findRook() != -1){
-    			bidChance = 2;
-    		}
+    	double[] neuralNetworkWeights = { 0.013376319473616,
+    			   0.124529375167670,
+    			   0.031110608031386,
+    			   0.133801138492820,
+    			  -0.026054376441737,
+    			  -0.023863745982138,
+    			  -0.023810852233062,
+    			  -0.023002798755814,
+    			  -0.022355372654123,
+    			  -0.011641172613218,
+    			  -0.012701999683151,
+    			  -0.010474329265952,
+    			  -0.003927790999056,
+    			   0.029217357626649,
+    			   0.132161779882216,
+    			   0.050419135918313,
+    			   0.044169318901257,
+    			   0.045412178811322,
+    			   0.046587442564628,
+    			   0.047497616980844,
+    			   0.065730900147585,
+    			   0.061814648211015,
+    			   0.064645157783534,
+    			   0.069309839499554,
+    			   0.115497707872906,
+    			   0.191396890557089,
+    			   0.164628402430560,
+    			   0.003794098635924 };
+    	
+    	double runningSum = 0.0;
+    	
+    	for(int i=0; i < userHandBinary.length; i++){
+    		runningSum += userHandBinary[i]*neuralNetworkWeights[i];
     	}
     	
-    	bidChance -= numberOfTimesAskedToBid; // Each time we pass around the table, we don't want to keep having the same likelihood if someone else is also bidding.
+    	runningSum += neuralNetworkWeights[27];
     	
-    	if(bidChance <= 0 || bidding == false){
-    		bidding = false;
+    	if(runningSum < .25 && highBid < 100){
+    		bidding = bid;
+    	} else if(.25 <= runningSum && runningSum < .3 && highBid < 140){
+    		bidding = bid;
+    	} else if(.3 <= runningSum && runningSum < .4 && highBid < 145){
+    		bidding = bid;
+    	} else if(.4 <= runningSum && runningSum < .5 && highBid < 150){
+    		bidding = bid;
+    	} else if(.5 <= runningSum && runningSum < .6 && highBid < 155){
+    		bidding = bid;
+    	} else if(runningSum >= .6 && highBid < 160){
+    		bidding = bid;
     	} else {
-    		randomNumber = generator.nextInt(bidChance);
-    		if(randomNumber == 1){
-    			bidding = false;
-    		}
-    		else {
-    			bidding = bid;
-    		}
+    		bidding = false;
     	}
-    	
-    	numberOfTimesAskedToBid++;
-    	
     }
 
     /**
@@ -1605,4 +1608,132 @@ public class NPC extends Player {
 //        }
 //    	}
   }
+    
+    public String computeHandStrengthString()
+    {
+   	String playerHand = "";
+		String[] coloredCards = new String[4];
+		
+		
+		coloredCards[0] = "";
+		coloredCards[1] = "";
+		coloredCards[2] = "";
+		coloredCards[3] = "";
+		int redLength = 0;
+		int blueLength = 0;
+		int greenLength = 0;
+		int blackLength = 0;
+		
+		for(int i=0; i <= 10 ; i++)
+		{
+			Card tempCard = new Card(); 
+			tempCard.setCard(Card.Suit.RED, i);
+			
+			if(getHandIndexOf(tempCard) == -1)
+			{
+				coloredCards[0] = coloredCards[0] + "0,";
+			}
+			else
+			{
+				coloredCards[0] = coloredCards[0] + "1,";
+				redLength++;
+				
+			}
+		}
+		
+		for(int i=11; i <= 21; i++)
+		{
+			Card tempCard = new Card(); 
+			tempCard.setCard(Card.Suit.BLUE, i);
+			
+			if(getHandIndexOf(tempCard) == -1)
+			{
+				coloredCards[1] = coloredCards[1] + "0,";
+			}
+			else
+			{
+				coloredCards[1] = coloredCards[1] + "1,";
+				blueLength++;
+			}
+		}
+		
+		for(int i=22; i <= 32; i++)
+		{
+			Card tempCard = new Card(); 
+			tempCard.setCard(Card.Suit.GREEN, i);
+			
+			if(getHandIndexOf(tempCard) == -1)
+			{
+				coloredCards[2] = coloredCards[2] + "0,";
+			}
+			else
+			{
+				coloredCards[2] = coloredCards[2] + "1,";
+				greenLength++;
+			}
+		}
+		
+		for(int i=33; i < 44; i++)
+		{
+			Card tempCard = new Card(); 
+			tempCard.setCard(Card.Suit.BLACK, i);
+			
+			if(getHandIndexOf(tempCard) == -1)
+			{
+				coloredCards[3] = coloredCards[3] + "0,";
+			}
+			else
+			{
+				coloredCards[3] = coloredCards[3] + "1,";
+				blackLength++;
+			}
+		}
+		
+		for(int i=0; i < 10; i++)
+		{
+			System.out.println(hand[i].getSuit().toString() + (hand[i].getCardVal()));
+		}
+		
+	  int[] colorLengths = {redLength, blueLength, greenLength, blackLength};
+	  int i, j, first, temp;  
+	  String tempString;
+     for ( i = 0; i < 4; i++)  
+     {
+          first = i;   //initialize to subscript of first element
+          for(j = i+1; j < 4; j++)   //locate smallest element between positions 1 and i.
+          {
+               if( colorLengths[j] < colorLengths[first] ){         
+                 first = j;
+					  
+					  }
+          }
+          temp = colorLengths[first];   //swap smallest found with element in position i.
+          colorLengths[first] = colorLengths[i];
+          colorLengths[i] = temp; 
+			 
+			 tempString = coloredCards[first];
+			 coloredCards[first] = coloredCards[i];
+			 coloredCards[i] = tempString;
+      }
+     	coloredCards[0] = coloredCards[0].substring(coloredCards[0].length()-4, coloredCards[0].length() - 1);
+     	coloredCards[1] = coloredCards[1].substring(coloredCards[1].length()-5, coloredCards[1].length());
+		
+		playerHand = coloredCards[0] + coloredCards[1] + coloredCards[2] + coloredCards[3];
+		
+		
+		Card tempCard = new Card();
+		tempCard.setCard(Card.Suit.NOSUIT, 44);
+		
+		if(getHandIndexOf(tempCard) == -1)
+		{
+			playerHand = playerHand + "0";
+		}
+		else
+		{
+			playerHand = playerHand + "1";
+		}
+		
+    	return playerHand;
+    }
+
 }

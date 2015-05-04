@@ -39,7 +39,6 @@ public class GameBoard extends Activity implements onBidListener,
 	 * Allows us to create a new deck and restart a round if we have not reached 500 or it is the first round of the game.
 	 */
 	public void setupNewRound(){
-		
 		bidFragment = new BidFragment();
 		discardFragment = new DiscardFragment();
 		gameFragment = new GameFragment();
@@ -341,17 +340,15 @@ public class GameBoard extends Activity implements onBidListener,
 		finalScoreFragment.setArguments(args);
 		finalScoreFragment.show(getFragmentManager(), "finaldialogtag");
 		
-		advanceGame = new CountDownTimer(6000, 1000) { //We have to wait for all the cards to be drawn and such. This was previously called in the dialog.
-			public void onTick(long millisTillFinished) {
-			}		
-			public void onFinish() {
-					if(game.getCurrentTeamScores()[0] < E.WINNING_POINT_TOTAL && game.getCurrentTeamScores()[1] < E.WINNING_POINT_TOTAL){
+		if(game.getCurrentTeamScores()[0] < E.WINNING_POINT_TOTAL && game.getCurrentTeamScores()[1] < E.WINNING_POINT_TOTAL){
+			advanceGame = new CountDownTimer(6000, 1000) { //We have to wait for all the cards to be drawn and such. This was previously called in the dialog.
+				public void onTick(long millisTillFinished) {
+				}		
+				public void onFinish() {
 						setupNewRound();
-					} else {
-						gameEnd();
-					}
-			}
-		}.start();
+				}
+			}.start();
+		} 
 		
 	}
 	

@@ -29,6 +29,7 @@ public class Player {
     protected boolean isRookPresent = false;
     protected boolean enemiesOutOfTrump[] = new boolean [2];
     protected Player myPartner = null;
+    public int highBid = 0;
 
 
     /**
@@ -133,7 +134,7 @@ public class Player {
         discards = new Card[5];
         for (i=0; i<15; i++)
         {
-			if (!discarded[i]) {
+			if (!discarded[i]){
 				tempHand[count] = hand[i];
 				count++;
 			}

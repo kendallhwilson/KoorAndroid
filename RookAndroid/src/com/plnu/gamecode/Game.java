@@ -94,12 +94,8 @@ public class Game {
 	}
 	public int[] advanceBidding() {
 		
-		if(allAIAndPlayerBids[3] == -2){
-			playersRemainingInBidding--;
-		}
-		
 		for(int i=0; i < 3; i++){ //For each AI PLAYER, we iterate through and see if they want to bid. If they do, they replace the bid. 
-			
+			players[i].highBid = highBid;
 			if(highBid < 195 && playersRemainingInBidding > 1){
 			
 			players[i].bidOrPass(players[i].bidding);
@@ -141,6 +137,7 @@ public class Game {
 	
 	public void playerDroppedFromBidding() { //This allows the GUI to remove the player from bidding and still use advanceBid to let the AI compete.
 		allAIAndPlayerBids[3] = -2;
+		playersRemainingInBidding--;
 	}
 	
 	public void playerEnteredNewBid(int playerNewBid){ //If the player entered a new bid, add it to the array before the GUI calls advanceBid again.

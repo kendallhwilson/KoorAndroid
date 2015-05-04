@@ -4,6 +4,7 @@ import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.DialogFragment;
 import android.os.Bundle;
+import android.widget.Button;
 
 public class FinalScoreDialogFragment extends DialogFragment {
 	
@@ -16,6 +17,9 @@ public class FinalScoreDialogFragment extends DialogFragment {
 				getArguments().getInt("LOSERSCORE") + " points :( .";
 		builder.setMessage(message);
 		builder.setNeutralButton(R.string.ok, null);
+
         return builder.create();
     }
+	
+		
 }
